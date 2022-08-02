@@ -1,0 +1,58 @@
+﻿@model IEnumerable<EClassField.Core.Domain.Catalog.Category>
+@{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Areas/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Kategoriler</h3>
+        <ul class="panel-controls">
+            <li><a href="/Panel/Category/CategoryAdd@(ViewBag.parentID<=0?"":"/?parentID="+ViewBag.parentID)" class=""><span class="fa fa-plus"></span></a></li>
+
+        </ul>
+    </div>
+    <div class="panel-body">
+
+        <ul class="breadcrumb">
+            @foreach (var item in EClassFieldWeb_.Models.Function.GetCategoryPath(ViewBag.parentID))
+            {
+                <li><a href="/Panel/Category/Index/?pageID=@ViewBag.pageID&parentID=@item.Id&categoryName=@ViewBag.categoryName">@item.Name</a></li>
+            }
+        </ul>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th>First Name</th>
+                    <th>Kategori ID</th>
+                    <th>Full Name</th>
+             
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+
+                        <td><a href="/Panel/Category/Index/?pageID=@ViewBag.pageID&parentID=@item.Id&categoryName=@ViewBag.categoryName">@item.Name</a></td>
+                        <td>@EClassFieldWeb_.Models.Function.getCategoriesPathString(item.Id)</td>
+                        <td>@item.Id</td>
+                        <td>
+                            <a href="/Panel/MAttribute/?categoryID=@item.Id" class="btn btn-primary">Öznitelikler (@item.SubAttributes.Count)</a>
+                            <a class="btn btn-primary" href="/Panel/Category/CategoryAdd@(ViewBag.parentID<=0?"":"/?catID="+ViewBag.parentID)">Ekle</a>
+                            <a class="btn btn-info" href="/Panel/Category/CategoryAdd/?catID=@item.Id">Düzenle</a>
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

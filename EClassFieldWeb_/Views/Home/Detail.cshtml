@@ -1,0 +1,777 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout_Theme_CarSpot.cshtml";
+
+
+    EClassFieldWeb_.Models.ViewModel.ProductModelView product = ViewBag.Product;
+
+
+}
+
+<div id="loc" style="display:none">
+    @(product.Longtude + ":" + product.Latude)
+</div>
+@if (product != null)
+{
+    <div class="page-header-area-2 gray" style="background-color:#fff">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="">
+                        <div class="catpath">
+                            <ul>
+                                <li>
+                                    <a href="/">
+                                        Anasayfa
+                                    </a>
+                                </li>
+                                @if (ViewBag.BreadCrumbs.Count > 0)
+                                {
+                                    foreach (EClassFieldWeb_.Models.Input item in ViewBag.BreadCrumbs)
+                                    {
+
+                                        <li class="active">
+                                            <a href="/Kategori/@EClassFieldWeb_.Models.Function.getCategoriesPathString(Convert.ToInt32(item.Value), "-").Replace(".", "-")" class="active">
+                                                @item.Text
+                                            </a>
+                                        </li>
+                                    }
+
+                                }
+
+                            </ul>
+                        </div>
+                        @*<div class="header-page">
+                                <h1>Search</h1>
+                            </div>*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    var yourJavaScriptArray = Html.Raw(Json.Encode(product.Images.Select(d => d.Text).ToList()));
+    <meta property="og:url" content="http://otomarket.com/ilan/grapface/@product.Id" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@(product.Title + " " + product.Price+"  Sende Ücretsiz İlan Ver")" />
+    <meta property="og:description" content="Ücretsiz İlan Ver Ücretli sitelere karşı en iyi ücretsiz seri ilan platformu" />
+    <meta property="og:image" content="@product.Image" />
+    <div class="main-content-area clearfix">
+
+
+        <section class="@(Request.Browser.IsMobileDevice?" no-top ":"section-padding no-top ")">
+            <!-- Main Container -->
+            <div class="@(Request.Browser.IsMobileDevice?"":"container")">
+                <!-- Row -->
+                <div class="row">
+                    <div class="pricing-area">
+                        <div class="@(Request.Browser.IsMobileDevice?"":"col-md-12 col-xs-12 col-sm-8"))">
+                            <div class="heading-zone">
+
+
+
+                                @if (General.User != null && ((General.User.Email == "shnduman@gmail.com") || (General.User.Email == product.User.Email)))
+                                {
+                                    <a href="/ilanver/?ilanID=@product.Id">Düzenle</a>
+                                }
+                                <div class="clearfix"></div>
+
+                                <h3 id="titleProduct">@product.Title</h3>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- Middle Content Area -->
+                    <div class="detaililan @(Request.Browser.IsMobileDevice?"":"col-md-9 col-xs-12 col-sm-12")">
+                        <!-- Single Ad -->
+
+                        <div class="col-md-7 col-xs-12 col-sm-12">
+                            <div class="col-xs-12">
+
+                                @*@if (Request.Browser.IsMobileDevice)
+                                    {
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                         otomarketmobile
+                                        <ins class="adsbygoogle"
+                                             style="display:inline-block;width:320px;height:100px"
+                                             data-ad-client="ca-pub-3382681668275324"
+                                             data-ad-slot="6980968916"></ins>
+                                            <script>
+                                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>
+                                    }*@
+
+                            </div>
+                            @*<div class="featured-ribbon"><span></span></div>*@
+
+                            <div id="single-slider">
+
+
+                                <div class="clearfix"></div>
+                                <img id="imgproduct" class="img img-responsive" style="margin:0px auto;max-height:360px" src="@product.Image">
+
+                            </div>
+                            <!-- Listing Slider Thumb -->
+                            <div id="" class="">
+                                <div id="photobigdiv" style="width:480px;background:#00000069;position: relative;top:-27px;@(!Request.Browser.IsMobileDevice ? "width:480px;" : "width:auto;")"><a id="photobig" href="" style="text-align:right;padding:5px;color:#fff">Fotoğrafı Büyüt</a></div>
+
+                                <ul class="slidesphoto" style="@(!Request.Browser.IsMobileDevice ? "width:480px;" : "background:maroon,width:auto")"></ul>
+                            </div>
+
+                            <!-- Heading Area -->
+                            @*<div class="key-features">
+
+
+                                    @foreach (var item in product.Attribute.Where(d => new string[] { "Yakıt", "Km", "Year", "Yıl", "Çekiş", "Kasa Tipi", "Renk", "Vites" }.Contains(d.Text)))
+                                    {
+                                    <div class="boxicon">
+                                        <a data-toggle="tooltip" data-placement="bottom" title="@item.Text" href="javascript:void(0)">
+                                            <i class="@item.Icon"></i>
+
+
+                                            <p>@item.Value</p>
+                                        </a>
+                                    </div>
+                                    }
+
+
+                                </div>*@
+
+
+                            @*AÇIKLAMA ÖZELLKİKER*@
+
+                            <div class="clearfix"></div>
+                            <div class="margin-top-30 margin-bottom-30">
+                            </div>
+
+                            <div class="clearfix"></div>
+
+
+
+                            <div class="clearfix"></div>
+
+
+                        </div>
+
+                        <div class="col-md-5 col-xs-12 xol-sm-12">
+
+
+
+
+
+                            <table class="table table-striped bordertop">
+
+                                <thead>
+                                    <tr>
+
+                                        <th colspan="2" style="background-color: #eef4f6; padding: 20px;">
+
+                                            <h1 id="priceProduct">  @product.Price TL</h1>
+
+                                            <span id="productFullLoc">
+                                                @product.FullLoc
+                                            </span>
+
+                                        </th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <td>İlan Tarihi</td>
+                                        <td>@product.Date</td>
+                                    </tr>
+                                    @foreach (dynamic item in ViewBag.attributes)
+                                    {
+                                        int sayi = 0;
+                                        if (Int32.TryParse(item.Value, out sayi))
+                                        {
+
+                                            if (sayi <= 0)
+                                            {
+                                                continue;
+                                            }
+                                        }
+
+
+
+                                        <tr>
+
+                                            <td>@item.Name</td>
+                                            <td>@item.Value</td>
+                                        </tr>
+
+
+                                    }
+                                </tbody>
+
+                            </table>
+
+
+
+                            @*
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                 otomarket
+                                <ins class="adsbygoogle"
+                                     style="display:inline-block;width:300px;height:250px"
+                                     data-ad-client="ca-pub-3382681668275324"
+                                     data-ad-slot="3010875919"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            *@
+                        </div>
+                        <div class="row">
+                            <br />
+                            <hr />
+                        </div>
+                        <div class="clearfix">
+
+                        </div>
+                        <div class="col-md-12" style="margin-top:20px">
+
+
+
+
+
+                            <div class="panel">
+
+                                <div class="panel-heading bordertop" style="background-color:#eef4f6">
+                                    AÇIKLAMA
+                                </div>
+
+                                <div class="panel-body">
+                                    @Html.Raw(product.Description)
+
+                                </div>
+                            </div>
+
+
+                            <div class="panel">
+
+                                <div class="panel-heading bordertop" style="background-color:#eef4f6">
+                                    HARİTA
+                                </div>
+
+                                <div class="panel-body">
+                                    <div id="map"></div>
+
+                                </div>
+                            </div>
+                            <div class="panel">
+
+                                <div id="onemliNot">
+
+                                    <p>Siz de kendi güvenliğiniz ve diğer kullanıcıların daha sağlıklı alışveriş yapabilmeleri için, satın almak istediğiniz ürünü teslim almadan ön ödeme yapmamaya, avans ya da kapora ödememeye özen gösteriniz. İlan sahiplerinin ilanlarda belirttiği herhangi bir bilgi ya da görselin gerçeği yansıtmadığını düşünüyorsanız veya ilan sahiplerinin üyelik profillerindeki bilgilerin doğru olmadığını düşünüyorsanız, lütfen bize <a href="" data-target=".report-quote" data-toggle="modal" title="">haber veriniz.</a></p>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="clearfix">
+                        </div>
+
+                        <div class="ad-share text-center">
+                            <div data-toggle="modal" data-target=".share-ad" class="small-box col-md-4 col-sm-4 col-xs-12">
+                                <i class="fa fa-share-alt"></i> <span class="hidetext">Paylaş</span>
+                            </div>
+                            <div class="modal fade share-ad" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content text-left">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <span aria-hidden="true">&#10005;</span><span class="sr-only">Close</span>
+                                            </button>
+                                            <h3 class="modal-title">Paylaş</h3>
+                                        </div>
+                                        <div class="modal-body text-left">
+                                            <div class="recent-ads">
+                                                <div class="recent-ads-list">
+                                                    <div class="recent-ads-container">
+                                                        <div class="recent-ads-list-image">
+                                                            <a href="javascript:void(0);" class="recent-ads-list-image-inner">
+                                                                <img src="@product.Image" alt="@product.Title">
+                                                            </a>
+                                                        </div>
+                                                        <div class="recent-ads-list-content">
+                                                            <h3 class="recent-ads-list-title">
+                                                                <a href="javascript:void(0);">@product.Title</a>
+                                                            </h3>
+                                                            <div class="recent-ads-list-price">
+                                                                @product.Price<span class=""></span>
+                                                            </div>
+                                                            <p>@product.Title</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h3>Link</h3>
+                                            <p><a href="@Request.Url">@Request.Url </a></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <ul class="list-inline">
+                                                <li><a onclick="return windowopen(this)" href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url">Facebook, </a></li>
+                                                <li><a onclick="return windowopen(this)" href="https://plus.google.com/share?url=@Request.Url">Google+, </a></li>
+                                                <li><a onclick="return windowopen(this)" href="https://pinterest.com/pin/create/button/?url=@Request.Url">Pinterest, </a></li>
+                                                <li><a onclick="return windowopen(this)" href="https://twitter.com/intent/tweet?text=@product.Title&amp;url=@Request.Url">Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="small-box col-md-4 col-sm-4 col-xs-12" href="javascript:void(0);" id="ad_to_fav" data-adid="70">
+                                <i class="fa fa-heart-o active"></i>
+                                <span class="hidetext">
+                                    Favorilere Ekle
+                                </span>
+                            </a>
+                            <div data-target=".report-quote" data-toggle="modal" class="small-box col-md-4 col-sm-4 col-xs-12">
+                                <i class="fa fa-warning"></i>
+                                <span class="hidetext">İlanı Bildir</span>
+                            </div>
+                        </div>
+                        <div class="modal fade report-quote" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&#10005;</span><span class="sr-only">Close</span></button>
+                                        <h3 class="modal-title">Lütfen şikayet nedeninizi belirtiniz.</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- content goes here -->
+                                        <form>
+                                            <div class="skin-minimal">
+                                                <div class="form-group col-md-12 col-sm-12">
+                                                    <ul class="list">
+                                                        <li>
+                                                            <select class="alerts" id="report_option">
+                                                                <option value="Spam">İlan kategorsi hatalı</option>
+                                                                <option value="Offensive">İlan bilgileri hatalı veya yanlış</option>
+                                                                <option value="Duplicated">İlan birden fazla kere yayımlanmış</option>
+                                                                <option value="Fake">İlanda belirtilen ürün/hizmet satılmış ya da kiralanmış</option>
+                                                            </select>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="form-group  col-md-12 col-sm-12">
+                                                <label></label>
+                                                <textarea placeholder="Varsa, şikayet açıklamanızı buraya yazınız" rows="3" class="form-control" id="report_comments"></textarea>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-md-12 col-sm-12 margin-bottom-20 margin-top-20">
+                                                <input type="hidden" id="ad_id" value="70" />
+                                                <button type="button" class="btn btn-theme btn-block" id="sb_mark_it">Gönder</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="singlemap-location">
+
+
+
+
+                            @if (product != null && !String.IsNullOrEmpty(product.Latude) && !String.IsNullOrEmpty(product.Longtude))
+                            {
+                                <div id="itemMap"></div>
+                                <input type="hidden" id="lat" value="@product.Latude" />
+                                <input type="hidden" id="lon" value="@product.Longtude" />
+                            }
+
+
+                        </div>
+
+                    </div>
+                    <div class="singlepage-detail">
+
+
+                        <div class="sidebar">
+
+                            @*                      <div class="category-list-icon">
+                                    <i class="green flaticon-mail-1"></i>            <div class="category-list-title">
+                                        <!-- Email Button trigger modal -->
+                                        <h5><a href="">Kullanıcıya Mesaj Gönder</a></h5>
+                                    </div>
+                                </div>*@
+
+                            <h1 class="" style="color:#0084ae;font-weight:bold;margin-top:-54px;z-index:999999">
+                                @product.Price<span class=""></span>
+                            </h1>
+
+                            @if (product.User.Email != "otomarketdestek@gmail.com")
+                            {
+                                @*<div class="category-list-icon">
+                                        <i class="purple flaticon-smartphone"></i>          <div class="category-list-title">
+                                            <h5><a href="javascript:void(0)" class="number" data-last="@product.User.Cep"><span>Numarayı Gör</span></a></h5>
+                                        </div>
+                                    </div>*@
+                            }
+
+
+
+                            @*<div class="fb-page" data-href="https://www.facebook.com/otomarketcom/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/otomarketcom/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/otomarketcom/">otomarket.com</a></blockquote></div>*@
+                            <div class="white-bg user-contact-info  bordertop">
+                                <div class="user-info-card  ">
+
+                                    <div class="user-information  col-md-12 col-sm-12 col-xs-12">
+                                        <center>
+                                            <span class="user-name">
+
+                                                <a class="" style="color:black;" href="../../author/emily_user/indexdb00.html?type=ads">
+
+                                                    @product.User.Name @product.User.SurName
+
+
+                                                    <br />
+
+
+                                                </a>
+                                                <br />
+                                                @{
+
+                                                    var image = product.UserImages.FirstOrDefault();
+                                                    string src = "bc81fef042086.jpg";
+                                                    if (image != null)
+                                                    {
+                                                        src = image.Value;
+                                                    }
+
+
+                                                }
+
+                                                <img class="detaillogo" src="@("http://image6.otomarket.com/Image/GetImageProfile/?image="+src+"&isVitrin=true")" height="75" />
+                                            </span>
+                                        </center>
+                                        <hr />
+                                        <div class="row">
+
+                                            <center>
+                                                <div class="col-md-12"><a style="color:white" href="/Kategori/?username=@product.User.Id" class="btn btn-theme allilan">Tüm İlanları</a></div>
+                                            </center>
+
+                                        </div>
+
+                                        <div class="userinfo">
+
+
+
+
+                                            <div class="row ">
+                                                <div class="col-md-3">İş </div>
+                                                <div class="col-md-9">@EClassFieldWeb_.Models.Function.GetStringTelephone(product.User.IsTel)</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3">Cep : </div>
+                                                <div class="col-md-9">@EClassFieldWeb_.Models.Function.GetStringTelephone(product.User.Cep)</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3">Tel 1 : </div>
+                                                <div class="col-md-9">@EClassFieldWeb_.Models.Function.GetStringTelephone(product.User.EvTel)</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3">Tel 2 : </div>
+                                                <div class="col-md-9">@EClassFieldWeb_.Models.Function.GetStringTelephone(product.User.IsTel2)</div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="widget bordertop">
+
+                                <div class="">
+
+
+                                    <div class="ilanaction">
+
+                                        <div data-toggle="modal" data-target=".share-ad" class="">
+                                            <i class="fa fa-share-alt"></i>
+                                            <span class="hidetext">Paylaş</span>
+                                        </div>
+                                        <div data-target=".report-quote" data-toggle="modal" class="">
+                                            <i class="fa fa-warning"></i>
+                                            <span class="hidetext">İlanı Bildir</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <!-- Saftey Tips  -->
+                            <div class="widget bordertop">
+                                <div class="widget-heading">
+                                    <h4 class="panel-title"><a>YASAL UYARI</a></h4>
+                                </div>
+                                <div class="widget-content saftey">
+                                    <ol>
+                                        <li>Satıcıyla yüz yüze görüşmeden kesinlikle para göndermeyin</li>
+                                        <li>Aracı görmeden kapora gönderilmesi tekliflerini kabul etmeyin</li>
+                                        <li>Kişisel bilgilerinizi hiç kimse ile paylaşmayın (TC,Kredi Kartı Numarası) gibi</li>
+                                    </ol>
+                                </div>
+
+
+                            </div>
+
+                            @if (!Request.Browser.IsMobileDevice)
+                            { 
+                                <div class="widget">
+                                    <div class="widget-heading">
+                                        <h4 class="panel-title"><a>REKLAM</a></h4>
+                                    </div>
+                                    <div class="widget-content saftey">
+
+                                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                            <!-- otomarketdetail_page -->
+                                            <ins class="adsbygoogle"
+                                                 style="display:block"
+                                                 data-ad-client="ca-pub-3382681668275324"
+                                                 data-ad-slot="1792705547"
+                                                 data-ad-format="auto"></ins>
+                                            <script>
+                                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>
+
+                                    </div>
+                                                        </div> 
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <link href="~/Content/external/ligthgalerry/css/lightgallery.min.css" rel="stylesheet" />
+    <script src="~/Content/external/ligthgalerry/js/lightgallery.min.js"></script>
+    <script src="~/Content/external/ligthgalerry/js/lightgallery-all.min.js"></script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4r8nir5WrGmz9UrWFeTa_zidCAscvUrg&callback=initMap">
+    </script>
+
+    <script type="text/javascript">
+        function initMap() {
+            // The location of Uluru
+
+
+            var latt = document.getElementById("loc").innerHTML.split(':')[0].replace(",",".");
+            var lngg = document.getElementById("loc").innerHTML.split(':')[1].replace(",", ".");
+
+
+
+            var uluru = { lat: parseFloat(lngg, 0), lng: parseFloat(latt,0) };
+
+
+
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 10, center: uluru });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({ position: uluru, map: map });
+        }
+        function windowopen(data) {
+
+            window.open(data.href, "_blank", "width=480&height=360");
+
+            return false;
+
+        }
+        var sayac = 0;
+
+        var imageArray = new Array();
+        var bigimageArray = new Array();
+        (function ($) {
+
+
+            document.addEventListener("DOMContentLoaded", function (event) {
+                loadimages();
+
+            });
+
+
+            function loadimages() {
+
+                setTimeout(function () {
+
+                    for (var i = 0; i < jsonobj.length; i++) {
+
+                        imageArray[i] = new Image();
+
+                        @*if (jsonobj[i].indexOf("i0.shbdn.com") <= -1 && jsonobj[i].indexOf("araba.s3") <= -1 && jsonobj[i].indexOf("otonomi.com") <= -1) {
+                            imageArray[i].src = '@Sabit.ImageUrl' + "/?image=" + jsonobj[i] + "&width=480&height=360&quality=100";
+                        }
+                        else*@
+                        imageArray[i].src = jsonobj[i];
+
+
+                        $(".slidesphoto").append("<li><div style='width:110px;height:72px;overflow:hidden'><img draggable='false' src=" + imageArray[i].src + "&thumb=true&width=110&height=72 /></div></li>");
+
+                    }
+                    var say = 0;
+
+
+
+
+                    $(".slidesphoto img").each(function () {
+
+
+                        //this.src = imageArray[say].src.replace("&width=480&height=360&quality=100", "&width=110&height=72&quality=80");
+                        //say++;
+
+
+                    });
+                }, 100);
+
+            }
+
+
+            var jsonobj = JSON.parse('@yourJavaScriptArray');
+
+
+
+
+
+
+
+            var sayac = 0;
+            $("#imgproduct").click(function () {
+                sayac++;
+                if (sayac >= jsonobj.length - 1) {
+                    sayac = 0;
+                }
+                //
+                // document.getElementById("imgproduct").src = "/Content/imagespreview/" + jsonobj[sayac];
+
+                document.getElementById("imgproduct").src = imageArray[sayac].src.replace("=110","=800").replace("=72","=600");
+
+            });
+
+            $('#photobig').on('click', function () {
+
+
+                var images = [];
+                for (var i = 0; i < jsonobj.length; i++) {
+                    var image = null;
+
+                    image = {
+
+                        src: jsonobj[i] + "&width=1600&height=1200&quality=100",
+                        thumb:jsonobj[i] + "&width=100&height=72&thumb=true"
+
+                    }
+
+                    images.push(image);
+               
+            }
+
+
+
+
+
+
+                $(this).lightGallery({
+            dynamic: true,
+            dynamicEl: images
+        })
+
+
+        return false;
+
+        });
+
+
+
+
+
+
+
+        })(jQuery);
+    </script>
+
+
+    <style>
+        .userinfo .row {
+            margin-bottom: 5px;
+        }
+
+            .userinfo .row div:first-child {
+                font-weight: bold;
+                font-size: 8pt;
+                color: black;
+            }
+
+            .userinfo .row div:last-child {
+                color: black;
+            }
+
+
+
+        .user-info-card {
+            border: 1px solid #ebe8e8;
+        }
+    </style>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <center>
+                                                            <h3>Bu ilan silinmiş  veya yayından kaldırılmış olabilr</h3>
+                                                        </center>
+                                                    }
+
+
+
+@if (Request.Browser.IsMobileDevice)
+{
+
+    <style>
+
+    </style>
+}
+else
+{
+    <style>
+        .content-box-grid {
+            border-radius: 1px;
+            background: #fff;
+            padding: 20px 30px;
+        }
+
+
+        .section-padding {
+            margin-top: -50px;
+        }
+    </style>
+
+}
+<div id="fb-root"></div>

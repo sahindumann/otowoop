@@ -1,0 +1,143 @@
+﻿@{
+
+    EClassFieldWeb_.Models.ViewModel.ProductModelView ilan = new EClassFieldWeb_.Models.ViewModel.ProductModelView();
+    if (ViewBag.ilan != null)
+    {
+
+        ilan = ViewBag.ilan;
+    }
+
+}
+
+<div class="row">
+
+    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 margin-bottom-20">
+        <label class="control-label">İl</label>
+
+        <select class="form-control select selectloc parsley-error " data-type="3" id="city_id" data-to="town_id" name="CityID">
+
+            <option value="-1">Seçiniz</option>
+            @if (ilan != null)
+            {
+                foreach (var item in EClassFieldWeb_.Models.Cache.Citites.OrderBy(d=>d.Name))
+                {
+                    <option @(item.CityId == ilan.ILKOD
+                        ? "selected" : "") value="@item.CityId">@item.Name</option>
+                }
+            }
+
+        </select>
+    </div>
+
+
+    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 margin-bottom-20">
+        <label class="control-label">İlçe</label>
+
+        <select class="form-control select selectloc parsley-error" data-type="4" id="town_id" data-to="neighboard_id" name="TownID">
+
+            <option value="-1">Seçiniz</option>
+            @if (ilan != null)
+            {
+                foreach (var item in EClassFieldWeb_.Models.Cache.Towns.FindAll(d=>d.CityId==ilan.ILKOD))
+                {
+                    <option @(item.TownId == ilan.ILCEKOD ? "selected" : "") value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+
+
+    @*<div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 margin-bottom-20">
+        <label class="control-label">Semt</label>
+
+        <select class="form-control select selectloc parsley-error" id="area_id" data-to="neighboard_id" data-type="5" name="AreaID">
+
+            <option value="-1">Seçiniz</option>
+            @if (ilan != null)
+            {
+                foreach (var item in EClassFieldWeb_.Models.Cache.Areas.FindAll(d=>d.TownId==ilan.TownId))
+                {
+                    <option @(item.Id == ilan.AreaId ? "selected" : "") value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+    </div>*@
+
+
+    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 margin-bottom-20">
+        <label class="control-label">Mahalle</label>
+
+        <select class="form-control select selectloc parsley-error" id="neighboard_id" data-type="5" name="NeighboardID">
+
+            <option value="-1">Seçiniz</option>
+            @if (ilan != null)
+            {
+                foreach (var item in EClassFieldWeb_.Models.Cache.Neighborhoods.FindAll(d=>d.TownId==ilan.ILCEKOD))
+                {
+                    <option @(item.Id == ilan.MAHALLEKOD ? "selected" : "") value="@item.Id">@item.Name</option>
+                }
+            }
+
+        </select>
+    </div>
+
+
+
+</div>
+<hr />
+
+<script>
+    (function ($) {
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "/Home/GetLocation/?ID=-1&typeID=-1",
+                success: function (data) {
+                    $("#city_id").append("<option value=" + -1+ ">" + "Seçiniz"+ "</option>");
+                    for (var i = 0; i < data.length; i++) {
+                        $("#city_id").append("<option value=" + data[i].Value + ">" + data[i].Name + "</option>");
+                    }
+
+
+                }
+
+            });
+
+
+            $(".selectloc").on('select2:select', function (evt) {
+
+
+
+                var id = this;
+                if ($(id).data("to") != null) {
+                    $('#sb_loading').show();
+                    $("#" + $(id).data("to")).html('');
+                    $.ajax({
+                        url: "/Home/GetLocation/?ID=" + $(this).val() + "&typeID=" + $(this).data("type"),
+                        success: function (data) {
+                            $("#" + $(id).data("to")).append("<option value=" + -1 + ">" + "Seçiniz" + "</option>");
+                            for (var i = 0; i < data.length; i++) {
+                                $("#" + $(id).data("to")).append("<option value=" + data[i].Value + ">" + data[i].Name + "</option>");
+                            }
+                            $('#sb_loading').hide();
+
+                        }
+
+                    });
+
+
+
+                }
+
+            });
+
+
+
+        });
+
+
+
+
+    })(jQuery);
+</script>

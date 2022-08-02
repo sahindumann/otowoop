@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Theme_CarSpot.cshtml";
+
+    EClassField.Core.Domain.User.User user = ViewBag.user;
+}
+<br />
+<div class="page-header-area-2 gray">
+</div>
+<div class="clearfix"></div>
+<div class="vc_row wpb_row vc_row-fluid">
+    <div class="wpb_column vc_column_container vc_col-sm-12">
+        <div class="vc_column-inner ">
+            <div class="wpb_wrapper">
+                <section class="section-padding no-top gray">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Middle Content Area -->
+
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <section class="search-result-item" style="padding-bottom: 54px;">
+                                    <a id="image-link" class="uploadfile" href="/Profile/ProfileEdit">
+                                        <img class="image" alt="Profile Picture" src="@ViewBag.userImage" id="user_dp"  style="width: 200px;height: 200px;position: absolute;left: 16px;top: 0px;"/>
+                                    </a>
+                                    <input type="file" id="frmfile" style="display:none" src="" />
+
+                                    <script>
+
+                                        (function ($) {
+
+
+                                            $(".uploadfile").click(function () {
+
+                                                $("#frmfile").click();
+
+                                                return false;
+
+                                            });
+
+
+
+                                            $("#frmfile").change(function () {
+
+                                                $('#sb_loading').show();
+                                                var frmdata = new FormData();
+                                                var files = document.getElementById("frmfile").files;
+                                                for (var i = 0; i < files.length; i++) {
+
+                                                    frmdata.append("file", files[i]);
+                                                }
+
+                                                $.ajax({
+
+                                                    url: "/Profile/UploadImage",
+                                                    type:'POST',
+                                                    data: frmdata,
+                                                    contentType: false,
+                                                    processData: false,
+                                                    success: function (data) {
+                                                
+                                                        document.getElementById("user_dp").src = data;
+                                                        $('#sb_loading').hide();
+                                                    }
+                                                });
+
+
+                                            });
+
+
+                                        })(jQuery);
+
+
+                                    </script>
+                                    
+                                    <div class="search-result-item-body">
+                                        <div class="row">
+                                            <div class="col-md-5 col-sm-12 col-xs-12">
+
+                                                <h4 class="search-result-item-heading sb_put_user_name">@user.Name @user.SurName</h4>
+                                                <p class="info">
+                                                        <span class="profile_tabs" sb_action=""><i class="fa fa-user"></i>&nbsp; profil</span>
+                                                        <span class="profile_tabs" sb_action="update_profile"><i class="fa fa-edit"></i>&nbsp;<a href="/Profile/ProfileEdit"> profili düzenle </a></span>
+                                                    </p>
+                                                <p class="info sb_put_user_address"></p>
+                                                    
+
+                                                <span class="label label-success">
+                                                        aktif
+                                                    </span>
+                                                    @*<a href="">
+                                                        <div class="rating">
+                                                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><span class="rating-count">
+                                                                (3)
+                                                            </span>
+                                                        </div>
+                                                    </a>*@
+                                            </div>
+                                            <div class="col-md-7 col-sm-12 col-xs-12">
+                                                <div class="row ad-history">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <div class="user-stats">
+                                                            <h2>0</h2>
+                                                            <small>Sattıklarım</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <div class="user-stats">
+                                                            <h2>@ViewBag.yayindaolmayan</h2>
+                                                            <small>Tüm İlanlarım</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <div class="user-stats">
+                                                            <h2>@ViewBag.yayindaolan</h2>
+                                                            <small>Yayında Olan </small>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <div class="dashboard-menu-container">
+                                    <ul>
+
+                                        <li>
+                                            <a href="/Profile/GetIlan/?type=-1">
+                                                <div class="menu-name" sb_action="my_ads">İlanlarım</div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Profile/GetIlan/?type=0">
+                                                <div class="menu-name" sb_action="my_inactive_ads">Yayında Olmayan</div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Profile/GetIlan/?type=1">
+                                                <div class="menu-name" sb_action="my_feature_ads">Yayında Olan</div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Profile/GetFav">
+                                                <div class="menu-name" sb_action="my_fav_ads">Favori İlanlar</div>
+                                            </a>
+                                        </li>
+                                        @*<li>
+                                            <a href="/Profile/GetKazanc">
+                                                <div class="menu-name" sb_action="my_fav_ads">Kazançlarım</div>
+                                            </a>
+                                        </li>*@
+                                        @*<li>
+                                                <a href="javascript:void(0);">
+                                                    <div class="menu-name" sb_action="my_msgs">Mesajlarım</div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="http://carspot.scriptsbundle.com/my-account/" target="_blank">
+                                                    <div class="menu-names">İlan Geçmişim</div>
+                                                </a>
+                                            </li>*@
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Middle Content Area  End -->
+                        </div>
+
+                        <br />
+                        <div id="carspot_res">
+                            @RenderBody()
+
+
+
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>

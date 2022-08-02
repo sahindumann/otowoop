@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Theme_CarSpot.cshtml";
+}
+
+
+
+
+<div class="page-header-area-2 gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="small-breadcrumb">
+                    <div class="breadcrumb-link">
+                        <ul>
+                            <li>
+                                <a href="../index.html">
+                                    Anasayfa
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="javascript:void(0);" class="active">
+                                    Kaydol
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="header-page">
+                        <h1>Kaydol</h1>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="vc_row wpb_row vc_row-fluid">
+    <div class="wpb_column vc_column_container vc_col-sm-12">
+        <div class="vc_column-inner ">
+            <div class="wpb_wrapper">
+                <div class="main-content-area clearfix">
+                    <section class="section-padding no-top gray">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                                    <div class="form-grid">
+                                        @*<a class="btn btn-lg btn-block btn-social btn-facebook btnlogin" data-platform="facebook"><span class="fa fa-facebook"></span>Facebook ile Kaydol </a>*@
+                                        @*<a class="btn btn-block btn-social btn-google btnlogin" data-platform="google" ><span class="fa fa-google"></span>Google ile kaydol</a>*@
+                                        @*<h2 class="no-span"><b>veya</b></h2>*@
+                                     
+                                        <form id="sb-sign-form">
+
+                                            @Html.AntiForgeryToken()
+                                            <div class="form-group">
+                                                <label>Adınız</label>
+                                                <input placeholder="Adınız" class="form-control" type="text" data-parsley-required="true" data-parsley-error-message="Adınızı Giriniz" name="name" id="name" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Telefon Numarası</label>
+                                                <input class="form-control" name="tel" data-parsley-required="true" data-parsley-error-message="Telefon Numarası Giriniz" placeholder="Telefon Numaranız" type="text" id="tel" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email Adresiniz</label>
+                                                <input placeholder="Your Email" class="form-control" type="email" data-parsley-type="email" data-parsley-required="true" data-parsley-error-message="Geçersiz Email Adresi" data-parsley-trigger="change" name="email" id="email" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Şifreniz</label>
+                                                <input placeholder="Şifreniz" class="form-control" type="password" data-parsley-required="true" data-parsley-error-message="Şifre Giriniz." name="password" id="sifre" />
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-12 col-sm-12">
+                                                        <div class="skin-minimal">
+                                                            <ul class="list">
+                                                                <li>
+                                                                    <input type="checkbox" id="minimal-checkbox-1" checked disabled name="minimal-checkbox-1" />
+                                                                    <label for="minimal-checkbox-1">Hüküm ve Koşulları Kabul  <a href="#" title="" target=" _blank"> Ediyorum</a></label>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" value="no" name="is_captcha" />
+                                            <button class="btn btn-theme btn-lg btn-block" type="submit" id="sb_register_submit">Kaydol</button>
+                                            <button class="btn btn-theme btn-lg btn-block no-display" type="button" id="sb_register_msg">Processing...</button>
+                                            <button class="btn btn-theme btn-lg btn-block no-display" type="button" id="sb_register_redirect">Redirecting...</button>
+                                            <br />
+                                            <p class="text-center">
+                                                <a href="/Login">Ben zaten kayıtlıyım </a>
+                                            </p>
+                                            <input type="hidden" id="get_action" value="register" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '345965655830232',
+            xfbml: true,
+            version: 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+</script>
+
+
+
+@*<script>
+
+    function onLogin(response) {
+        if (response.status == 'connected') {
+            FB.api('/me?fields=first_name', function (data) {
+                var welcomeBlock = document.getElementById('fb-welcome');
+                welcomeBlock.innerHTML = 'Hello, ' + data.first_name + '!';
+            });
+        }
+    }
+
+    FB.getLoginStatus(function (response) {
+        // Check login status on load, and if the user is
+        // already logged in, go directly to the welcome message.
+        if (response.status == 'connected') {
+            onLogin(response);
+        } else {
+            // Otherwise, show Login dialog first.
+            FB.login(function (response) {
+                onLogin(response);
+            }, { scope: 'user_friends, email' });
+        }
+    });
+
+    (function ($) {
+
+        "use strict";
+        $(".btnlogin").click(function () {
+
+            login($(this).data('platform'));
+        });
+
+
+
+        function login(id) {
+
+            if (id == "facebook") {
+
+                function checkLoginState() {
+                    FB.getLoginStatus(function (response) {
+                        statusChangeCallback(response);
+                    });
+                }
+
+
+
+                FB.login(function (response) {
+                    statusChangeCallback(response);
+                    // handle the response
+                }, { scope: 'public_profile,email' });
+
+                function statusChangeCallback(response) {
+
+                    console.log(response);
+                    // The response object is returned with a status field that lets the
+                    // app know the current login status of the person.
+                    // Full docs on the response object can be found in the documentation
+                    // for FB.getLoginStatus().
+                    if (response.status === 'connected') {
+                        // Logged into your app and Facebook.
+                        getLoginInfo();
+                    } else {
+                        // The person is not logged into your app or we are unable to tell.
+                        document.getElementById('status').innerHTML = 'Please log ' +
+                          'into this app.';
+                    }
+                }
+
+                function getLoginInfo() {
+
+                    FB.api('/me', { locale: 'tr_TR', fields: 'name, email,id ' }, function (response) {
+                  
+
+                        var formtoken = $('#sb-sign-form');
+                        var token = $('input[name="__RequestVerificationToken"]', formtoken).val();
+                        var form = new FormData();
+                        form.append("name", response.name.split(' ')[0]);
+                        form.append("surname", response.name.split(' ')[response.name.split(' ').length-1]);
+                        form.append("email", response.email);
+                        form.append("sifre", response.id);
+                        form.append("__RequestVerificationToken", token)
+                        form.append("facebook", "true");
+                      
+                        $('#sb_loading').show();
+                        $.ajax({
+                            url: "/SignUp/Index",
+                            data: form,
+                            processData: false,
+                            contentType: false,
+                            type: 'POST',
+                            success: function (data) {
+                               
+                                if (data == "1") {
+                                    $('#sb_loading').hide();
+                                    window.location = "/";
+                                }
+                                else {
+                                    $('#sb_loading').hide();
+                                    toastr.error(data, '', { timeOut: 2500, "closeButton": true, "positionClass": "toast-top-right" });
+                                }
+                            }
+
+                        })
+                    });
+
+
+                }
+            }
+
+
+            else if (id == "google")
+            {
+
+         
+            }
+        }
+
+})(jQuery);
+
+
+
+</script>*@

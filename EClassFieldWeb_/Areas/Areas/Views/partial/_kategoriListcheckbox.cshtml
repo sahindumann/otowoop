@@ -1,0 +1,79 @@
+﻿@model IList<EClassField.Core.Domain.Catalog.Category>
+
+@{
+
+    var kategoriler = EClassFieldWeb_.Models.Function.getSubCategoriesBlog(0);
+
+}
+
+<ul class="kategoriekle">
+    @foreach (var item in kategoriler)
+    {
+        var kats = EClassFieldWeb_.Models.Function.getSubCategoriesBlog(item.Id).FindAll(d => d.ParentCategoryId == item.Id);
+
+        if (kats.Count >= 1)
+        {
+            <li>
+                <label>
+                    <input type="checkbox" class="icheckbox" name="catIds" value="@item.Id" />&nbsp;&nbsp;
+                    @item.Name
+                </label>
+
+                @getSubCategories(kats)
+
+            </li>
+
+        }
+        else
+        {
+            <li><input type="checkbox" class="icheckbox" value="@item.Id " name="catIds" />&nbsp;&nbsp; @item.Name </li>
+        }
+
+
+
+    }
+</ul>
+
+
+@helper getSubCategories(List<EClassField.Core.Domain.Catalog.Category> cats)
+{
+    <ul>
+        @foreach (var item in cats)
+        {
+
+            var kats = EClassFieldWeb_.Models.Function.getSubCategoriesBlog(item.Id).FindAll(d => d.ParentCategoryId == item.Id);
+
+            if (kats.Count >= 1)
+            {
+                <li>
+                    <input type="checkbox" class="icheckbox" value="@item.Id" name="catIds" />
+                    &nsub;@item.Name
+                    @getSubCategories(kats)
+
+                </li>
+
+            }
+            else
+            {
+                <li><input type="checkbox" class="icheckbox" value="@item.Id" name="catIds" />&nbsp;@item.Name </li>
+            }
+        }
+
+    </ul>
+
+}
+
+
+<style>
+    .kategoriekle {
+        list-style-type: none;
+        margin-left:-50px;
+    }
+
+        .kategoriekle li ul li {
+            list-style-type: none;
+            padding: 5px;
+        }
+</style>
+
+

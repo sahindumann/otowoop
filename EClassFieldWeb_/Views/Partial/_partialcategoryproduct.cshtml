@@ -1,0 +1,17 @@
+﻿@model IList<EClassFieldWeb_.Models.ViewModel.ProductModelView>
+
+@foreach (var item in Model)
+{
+
+    <div class="vitrin">
+        <div class="vitrinback"></div>
+            <a class="ilan-title" href="@("/ilan/"+(EClassFieldWeb_.Models.Function.GetStringFormatText(item.Title).Replace(" ","").Replace(",","").Replace(System.Environment.NewLine,"").Replace("&nbsp",""))+"/"+item.Id)">
+                <img src="@item.Image" style="" alt="otomarket @item.Title" />
+                <br />
+                <span>   @item.Title</span>
+                <div class="vitrinilanprice">@item.Price TL</div>
+            </a>
+        
+    </div>
+}
+

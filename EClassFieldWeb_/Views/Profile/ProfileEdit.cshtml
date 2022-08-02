@@ -1,0 +1,173 @@
+﻿@model EClassField.Core.Domain.User.User
+@{
+    ViewBag.Title = "ProfileEdit";
+    Layout = "~/Views/Profile/Index.cshtml";
+}
+
+
+<div id="carspot_res">
+    <div class="profile-section margin-bottom-20">
+        <div class="profile-tabs">
+            <div class="tab-content">
+                <div class="profile-edit tab-pane fade in active" id="edit">
+                    <h2 class="heading-md">Bilgilerinizi Düzenleyin</h2>
+              
+                    <div class="clearfix"></div>
+                    <form id="sb_update_profile" enctype="multipart/form-data" method="post">
+                        <div class="row">
+
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label>Adınız</label>
+                                <input type="text" class="form-control margin-bottom-20" value="@Model.Name" name="Name">
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label>Soyadınız</label>
+                                <input type="text" class="form-control margin-bottom-20" value="@Model.SurName" name="SurName">
+                            </div>
+
+                     
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label>Email Addresiniz <span class="color-red">*</span></label>
+                                <input type="text" class="form-control margin-bottom-20" value="@Model.Email" readonly="">
+                            </div>
+
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <label>Telefon Numarası 1 <span class="color-red">*</span></label>
+                                <input type="text" class="form-control margin-bottom-20" name="Cep" value="@Model.Cep">
+                            </div>
+
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <label>Telefon Numarası 2 <span class="color-red"></span></label>
+                                <input type="text" class="form-control margin-bottom-20" name="EvTel" value="@Model.EvTel">
+                            </div>
+
+
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <label>Telefon Numarası 2 <span class="color-red"></span></label>
+                                <input type="text" class="form-control margin-bottom-20" name="IsTel" value="@Model.IsTel">
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <label>Telefon Numarası 2 <span class="color-red"></span></label>
+                                <input type="text" class="form-control margin-bottom-20" name="IsTel2" value="@Model.IsTel2">
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-5 col-sm-12 col-xs-12 ">
+                                    <label>Profil Resmi<span class="color-red">*</span></label>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-default btn-file uploadfilee">
+                                                Profil Resmi
+                                                <input type="file" id="frmfilee"  accept="image/*" class="sb_files-data form-control">
+                                            </span>
+                                        </span>
+                                        <input type="text" class="form-control" readonly="">
+                                    </div>
+                                </div>
+                                <div class="col-md-1 no-padding">
+                                    <img id="user_dpp" class="img-responsive" src="@ViewBag.UserImage" alt="Profile Picture" width="100" height="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12 text-right">
+                                <p class="help-block">
+                                    <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Şifre Değiştir">Şifre Değiştir </a>
+                                </p>
+                                <button type="submit" class="btn btn-theme btn-sm" id="">
+                                Değişiklikleri Kaydet
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="custom-modal">
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header rte">
+                                    <h2 class="modal-title">Password Change</h2>
+                                </div>
+                                <form id="sb-change-password">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label>Current Password</label>
+                                            <input placeholder="Current Password" class="form-control" type="password" name="current_pass" id="current_pass">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>New Password</label>
+                                            <input placeholder="New Password" class="form-control" type="password" name="new_pass" id="new_pass">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Confirm New Password</label>
+                                            <input placeholder="Confirm Password" class="form-control" type="password" name="con_new_pass" id="con_new_pass">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-theme btn-sm" type="button" id="change_pwd">Reset My Account</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+                                        (function ($) {
+
+
+                                            $(".uploadfilee").click(function () {
+
+                                                $("#frmfilee").click();
+
+                                                return false;
+
+                                            });
+
+
+
+                                            $("#frmfilee").change(function () {
+
+                                                $('#sb_loading').show();
+                                                var frmdata = new FormData();
+                                                var files = document.getElementById("frmfilee").files;
+                                                for (var i = 0; i < files.length; i++) {
+
+                                                    frmdata.append("file", files[i]);
+                                                }
+
+                                                $.ajax({
+
+                                                    url: "/Profile/UploadImage",
+                                                    type:'POST',
+                                                    data: frmdata,
+                                                    contentType: false,
+                                                    processData: false,
+                                                    success: function (data) {
+
+                                                        document.getElementById("user_dpp").src = data;
+                                                        $('#sb_loading').hide();
+                                                    }
+                                                });
+
+
+                                            });
+
+
+                                        })(jQuery);
+
+
+</script>

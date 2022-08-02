@@ -1,0 +1,86 @@
+﻿.table {
+    width:100%;
+     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+       display: table;
+      
+}
+      
+  .table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+
+
+  border-color: #ccc;
+  border-width: 1px;
+  font-size:10pt;
+  font-family:Tahoma;
+  
+  
+}
+
+    .table a {
+
+        /*color:blue;*/
+    }
+
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background: #fbfbfb;
+       transition:all 0.5s;
+}
+.table > thead > tr > th {
+ 
+    color: #000000;
+    font-size: 10px;
+}
+
+
+    .table > tbody> :hover {
+
+
+   
+
+    }
+
+    
+    .ilantable > tbody> td {
+        height:50px !important;
+        padding:-6px;
+    
+    }
+
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+     background-color:#fbfbfb
+}
+
+    .ilantable tr td a {
+
+    color:red;
+  
+}
+.tdnoimage {
+    color:black !important;
+   text-align:center !important;
+   padding:-6px;
+
+}
+.ilantable tbody tr {
+  
+
+  border-width:5px;
+  height:10px;
+
+  
+
+}
+
+.tdnoimage span {
+    position:initial !important;
+    padding:5px;
+    text-align:center;
+}
+

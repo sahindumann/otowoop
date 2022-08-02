@@ -1,0 +1,272 @@
+﻿@model  IEnumerable<EClassFieldWeb_.Models.ViewModel.PostViewModel>
+
+
+@{
+    ViewBag.Title = ViewBag.Title;
+    Layout = "~/Views/Shared/_Layout_Theme_CarSpot.cshtml";
+
+
+    List<EClassFieldWeb_.Models.ViewModel.PostViewModel> lastposts = ViewBag.lastposts;
+
+    List<Input> categories = ViewBag.categories;
+
+
+}
+
+@if (Model != null)
+{
+
+
+<div class="page-header-area-2 gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="small-breadcrumb">
+                    <div class="breadcrumb-link">
+                        <ul>
+                            <li>
+                                <a href="/">
+                                    Anasayfa
+                                </a>
+                            </li>
+                            @if (ViewBag.BreadCrumbs.Count > 0)
+                            {
+                                foreach (EClassFieldWeb_.Models.Input item in ViewBag.BreadCrumbs)
+                                {
+                                    var last = ((List<EClassFieldWeb_.Models.Input>)ViewBag.BreadCrumbs).LastOrDefault();
+
+
+                                    <li class="active">
+                                        <a href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(EClassFieldWeb_.Models.Function.getCategoriesPathString(Convert.ToInt32(item.Value)))" class="@(last == item ? "active" : "")">
+                                            @item.Text
+                                        </a>
+                                    </li>
+                                }
+
+                            }
+
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="vc_row wpb_row vc_row-fluid">
+    <div class="wpb_column vc_column_container vc_col-sm-12">
+        <div class="vc_column-inner ">
+            <div class="wpb_wrapper">
+                <section class="custom-padding reviews  gray no-top">
+                    <!-- Main Container -->
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-8 col-xs-12 col-sm-12 news">
+                                <div class="row">
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="mainimage">
+                                                <span class="badge text-uppercase badge-overlay badge-tech"><a href="http://carspot.scriptsbundle.com/reviews_cats/road-test/">Yeni Otomobil </a></span>
+                                                <a href="/blog/detay/@item.Title.Replace(" ", "-").Replace(".", "")/@item.Id">
+                                                    <img class="img-responsive" alt="2017 Mercedes-Benz E-Class Coupe review" style="height:268px;" src="@item.Pictures.FirstOrDefault().Value">
+                                                    <div class="overlay small-font">
+                                                        <h2>@item.Title</h2>
+                                                    </div>
+                                                </a>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+
+                                </div>
+                                <div class="cleaxfix"></div>
+
+                            </div>
+                            <div class="col-md-4 col-xs-12 col-sm-12">
+                                <div class="blog-sidebar">
+                                    <!-- Heading -->
+                                    <div class="widget">
+                                        <div class="latest-news">
+                                            <div class="widget-heading">
+                                                <h4 class="panel-title">
+                                                    <a>
+                                                        Son Haberler
+                                                    </a>
+                                                </h4>
+                                            </div>
+
+
+                                            <div class="recent-ads">
+
+                                                @foreach (var item in lastposts)
+                                                {
+                                                    <div class="recent-ads-list">
+                                                        <div class="recent-ads-container">
+                                                            <div class="recent-ads-list-image">
+                                                                <a href="/blog/detay/@item.Title.Replace(" ", "-").Replace(".", "")/@item.Id"class="recent-ads-list-image-inner">
+                                                                    <img src="@item.Pictures.FirstOrDefault().Value" alt="@item.Title">
+                                                                </a><!-- /.recent-ads-list-image-inner -->
+                                                            </div>
+                                                            <!-- /.recent-ads-list-image -->
+                                                            <div class="recent-ads-list-content">
+                                                                <h3 class="recent-ads-list-title">
+                                                                    <a href="/Blog/Detail">@item.Title</a>
+                                                                </h3>
+                                                                <ul class="recent-ads-list-location">
+                                                                    <li><a href="javascript:void(0)">@item.CreationTime.ToShortDateString()</a></li>
+                                                                </ul>
+                                                                <!-- /.recent-ads-list-price -->
+                                                            </div>
+                                                            <!-- /.recent-ads-list-content -->
+                                                        </div>
+                                                        <!-- /.recent-ads-container -->
+                                                    </div>
+                                                }
+
+
+
+
+
+
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Heading -->
+                                    <div class="widget">
+                                        <div class="widget-heading">
+                                            <h4 class="panel-title">
+                                                <a>
+                                                    Reviews By Categories
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div class="categories">
+
+                                            <ul>
+                                                @foreach (var item in categories)
+                                                {
+                                                    <li> <a href="/Blog/@item.Value"> @item.Text<span>&nbsp;</span>  </a> </li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Heading -->
+                                    @*<div class="widget">
+                                            <div class="reviews_bybrands">
+                                                <div class="widget-heading">
+                                                    <h4 class="panel-title">
+                                                        <a>
+                                                            Reviews By Top 20 Brands
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/aston-martin/">Aston Martin<span>&nbsp;(1)</span> </a>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/audi/">Audi<span>&nbsp;(1)</span> </a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/bmw/">BMW<span>&nbsp;(1)</span> </a>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/chevrolet/">Chevrolet<span>&nbsp;(0)</span> </a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/honda/">Honda<span>&nbsp;(2)</span> </a>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/hyundai/">Hyundai<span>&nbsp;(0)</span> </a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/jaguar/">Jaguar<span>&nbsp;(0)</span> </a>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/mercedes-benz/">Mercedes-Benz<span>&nbsp;(2)</span> </a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/nissan/">Nissan<span>&nbsp;(1)</span> </a>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/porsche/">Porsche<span>&nbsp;(0)</span> </a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/renault/">Renault<span>&nbsp;(0)</span> </a>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/suzuki/">Suzuki<span>&nbsp;(0)</span> </a>
+
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/toyota/">Toyota<span>&nbsp;(0)</span> </a>
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/volkswagen/">Volkswagen<span>&nbsp;(0)</span> </a>
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>*@
+
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+}else       
+{
+<h3>Aradığınız sayfa kaldırılmış olabilir</h3>
+}

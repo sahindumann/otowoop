@@ -1,0 +1,308 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout_Theme_CarSpot.cshtml";
+
+}
+
+
+
+
+
+
+<div class="vc_row wpb_row vc_row-fluid">
+    <div class="wpb_column vc_column_container vc_col-sm-12">
+        <div class="vc_column-inner ">
+            <div class="wpb_wrapper">
+                <section class="">
+                    <!-- Main Container -->
+                    <div class="container" style="margin-top: 50px;">
+                        <!-- Row -->
+                        <div class="row">
+
+
+
+                            <div class="col-xs-12 col-xs-12 col-md-3">
+
+                                <h3 class="titlecategory">KATEGORİLER</h3>
+                                <ul class="sidecategory">
+                               
+                                    @foreach (var item in EClassFieldWeb_.Models.Cache.Categories.FindAll(d => d.ParentCategoryId == 0 && !d.Deleted && (d.IsIlan || d.IsBlog || d.IsOtoKuafor)))
+                                    {
+                                        <li class="sidecategoryparent">
+                                            @if (item.IsIlan || item.IsBlog)
+                {
+                                                <a data-id="@item.Id" href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(item.FullPath)">@item.Name </a>
+                                            }
+                                            else if (item.IsBlog)
+                                            {
+                                                <a href="/Blog/@EClassFieldWeb_.Models.Function.GetStringFormatText(item.FullPath)">@item.Name </a>
+                                            }
+                                            else if (item.IsOtoKuafor)
+                                            {
+                                                <a href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(item.FullPath)">@item.Name </a>
+                                            }
+
+
+                                            @if (!Request.Browser.IsMobileDevice)
+                                            {
+                                            <ul class="">
+                                                @foreach (var item2 in EClassFieldWeb_.Models.Cache.Categories.FindAll(d => d.ParentCategoryId == item.Id).Take(10))
+                                                {
+                                                    if (item.IsIlan)
+                                                    {
+                                                        <li>
+                                                            <a data-id="@item.Id" href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(item2.FullPath)">@item2.Name </a>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        <li>
+                                                            <a href="/Blog/@EClassFieldWeb_.Models.Function.GetStringFormatText(item2.FullPath)">@item2.Name </a>
+                                                        </li>
+                                                    }
+
+
+                                                }
+                                            </ul>
+                                            }
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+
+
+                            <div class="col-xs-12 col-xs-12 col-md-9">
+
+
+                                <div class="panel vitrinpanel">
+                                    <div class="panel-heading">
+
+                                        <div class="row">
+                                            <div class="pull-left">
+                                                &nbsp; &nbsp;
+                                                Anasayfa Vitrini
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="#" class="btn btn-sm">Tümünü göster</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel-body">
+
+
+                                        @Html.Partial("~/Views/Partial/_partialcategoryproduct.cshtml", EClassFieldWeb_.Models.Function.GetProducts(2))
+                                    </div>
+
+                                </div>
+                                <div class="panel vitrinpanel">
+                                    <div class="panel-heading">
+                                     
+
+                                            <div class="row">
+                                                <div class="pull-left">
+                                                    &nbsp; &nbsp;
+                                                    Otomobil Vitrini
+                                                </div>
+                                                <div class="pull-right">
+                                                    <a href="#" class="btn btn-sm">Tümünü göster</a>
+                                                </div>
+                                            </div>
+                                       
+                                    </div>
+
+                                    <div class="panel-body">
+
+
+                                        @Html.Partial("~/Views/Partial/_partialcategoryproduct.cshtml", EClassFieldWeb_.Models.Function.GetProducts(16))
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="panel vitrinpanel">
+                                    <div class="panel-heading">
+
+
+                                        <div class="row">
+                                            <div class="pull-left">
+                                                &nbsp; &nbsp;
+                                                Minivan Van & Panelvan
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="#" class="btn btn-sm">Tümünü göster</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="panel-body">
+
+
+                                        @Html.Partial("~/Views/Partial/_partialcategoryproduct.cshtml", EClassFieldWeb_.Models.Function.GetProducts(19))
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+                                <div class="panel vitrinpanel">
+                                    <div class="panel-heading">
+
+
+                                        <div class="row">
+                                            <div class="pull-left">
+                                                &nbsp; &nbsp;
+                                                Arazi,SUV & Pickup Vitrini
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="#" class="btn btn-sm">Tümünü göster</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="panel-body">
+
+
+                                        @Html.Partial("~/Views/Partial/_partialcategoryproduct.cshtml", EClassFieldWeb_.Models.Function.GetProducts(17))
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="panel vitrinpanel">
+                                    <div class="panel-heading">
+
+
+                                        <div class="row">
+                                            <div class="pull-left">
+                                                &nbsp; &nbsp;
+                                                Motosiklet Vitrini
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="#" class="btn btn-sm">Tümünü göster</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="panel-body">
+
+
+                                        @Html.Partial("~/Views/Partial/_partialcategoryproduct.cshtml", EClassFieldWeb_.Models.Function.GetProducts(18))
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function ($) {
+
+
+        $("#btnsorgula").click(function () {
+
+            var category = $("#cat_select option:selected").val();
+            var year = $("#year").val();
+            for (var i = 0; i < category.length; i++) {
+                category = category.replace("/", "-");
+            }
+
+
+            if (year != "") {
+
+                if (category != "") {
+                    window.location = "/Kategori/" + category + "?year=" + year + "&year=2019";
+                }
+                else {
+
+                } window.location = "/Kategori/Vasıta-Otomobil/?year=" + year + "&year=2019";
+
+            }
+            else {
+                window.location = "/Kategori/" + category;
+            }
+        });
+
+    })(jQuery);
+
+</script>
+
+
+<script>
+
+    (function ($) {
+
+
+        $("#image-link").click(function () {
+
+            $("#frmfile").click();
+
+            return false;
+
+        });
+
+
+
+        $("#frmfile").change(function () {
+
+            alert("dfsfd");
+            $('#sb_loading').show();
+            var frmdata = new FormData();
+            var files = document.getElementById("frmfile").files;
+            for (var i = 0; i < files.length; i++) {
+
+                frmdata.append("file", files[i]);
+            }
+
+            $.ajax({
+
+                url: "/Profile/UploadImage",
+                type: 'POST',
+                data: frmdata,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+
+                    document.getElementById("user_dp").src = data;
+                    $('#sb_loading').hide();
+                }
+            });
+
+
+        });
+
+        $(".pro").each(function () {
+
+            var image = this;
+            if (image.width > image.height) {
+                $(this).css("width", "100%");
+            }
+            else if ((image.width < image.height)) {
+                $(this).css("width", "50%");
+            }
+            else {
+                $(this).css("width", "70%");
+            }
+        });
+
+    })(jQuery);
+
+
+</script>

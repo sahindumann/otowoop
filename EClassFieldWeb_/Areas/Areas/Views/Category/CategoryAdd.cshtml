@@ -1,0 +1,392 @@
+﻿@model EClassField.Core.Domain.Catalog.Category
+@{
+    ViewBag.Title = "CategoryAdd";
+    Layout = "~/Areas/Areas/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Kategori Ekle</h3>
+        <ul class="panel-controls">
+            <li><a href="" class=""><span class="fa fa-plus"></span></a></li>
+
+        </ul>
+    </div>
+    <div class="panel-body">
+
+
+        <div class="panel panel-default tabs">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="@ViewBag.catdetay"><a href="#tab8" data-toggle="tab" onclick="cat.value='category'">Kategori Detayları</a></li>
+                <li class="@ViewBag.dildetay"><a href="#tab9" data-toggle="tab" aria-expanded="false" onclick="dil.value='dil'">Dil Ayarları</a></li>
+                <li class="@ViewBag.attributedetay"><a href="#tab10" data-toggle="tab" onclick="attribute.value='attribute'">Öznitelikler</a></li>
+                <li class="@ViewBag.subattributedetay"><a href="#tab11" data-toggle="tab" onclick="subattribute.value = 'subattribute'">Alt Öznitelikler</a></li>
+            </ul>
+            <div class="panel-body tab-content">
+                <div class="tab-pane @ViewBag.catdetay " id="tab8">
+                    <hr />
+                    <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" value="category" name="secili" id="cat" />
+
+
+
+                        @Html.HiddenFor(d => d.Id)
+                        @Html.HiddenFor(d => d.ParentCategoryId)
+                        @Html.HiddenFor(d => d.CreationTime)
+                        <div class="col-md-8">
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Kategori Full Yol</label>
+                                <div class="col-md-6">
+
+                                    @if (ViewBag.parentID != null && ViewBag.parentID >= 1)
+                                    {
+                                        <p>@EClassFieldWeb_.Models.Function.getCategoriesPathString(ViewBag.parentID)</p>
+                                    }
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Kategori Adı</label>
+                                <div class="col-md-6">
+
+                                    @Html.TextBoxFor(d => d.Name, new { @class = "form-control" })
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Meta Title</label>
+                                <div class="col-md-6">
+
+                                    @Html.TextAreaFor(d => d.MetaTitle, new { @class = "form-control" })
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Meta Description</label>
+                                <div class="col-md-6">
+
+                                    @Html.TextAreaFor(d => d.MetaDescription, new { @class = "form-control" })
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Meta Keywords</label>
+                                <div class="col-md-6">
+
+                                    @Html.TextAreaFor(d => d.MetaKeywords, new { @class = "form-control" })
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Kiralanabilir</label>
+                                <div class="col-md-6">
+
+                                    @Html.CheckBoxFor(d => d.IsRental, new { @class = "icheckbox" })
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">İlan Kategorisi</label>
+                                <div class="col-md-6">
+
+                                    @Html.CheckBoxFor(d => d.IsIlan, new { @class = "icheckbox" })
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Blog Kategorisi</label>
+                                <div class="col-md-6">
+
+                                    @Html.CheckBoxFor(d => d.IsBlog, new { @class = "icheckbox" })
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Forum Kategorisi</label>
+                                <div class="col-md-6">
+
+                                    @Html.CheckBoxFor(d => d.IsForum, new { @class = "icheckbox" })
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Ödev Kategorisi</label>
+                                <div class="col-md-6">
+
+                                    @Html.CheckBoxFor(d => d.IsOdev, new { @class = "icheckbox" })
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Eğlence Kategorisi</label>
+                                <div class="col-md-6">
+
+                                    @Html.CheckBoxFor(d => d.IsFun, new { @class = "icheckbox" })
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Oto Kuaförü</label>
+                                <div class="col-md-6">
+
+                                    @Html.CheckBoxFor(d => d.IsOtoKuafor, new { @class = "icheckbox" })
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Deleted</label>
+                                <div class="col-md-6">
+
+                                    @Html.CheckBoxFor(d => d.Deleted, new { @class = "icheckbox" })
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-6">Resim Seç</label>
+                                <div class="col-md-6">
+                                    <input type="file" class="form-control" name="file" />
+
+                                    @if (Model.Picture != null)
+                                    {
+                                   
+                                  
+                                        <img src="~/Content/categoryimages/@Model.Picture.FileName"  width="250"/>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="clearfix">
+
+                        </div>
+                        <button class="btn btn-primary pull-right">Kaydet</button>
+                    </form>
+                </div>
+                <div class="tab-pane" id="tab9">
+
+
+
+                </div>
+                <div class="tab-pane @ViewBag.attributedetay" id="tab10">
+                    <form class="form-horizontal" role="form" method="post" action="/Panel/Category/Attribute">
+                        <input type="hidden" value="category" name="secili" id="attribute" />
+                        <div class="col-md-6">
+
+                            @Html.Hidden("catID", (int)ViewBag.catID)
+                            @Html.Hidden("id.Id", (string)(ViewBag.attribute != null ? ViewBag.attribute.Id + "" : "0"))
+                            <div class="form-group">
+                                <label class="col-md-6 control-label"> Öznitelik Adı</label>
+                                <div class="col-md-6">
+
+                                    <input type="text" class="form-control" name="id.Name" value="@(ViewBag.attribute!=null?ViewBag.attribute.Name:"")" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-6 control-label"> Öznitelik Tipi</label>
+                                <div class="col-md-6">
+                                    <select class="select" name="id.AttributeType">
+
+                                        @foreach (var item in Enum.GetNames(typeof(EClassField.Core.Domain.Attribute.AttributeType)))
+                                        {
+                                            <option @(ViewBag.attribute != null && ViewBag.attribute.AttributeType.ToString() == item ? "selected" : "")>@item</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+
+                        </div>
+                        <div class="col-md-12"></div>
+                        <button class="btn btn-primary pull-right">Kaydet</button>
+                    </form>
+                    <hr />
+
+                    <div class="col-md-12">
+                        <br />
+                        <br />
+                        <table class="table table-striped">
+
+
+                            <thead>
+                                <tr>
+                                    <th>Öznitelik Adı</th>
+                                    <th>Öznitelik Tipi</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.SubAttributes)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="/panel/category/categoryAdd/?catID=@ViewBag.catID&attributeID=@item.AttributeId&secili=attribute">
+                                                @item.Attribute.Name
+                                            </a>
+                                        </td>
+                                        <td>@item.Attribute.AttributeType</td>
+
+
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+                <div class="tab-pane @ViewBag.subattributedetay" id="tab11">
+                    @if (ViewBag.attribute != null)
+                    {
+                        <h2>@ViewBag.attribute.Name İçin değerleri girin </h2>
+                        if (ViewBag.attributeId != null)
+                        {
+
+                            @Html.Hidden("m_attribute.Id", (int)ViewBag.attributeId)
+                        }
+                    }
+                    <hr />
+                    <form method="post" action="/Panel/Category/SubAttribute" role="form" class="form-horizontal">
+
+                        <input type="hidden" value="category" name="secili" id="subattribute" />
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Öznitelik Değeri</label>
+                            <div class="col-md-8">
+                                @if (ViewBag.subattribute != null && ViewBag.subattribute.SubAttribute != null)
+                                {
+                                    @Html.Hidden("attributeID", (int)ViewBag.attribute.Id)
+                                    @Html.Hidden("id.Id", (int)ViewBag.subattribute.SubAttribute.Id);
+                                    @Html.Hidden("catID", (int)ViewBag.catID);
+                                    <input type="text" class="form-control" name="id.Value" value="@ViewBag.subattribute.SubAttribute.Value" />
+                                }
+                                else
+                                {
+                                    if (ViewBag.attribute != null)
+                                    {
+                                        @Html.Hidden("attributeID", (int)ViewBag.attribute.Id)
+                                    }
+                                    @Html.Hidden("id.Id", 0);
+                                    @Html.Hidden("catID", (int)ViewBag.catID);
+                                    <input type="text" class="form-control" name="id.Value" value="" />
+                                }
+                            </div>
+                            <div class="clearfix">
+
+                            </div>
+                            <div class="col-md-12"></div>
+                            <button class="btn btn-primary pull-right">Kaydet</button>
+                        </div>
+                    </form>
+
+
+                    <table class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th>Öznitelik</th>
+                                <th>Öznitelik Value</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (ViewBag.subattributes != null && ViewBag.subattributes.Count >= 1)
+                            {
+
+                                foreach (var item in (IEnumerable<EClassField.Core.Domain.Catalog.CategorySubAttribute>)ViewBag.subattributes)
+                                {
+                                    <tr>
+                                        <td><a href="/panel/category/categoryAdd/?catID=@ViewBag.catID&subAttributeID=@item.Id&AttributeID=@ViewBag.attribute.Id&secili=subattribute"> @item.M_Attribute.Name</a></td>
+                                        <td>@item.SubAttribute.Value</td>
+                                        <td><a href="" class="btn btn-primary">Düzenle</a></td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <hr />
+                <br />
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+<div class="panel-footer">
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="modal" id="modal_basic" tabindex="-1" role="dialog" aria-labelledby="defModalHead" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="defModalHead">Basic Modal</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

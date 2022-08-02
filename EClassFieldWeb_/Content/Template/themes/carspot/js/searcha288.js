@@ -1,0 +1,215 @@
+/*
+Template: Carspot | Largest Classifieds Portal
+Author: ScriptsBundle
+Version: 1.0
+Designed and Development by: ScriptsBundle
+*/
+(function($) {
+    "use strict";
+	var carspot_ajax_url	=	$('#carspot_ajax_url').val();
+	$(document).ready(function() { 
+		$('.iCheck-helper, ul.list li label').on('click', function() {
+			$('#sb_loading').show();
+			$(this).closest("form").submit();
+		});
+		$('#order_by').on('change', function() {
+			$('#sb_loading').show();
+			$(this).closest("form").submit();
+		});
+	});
+	
+	 /*==========  Price Range Slider  ==========*/
+	 var min_price	=	$('#min_price').val();
+	 var max_price	=	$('#max_price').val();
+	 if( $('#min_price').length > 0 )
+	 {
+    $('#price-slider').noUiSlider({
+        connect: true,
+        behaviour: 'tap',
+        start: [$('#min_selected').val(), $('#max_selected').val()],
+        step: 0,
+        range: {
+            'min': parseInt(min_price),
+            'max': parseInt(max_price)
+        }
+    });
+		$('#price-slider').Link('lower').to($('#price-min'), null, wNumb({
+			decimals: 0
+		}));
+		$('#price-slider').Link('lower').to($('#min_selected'), null, wNumb({
+			decimals: 0
+		}));
+		$('#price-slider').Link('upper').to($('#price-max'), null, wNumb({
+			decimals: 0
+		}));
+		$('#price-slider').Link('upper').to($('#max_selected'), null, wNumb({
+			decimals: 0
+		}));
+	 }
+	    //Sonu Here
+		$('#make_id').on('change', function()
+		{
+		  $('#sb_loading').show();
+		  $('#select_modal').hide();
+		  $('#select_modals').hide();
+		  $('#select_forth_div').hide();
+          var cat_s_id = $('#make_id').val();
+		  $('input[name=cat_id]').val(cat_s_id);
+		  $.post(carspot_ajax_url,	{action : 'sb_get_sub_cat_search', cat_id:cat_s_id, }).done( function(response)
+		  {
+			  	$('#sb_loading').hide();
+ 				$('#select_modal').show();
+			  	$('#select_modal').html(response);
+				$(".search-select").select2({
+					placeholder: $('#select_place_holder').val(),
+					allowClear: false,
+					theme: "classic",
+					width: '100%',
+				});
+		  });
+		});
+		
+		$(document).on('change', '#cats_response', function()
+		{
+			$('#sb_loading').show();
+			$('#select_modals').hide();
+			$('#select_forth_div').hide();
+			var cat_s_id = $('#cats_response').val();
+			$('input[name=cat_id]').val(cat_s_id);
+			  $.post(carspot_ajax_url,	{action : 'sb_get_sub_sub_cat_search', cat_id:cat_s_id, }).done( function(response)
+			  {
+				  $('#sb_loading').hide();
+				  $('#select_modals').show();
+				  $('#select_modals').html(response);
+				  $(".search-select").select2({
+					placeholder: $('#select_place_holder').val(),
+					allowClear: false,
+					theme: "classic",
+					width: '100%',
+				});
+			  });
+			});
+		
+		$(document).on('change', '#select_version', function()
+		{
+			$('#sb_loading').show();
+			$('#select_forth_div').hide();
+			var cat_s_id = $('#select_version').val();
+			$('input[name=cat_id]').val(cat_s_id);
+			  $.post(carspot_ajax_url,	{action : 'sb_get_sub_sub_sub_cat_search', cat_id:cat_s_id, }).done( function(response)
+			  {
+				  $('#sb_loading').hide();
+				  $('#select_forth_div').show();
+				  $('#select_forth_div').html(response);
+				  $(".search-select").select2({
+					placeholder: $('#select_place_holder').val(),
+					allowClear: false,
+					theme: "classic",
+					width: '100%',
+				});
+			  });
+		});
+		
+		$(document).on('change', '#select_forth', function()
+		{
+			var cat_s_id = $('#select_forth').val();
+			$('input[name=cat_id]').val(cat_s_id);
+		});
+		
+		
+	 
+	 // Location
+	 $('.countries ul li a').on('click', function()
+		{
+			$('#sb_loading').show();
+			$('#countries_response').html('');
+			var cat_s_id	=	$(this).attr('data-country-id');
+			$('#country_id').val( cat_s_id );
+		  $.post(carspot_ajax_url,	{action : 'sb_get_sub_states_search', country_id:cat_s_id, }).done( function(response)
+		  {
+			  $('#sb_loading').hide();
+			  if( $.trim(response) == 'submit' )
+			  {
+				  $('#search_countries').submit();
+			  }
+			  else
+			  {
+				$('#states_model').modal('show');
+			  	$('#countries_response').html(response);
+			  }
+		  });
+		});
+		
+		
+		$(document).on('click', '#ajax_states', function()
+		{
+			$('#sb_loading').show();
+			var cat_s_id	=	$(this).attr('data-country-id');
+			$('#country_id').val( cat_s_id );
+		  $.post(carspot_ajax_url,	{action : 'sb_get_sub_states_search', country_id:cat_s_id, }).done( function(response)
+		  {
+			  $('#sb_loading').hide();
+			  if( $.trim(response) == 'submit' )
+			  {
+				  $('#search_countries').submit();
+			  }
+			  else
+			  {
+			  	$('#countries_response').html(response);
+			  }
+		  });
+		});
+		$(document).on('click', '#country-btn', function()
+		{
+			$('#search_countries').submit();
+		});
+		
+		
+
+		
+		$('.categories ul li a').on('click', function()
+		{
+			$('#sb_loading').show();
+			$('#cats_response').html('');
+			var cat_s_id	=	$(this).attr('data-cat-id');
+			$('#cat_id').val( cat_s_id );
+		  $.post(carspot_ajax_url,	{action : 'sb_get_sub_cat_search', cat_id:cat_s_id, }).done( function(response)
+		  {
+			  $('#sb_loading').hide();
+			  if( $.trim(response) == 'submit' )
+			  {
+				  $('#search_cats_w').submit();
+			  }
+			  else
+			  {
+				$('#cat_modal').modal('show');
+			  	$('#cats_response').html(response);
+			  }
+		  });
+		});
+		
+		$(document).on('click', '#ajax_cat', function()
+		{
+			$('#sb_loading').show();
+			var cat_s_id	=	$(this).attr('data-cat-id');
+			$('#cat_id').val( cat_s_id );
+		  $.post(carspot_ajax_url,	{action : 'sb_get_sub_cat_search', cat_id:cat_s_id, }).done( function(response)
+		  {
+			  $('#sb_loading').hide();
+			  if( $.trim(response) == 'submit' )
+			  {
+				  $('#search_cats_w').submit();
+			  }
+			  else
+			  {
+			  	$('#cats_response').html(response);
+			  }
+		  });
+		});
+		$(document).on('click', '#ad-search-btn', function()
+		{
+			$('#search_cats_w').submit();
+		});
+			
+})(jQuery);
+

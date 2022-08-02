@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "SubIndex";
+    Layout = "~/Areas/Areas/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12">
+    <div class="panel panel-default">
+
+        <form class="form-horizontal" role="form" method="post">
+            <input type="hidden" name="Id" value="@(ViewBag.attr!=null?ViewBag.attr.Id:"")" />
+            <input type="hidden" name="categoryID" value="@(ViewBag.categoryID)" />
+            <input type="hidden" name="attributeID" value="@ViewBag.attributeID" />
+            <div class="panel-heading">
+                <p>Öznitelik Ekle</p>
+            </div>
+            <div class="panel-body">
+
+
+
+                <div class="form-group">
+                    <label class="col-md-4"> Öznitelik Adı</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="Value" value="@(ViewBag.attr!=null?ViewBag.attr.Value:"")" />
+
+                    </div>
+
+                </div>
+
+
+                <div class="clearfix"></div>
+
+         
+
+
+
+            </div>
+
+            <div class="panel panel-footer">
+
+                <button class="btn btn-primary pull-right">Kaydet</button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr />
+<table class="table table-responsive table-striped">
+
+    <thead>
+        <tr>
+            <th>Nitelik Adı</th>
+            <th>Alt Nitelik Adı</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (   EClassFieldWeb_.Models.Input item in ViewBag.attributes)
+        {
+            <tr>
+                <td>@item.Icon</td>
+                <td>@item.Text</td>
+                <td>
+                <a class="btn btn-primary" href="/Panel/MAttribute/SubIndex/?attributeID=@ViewBag.attributeID&subattributeID=@item.Value&categoryID=@ViewBag.categoryID">Düzenle</a>
+                    <a href="/Panel/MAttribute/SubDelete/?attributeID=@ViewBag.attributeID&subattributeID=@item.Value&categoryID=@ViewBag.categoryID" class="btn btn-danger">Sil</a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

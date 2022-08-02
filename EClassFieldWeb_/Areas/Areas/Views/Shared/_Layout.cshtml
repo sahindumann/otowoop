@@ -1,0 +1,273 @@
+﻿
+
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title>TITLE</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- END META SECTION -->
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="/Areas/Areas/Content/joli/css/theme-default.css" />
+    <link href="/Content/sweetalert2/sweetalert2.min.css" rel="stylesheet" /> 
+
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    
+    <!-- EOF CSS INCLUDE -->
+</head>
+<body>
+    <!-- START PAGE CONTAINER -->
+    <div class="page-container">
+
+        <!-- START PAGE SIDEBAR -->
+
+
+
+        <div class="page-sidebar">
+            <!-- START X-NAVIGATION -->
+            <ul class="x-navigation">
+                <li class="xn-logo">
+                    <a href="index.html">otomarket</a>
+                    <a href="#" class="x-navigation-control"></a>
+                </li>
+                <li class="xn-title">Navigation</li>
+                <li>
+                    <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
+                </li>
+
+                <li class="xn-openable @((Request.QueryString["q"]!=null&&Request.QueryString["q"]=="cats")?"open active":"")">
+                    <a href=""><span class="fa fa-th"></span> <span class="xn-text">Katalog</span></a>
+                    <ul>
+                        <li><a href="/Panel/Category/CategoryAdd/?q=cats"><span class="fa fa-plus"></span>Kategori Ekle</a></li>
+                        <li><a href="/Panel/Category/Index/?q=cats"><span class="fa fa-align-right"></span>Kategoriler</a></li>
+                    </ul>
+                </li>
+
+                <li class="xn-openable @((Request.QueryString["q"]!=null&&Request.QueryString["q"]=="ilans")?"open active":"")">
+                    <a href=""><span class="fa fa-list"></span> <span class="xn-text">İlan Yönetimi</span></a>
+                    <ul>
+                        <li><a href="/Panel/Ilan/Index/?q=ilans&IsAktif=false"><span class="fa fa-pencil"></span>Onaylanmayan</a></li>
+                        <li><a href="/Panel/Ilan/Index/?q=ilans&IsAktif=true"><span class="fa fa-list"></span>Onaylanan</a></li>
+
+                    </ul>
+                </li>
+                <li class="xn-openable @((Request.QueryString["q"]!=null&&Request.QueryString["q"]=="blog")?"open active":"")">
+                    <a href=""><span class="fa fa-list"></span> <span class="xn-text">Blog Yönetimi</span></a>
+                    <ul>
+                        <li><a href="/Panel/Post/Index/?q=blog"><span class="fa fa-pencil"></span>Yazı Ekle</a></li>
+                        <li><a href="/Panel/Post/List/?q=blog"><span class="fa fa-list"></span>Yazılar</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="xn-openable @((Request.QueryString["q"]!=null&&Request.QueryString["q"]=="langs")?"open active":"")">
+                    <a href=""><span class="fa fa-list"></span> <span class="xn-text">Dil Yönetimi</span></a>
+                    <ul>
+                        <li><a href="/Panel/Language/Index/?q=langs"><span class="fa fa-pencil"></span>Dil Ekle</a></li>
+                        <li><a href="/Panel/Language/Index/?q=langs"><span class="fa fa-list"></span>Diller</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="xn-openable @((Request.QueryString["q"]!=null&&Request.QueryString["q"]=="langs")?"open active":"")">
+                    <a href="/panel/Cache"><span class="fa fa-list"></span> <span class="xn-text">Cacheyi Güncelle</span></a>
+                
+                </li>
+
+            </ul>
+            <!-- END X-NAVIGATION -->
+        </div>
+
+
+
+
+
+        <!-- END PAGE SIDEBAR -->
+        <!-- PAGE CONTENT -->
+        <div class="page-content">
+
+    
+     
+
+            <!-- PAGE CONTENT WRAPPER -->
+            <div class="page-content-wrap">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @RenderBody()
+                 
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- END PAGE CONTENT WRAPPER -->
+        </div>
+        <!-- END PAGE CONTENT -->
+    </div>
+    <!-- END PAGE CONTAINER -->
+
+
+
+
+    <!-- MESSAGE BOX-->
+    <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+        <div class="mb-container">
+            <div class="mb-middle">
+                <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+                <div class="mb-content">
+                    <p>Are you sure you want to log out?</p>
+                    <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
+                </div>
+                <div class="mb-footer">
+                    <div class="pull-right">
+                        <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
+                        <button class="btn btn-default btn-lg mb-control-close">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MESSAGE BOX-->
+    <!-- START PRELOADS -->
+    <audio id="audio-alert" src="/Areas/Areas/Content/joli/audio/alert.mp3" preload="auto"></audio>
+    <audio id="audio-fail" src="/Areas/Areas/Content/joli/audio/fail.mp3" preload="auto"></audio>
+    <!-- END PRELOADS -->
+    <!-- START SCRIPTS -->
+    <!-- START PLUGINS -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    @*<script src="~/Areas/Areas/Content/joli/js/jquery.js"></script>*@
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="/Areas/Areas/Content/joli/js/plugins/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Areas/Areas/Content/joli/js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/Areas/Areas/Content/joli/js/plugins/bootstrap/bootstrap-select.js"></script>
+    <script type="text/javascript" src="/Areas/Areas/Content/joli/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+    @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.tr.min.js"></script>*@
+
+    <script type="text/javascript" src="/Areas/Areas/Content/joli/js/plugins/bootstrap/bootstrap-file-input.js"></script>
+
+    <!-- END PLUGINS -->
+    <!-- THIS PAGE PLUGINS -->
+    <script type='text/javascript' src='/Areas/Areas/Content/joli/js/plugins/icheck/icheck.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script type="text/javascript" src="/Areas/Areas/Content/joli/js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+
+    <script src="/Content/sweetalert2/sweetalert2.min.js"></script>
+
+
+    <!-- END PAGE PLUGINS -->
+    <!-- START TEMPLATE -->
+    <script type="text/javascript" src="/Areas/Areas/Content/joli/js/plugins.js"></script>
+    <script type="text/javascript" src="/Areas/Areas/Content/joli/js/actions.js"></script>
+
+    <!-- END TEMPLATE -->
+    <!-- END SCRIPTS -->
+
+
+
+
+
+    <div class="modal" id="modal_basic" tabindex="-1" role="dialog" aria-labelledby="defModalHead" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="defModalHead">UcDModel.Languages.Resource.modelisatinalanalar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12" id="modalbody">
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">UcDModel.Languages.Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="modal_basic_email" tabindex="-1" role="dialog" aria-labelledby="defModalHead" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="defModalHead">BASLIK</h4>
+                </div>
+                <form id="jvalidate" role="form" class="form-horizontal" action="javascript:sendMessage();">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12" id="modalbody">
+
+                                <div class="panel panel-colorful">
+                                    <div class="panel-body">
+                                        <h2>Mesaj Gönder</h2>
+                                        <p></p>
+                                        <div class="form-group">
+                                            <label>username</label>
+                                            <input type="email" name="username" id="username" class="form-control" disabled>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>message</label>
+                                            <textarea id="message" name="message" class="form-control" placeholder="Your message" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button type="submit" class="btn btn-success pull-right">UcDModel.Languages.Resource.sendusermessage</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">UcDModel.Languages.Resource.close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function post() {
+
+        var elems = document.forms['@ViewBag.Form'];
+
+        for (var i = 0; i < elems.length; i++) {
+
+            if (elems[i].value === "" || elems[i].value === undefined) {
+                elems[i].removeAttribute("name");
+
+            }
+        }
+
+        document.forms['@ViewBag.Form'].submit();
+
+        return true;
+    }
+</script>

@@ -1,0 +1,563 @@
+﻿@model EClassFieldWeb_.Models.ViewModel.PostViewModel
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout_Theme_CarSpot.cshtml";
+
+
+
+    List<EClassFieldWeb_.Models.ViewModel.PostViewModel> lastposts = ViewBag.lastposts;
+
+    List<Input> categories = ViewBag.categories;
+}
+
+
+
+
+@if (Model != null)
+{
+    <meta property="og:url" content="@Request.Url" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@(Model.Title)" />
+    <meta property="og:description" content="@(Model.Description.Substring(0,50))" />
+    <meta property="og:image" content="@(Model.Pictures.FirstOrDefault().Value)" />
+
+
+<div class="page-header-area-2 gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="small-breadcrumb">
+                    <div class="breadcrumb-link">
+                        <ul>
+                            <li>
+                                <a href="/">
+                                    Anasayfa
+                                </a>
+                            </li>
+                            @if (ViewBag.BreadCrumbs.Count > 0)
+                            {
+                                foreach (EClassFieldWeb_.Models.Input item in ViewBag.BreadCrumbs)
+                                {
+                                    var last = ((List<EClassFieldWeb_.Models.Input>)ViewBag.BreadCrumbs).LastOrDefault();
+
+
+                                    <li class="active">
+                                        <a href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(EClassFieldWeb_.Models.Function.getCategoriesPathString(Convert.ToInt32(item.Value)))" class="@(last == item ? "active" : "")">
+                                            @item.Text
+                                        </a>
+                                    </li>
+                                }
+
+                            }
+
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="main-content-area clearfix">
+    <section class="section-padding no-top gray review-details ">
+        <!-- Main Container -->
+        <div class="container">
+            <!-- Row -->
+            <div class="row">
+
+                <!-- Middle Content Area -->
+                <div class="col-md-8 col-xs-12 col-sm-12">
+                    <div class="blog-detial">
+                        <!-- Blog Archive -->
+                        <div class="blog-post">
+                            <div class="post-img">
+                                <span class="badge text-uppercase badge-overlay badge-tech"></span>
+                                <a href="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/1-25.jpg" data-fancybox="group"> <img class="img-responsive large-img" alt="" src="@Model.Pictures.FirstOrDefault().Value"> </a>
+                            </div>
+
+                            <div class="review-excerpt">
+
+                                <h3>@Model.Title</h3>
+                                <div class="row pro-cons">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                                        <p>@Html.Raw(Model.Description)</p>
+
+                                    </div>
+
+                                    @*<h3>Overview Of Car</h3>
+                                        <p>The best way to live out your super-spy fantasy is behind the wheel of an Aston Martin, and the Vantage is the least expensive way to do it. Offered as a coupe or convertible, performance from the V8 Vantage’s engine is nothing short of brutish, at 420 or 430 hp; six-speed manual and seven-speed automatic transmissions are offered. </p>
+                                        <p>For speed demons, the V12 Vantage has a turbine-smooth 565-hp 5.9-liter V-12 with either a seven-speed manual or a seven-speed automatic handling shifting duties. </p>
+                                        <table class="table"><tbody><tr><th>Make:</th><td>Aston Martin</td></tr><tr><th>Model:</th><td>V8</td></tr><tr><th>Description:</th><td>Vantage S Coupe 2dr Man 6sp 4.7i [MY17]</td></tr><tr><th>Release Date:</th><td>5/7/2017</td></tr><tr><th>Price Guide:</th><td>$237,061</td></tr><tr><th>Body Style:</th><td>Coupe</td></tr><tr><th>Engine:</th><td>4.7L Aspirated</td></tr><tr><th>Transmission:</th><td>6 speed Manual</td></tr><tr><th>Fuel Type:</th><td>Petrol - Premium ULP</td></tr><tr><th>Fuel Consumption:</th><td>13.8/100km</td></tr><tr><th>Max Power:</th><td>321kw@7300rpm</td></tr><tr><th>Max Torque:</th><td>490Nm@5000rpm</td></tr><tr><th>0-100 km/h:</th><td>4.8 secs</td></tr></tbody></table>
+                                        <div class="row pro-cons">
+                                            <div class="col-md-6 col-sm-12 col-xs-12 ">
+                                                <div class="pro-section">
+                                                    <img src="http://carspot.scriptsbundle.com/wp-content/themes/carspot/images/like.png" alt="Like">
+                                                    <h3>What We Like</h3>
+                                                    <ul class="standard-list">
+                                                        <li>Acceleration</li>
+                                                        <li>Excellent ride quality</li>
+                                                        <li>Rich interior materials</li>
+                                                        <li>Audi refinement</li>
+                                                        <li>Leather upholstery standard</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-12 col-xs-12 ">
+                                                <div class="cons-section">
+                                                    <img src="http://carspot.scriptsbundle.com/wp-content/themes/carspot/images/dislike.png" alt="Dislike">
+                                                    <h3>What We Don't</h3>
+                                                    <ul>
+                                                        <li>Acceleration</li>
+                                                        <li>Excellent ride quality</li>
+                                                        <li>Rich interior materials</li>
+                                                        <li>Audi refinement</li>
+                                                        <li>Leather upholstery standard</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="entry-content post-excerpt post-desc">
+                                            <h3>Exterior</h3>
+                                            <p>You only need to drive the V8 Vantage Vantage S Coupe 2dr to realise Aston Martin has thrown everything it knows at its latest four-seat convertible. While the intense levels of body shake that blighted the previous V8 Vantage Vantage S Coupe 2dr have been reduced exponentially – thanks in no small part to a body that is a whopping 40% stiffer – the line-up is complemented by a range of powerful, efficient and remarkably refined engines.</p>
+                                            <p><img class="aligncenter wp-image-230 size-large" src="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/2-17-1024x683.jpg" alt="" width="1024" height="683" srcset="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/2-17-1024x683.jpg 1024w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/2-17-300x200.jpg 300w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/2-17-768x512.jpg 768w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/2-17-653x435.jpg 653w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/2-17.jpg 1170w" sizes="(max-width: 1024px) 100vw, 1024px"></p><p>You only need to drive the V8 Vantage Vantage S Coupe 2dr to realise Aston Martin has thrown everything it knows at its latest four-seat convertible.While the intense levels of body shake that blighted the previous</p>
+                                            <p><img class="aligncenter size-large wp-image-231" src="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/3-19-1024x683.jpg" alt="" width="1024" height="683" srcset="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/3-19-1024x683.jpg 1024w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/3-19-300x200.jpg 300w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/3-19-768x512.jpg 768w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/3-19-653x435.jpg 653w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/3-19.jpg 1170w" sizes="(max-width: 1024px) 100vw, 1024px"></p><h3>The Interiot</h3>
+                                            <p>You only need to drive the V8 Vantage Vantage S Coupe 2dr to realise Aston Martin has thrown everything it knows at its latest four-seat convertible. While the intense levels of body shake that blighted the previous V8 Vantage Vantage S Coupe 2dr have been reduced exponentially – thanks in no small part to a body that is a whopping 40% stiffer – the line-up is complemented by a range of powerful, efficient and remarkably refined engines.</p>
+                                            <p><img class="aligncenter size-large wp-image-232" src="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/4-7-1024x683.jpg" alt="" width="1024" height="683" srcset="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/4-7-1024x683.jpg 1024w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/4-7-300x200.jpg 300w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/4-7-768x512.jpg 768w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/4-7-653x435.jpg 653w, http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/4-7.jpg 1170w" sizes="(max-width: 1024px) 100vw, 1024px"></p><p>You only need to drive the A5 Cabriolet 100-meters to realise Aston Martin has thrown everything it knows at its latest four-seat convertible. While the intense levels of body.</p>
+                                            <h3>The OutLook</h3>
+                                            <p>You only need to drive the V8 Vantage Vantage S Coupe 2dr to realise Aston Martin has thrown everything it knows at its latest four-seat convertible. While the intense levels of body shake that blighted the previous V8 Vantage Vantage S Coupe 2dr have been reduced exponentially – thanks in no small part to a body that is a whopping 40% stiffer – the line-up is complemented by a range of powerful, efficient and remarkably refined engines.</p>
+
+
+                                            <h3>Video Review</h3>
+                                            <iframe src="https://www.youtube.com/embed/jtztJikMRQc" allowfullscreen=""></iframe>
+                                        </div>
+                                        <h3>Related Gallery</h3>
+                                        <ul class="gallery list-inline clearfix">
+                                            <li>
+                                                <a data-fancybox="gallery" href="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/4-7.jpg">
+                                                    <img src="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/4-7-150x150.jpg" alt="Related Gallery">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a data-fancybox="gallery" href="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/3-19.jpg">
+                                                    <img src="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/3-19-150x150.jpg" alt="Related Gallery">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a data-fancybox="gallery" href="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/2-17.jpg">
+                                                    <img src="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/2-17-150x150.jpg" alt="Related Gallery">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a data-fancybox="gallery" href="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/1-25.jpg">
+                                                    <img src="http://carspot.scriptsbundle.com/wp-content/uploads/2017/06/1-25-150x150.jpg" alt="Related Gallery">
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="clearfix"></div>
+                                        <br>
+                                        <div class="post-review">
+                                            <h3>The CarSpot expert verdict:</h3><div class="progress-bar-review">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-3">
+                                                        <span class="progress-title">Design</span>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-8">
+                                                        <div class="progress">
+                                                            <div class="progress-bar">
+                                                                <span data-percent="95" style="transition: width 3s; width: 95%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-1">
+                                                        <span class="progress-title">95%</span>
+                                                    </div>
+                                                </div>
+                                            </div><div class="progress-bar-review">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-3">
+                                                        <span class="progress-title">Practicality</span>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-8">
+                                                        <div class="progress">
+                                                            <div class="progress-bar">
+                                                                <span data-percent="90" style="transition: width 3s; width: 90%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-1">
+                                                        <span class="progress-title">90%</span>
+                                                    </div>
+                                                </div>
+                                            </div><div class="progress-bar-review">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-3">
+                                                        <span class="progress-title">Price and Features</span>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-8">
+                                                        <div class="progress">
+                                                            <div class="progress-bar">
+                                                                <span data-percent="100" style="transition: width 3s; width: 100%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-1">
+                                                        <span class="progress-title">100%</span>
+                                                    </div>
+                                                </div>
+                                            </div><div class="progress-bar-review">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-3">
+                                                        <span class="progress-title">Engine &amp; Trans</span>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-8">
+                                                        <div class="progress">
+                                                            <div class="progress-bar">
+                                                                <span data-percent="97" style="transition: width 3s; width: 97%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-1">
+                                                        <span class="progress-title">97%</span>
+                                                    </div>
+                                                </div>
+                                            </div><div class="progress-bar-review">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-3">
+                                                        <span class="progress-title">Fuel Consumption</span>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-8">
+                                                        <div class="progress">
+                                                            <div class="progress-bar">
+                                                                <span data-percent="99" style="transition: width 3s; width: 99%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-1">
+                                                        <span class="progress-title">99%</span>
+                                                    </div>
+                                                </div>
+                                            </div><div class="progress-bar-review">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-3">
+                                                        <span class="progress-title">Driving</span>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-8">
+                                                        <div class="progress">
+                                                            <div class="progress-bar">
+                                                                <span data-percent="100" style="transition: width 3s; width: 100%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-1">
+                                                        <span class="progress-title">100%</span>
+                                                    </div>
+                                                </div>
+                                            </div><div class="progress-bar-review">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-3">
+                                                        <span class="progress-title">Saftey</span>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-8">
+                                                        <div class="progress">
+                                                            <div class="progress-bar">
+                                                                <span data-percent="100" style="transition: width 3s; width: 100%;"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-1">
+                                                        <span class="progress-title">100%</span>
+                                                    </div>
+                                                </div>
+                                            </div><div class="summary-review">
+                                                <div class="text-summary">
+                                                    <h5>Summary</h5>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla auctor, mi sed rhoncus vehicula, ex nulla pellentesque dolor, ut tristique nisl sem a metus. Vestibulum sit amet nunc et lectus ullamcorper volutpat non in eros. Aliquam erat volutpat. Pellentesque hendrerit aliquet pharetra.</p>
+                                                </div>
+                                            </div>
+                                        </div>*@                              <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!-- Blog Grid -->
+                        </div>
+                    </div>
+                    <!-- Right Sidebar -->
+                    <!-- Right Sidebar -->
+                    
+
+
+
+                    <!-- Middle Content Area  End -->
+                </div>
+
+
+                <div class="col-md-4 col-xs-12 col-sm-12">
+                    <div class="blog-sidebar">
+                        <!-- Heading -->
+                        <div class="widget">
+                            <div class="latest-news">
+                                <div class="widget-heading">
+                                    <h4 class="panel-title">
+                                        <a>
+                                            Son Haberler
+                                        </a>
+                                    </h4>
+                                </div>
+
+
+                                <div class="recent-ads">
+
+
+
+
+
+
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Heading -->
+                        @*<div class="widget">
+                            <div class="widget-heading">
+                                <h4 class="panel-title">
+                                    <a>
+                                        Reviews By Categories
+                                    </a>
+                                </h4>
+                            </div>
+                            <div class="categories">
+
+                                <ul>
+                                    @foreach (var item in categories)
+                                    {
+                                        <li> <a href="/Blog/@item.Value"> @item.Text<span>&nbsp;</span>  </a> </li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>*@
+
+
+                        <!-- Heading -->
+                        @*<div class="widget">
+                    <div class="reviews_bybrands">
+                        <div class="widget-heading">
+                            <h4 class="panel-title">
+                                <a>
+                                    Reviews By Top 20 Brands
+                                </a>
+                            </h4>
+                        </div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/aston-martin/">Aston Martin<span>&nbsp;(1)</span> </a>
+
+                                    </td>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/audi/">Audi<span>&nbsp;(1)</span> </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/bmw/">BMW<span>&nbsp;(1)</span> </a>
+
+                                    </td>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/chevrolet/">Chevrolet<span>&nbsp;(0)</span> </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/honda/">Honda<span>&nbsp;(2)</span> </a>
+
+                                    </td>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/hyundai/">Hyundai<span>&nbsp;(0)</span> </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/jaguar/">Jaguar<span>&nbsp;(0)</span> </a>
+
+                                    </td>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/mercedes-benz/">Mercedes-Benz<span>&nbsp;(2)</span> </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/nissan/">Nissan<span>&nbsp;(1)</span> </a>
+
+                                    </td>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/porsche/">Porsche<span>&nbsp;(0)</span> </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/renault/">Renault<span>&nbsp;(0)</span> </a>
+
+                                    </td>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/suzuki/">Suzuki<span>&nbsp;(0)</span> </a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/toyota/">Toyota<span>&nbsp;(0)</span> </a>
+
+                                    </td>
+                                    <td>
+                                        <a href="http://carspot.scriptsbundle.com/reviews_brands/volkswagen/">Volkswagen<span>&nbsp;(0)</span> </a>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>*@<div class="widget">
+                            <div class="reviews_bybrands">
+                                <div class="widget-heading">
+                                    <h4 class="panel-title">
+                                        <a>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/aston-martin/"><span></span></a>
+
+                                            </td>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/audi/"><span></span></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/bmw/"><span></span></a>
+
+                                            </td>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/chevrolet/"><span></span></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/honda/"><span></span></a>
+
+                                            </td>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/hyundai/"><span></span></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/jaguar/"><span></span></a>
+
+                                            </td>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/mercedes-benz/"><span></span></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/nissan/"><span></span></a>
+
+                                            </td>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/porsche/"><span></span></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/renault/"><span></span></a>
+
+                                            </td>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/suzuki/"><span></span></a>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/toyota/"><span></span></a>
+
+                                            </td>
+                                            <td>
+                                                <a href="http://carspot.scriptsbundle.com/reviews_brands/volkswagen/"><span></span></a>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <!-- Row End -->
+            </div>
+            <!-- Main Container End -->
+    </section>
+</div>
+
+<script>
+
+    window.onload = function () {
+
+        var imgs = document.getElementsByTagName("img");
+
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].setAttribute("class", "");
+            imgs[i].setAttribute("class","img-responsive");
+        }
+
+        var imgs = document.getElementsByTagName("table");
+
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i].setAttribute("class", "");
+            imgs[i].setAttribute("class", "table");
+        }
+        
+
+
+
+    }
+
+</script>
+
+}
+else    
+{
+<h3>Aradığınız sayfa bulunamadı</h3>
+}

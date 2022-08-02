@@ -1,0 +1,97 @@
+﻿@model IEnumerable<EClassFieldWeb_.Models.ViewModel.ProductModelView>
+
+<h3>Bu ilan Daha Hızlı Eklenebilir ya da kendizin belirleyin </h3>
+
+@{
+
+    int maxattr = Model.Max(d => d.Attribute.Count);
+    maxattr = maxattr  -5;
+    int sayac = 0;
+ }
+@foreach (var mdl in Model)
+{
+    if (mdl.Attribute.Count <= 3)
+    {
+        continue;
+    }
+    <table class="table" style="margin-bottom:-10px;border-style:solid;border-width:1px">
+
+
+        <thead>
+
+            <tr>
+
+                @foreach (var item in mdl.Attribute)
+                {
+                    if (item.Text != "Durumu" && item.Text != "Kimden" && item.Text != "Km" && item.Text != "Renk" && item.Text != "Garanti" &&item.Text!= "Plaka/Uyruk")
+                    {
+                        <th>@item.Text @item.EndText</th>
+                       
+                    }
+
+                 
+                }
+                
+                <th>İşlem</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                
+
+                @foreach (var item2 in mdl.Attribute)
+                {
+
+                    item2.Value = item2.Value.Replace(",00", "");
+
+                    if (item2.Text != "Durumu" && item2.Text != "Kimden" && item2.Text != "Km" && item2.Text != "Renk" && item2.Text != "Garanti" &&item2.Text!= "Plaka/Uyruk")
+                    {
+                        <td style="font-size:10pt;font-family:Tahoma">@item2.Value @item2.EndText</td>
+
+
+                    }
+
+
+
+                }
+
+       
+                <td><input type="button"  class="btn btn-orange btnfill" data-productId="@mdl.Id" style="padding:5px" value="Seçiniz"></td>
+
+            </tr>
+        </tbody>
+
+    </table>
+
+}
+
+
+
+
+
+<script>
+    var sayac = 0;
+    var attribues = null;
+    (function ($) {
+        $(".btnfill").click(function () {
+
+
+            $('#sb_loading').show()
+            var categoryId = $("#cat_select").val();
+            var elem = document.createElement("div");
+            
+
+
+            $(elem).load("/IlanVer/GetAttributePartial/?categoryID=" + categoryId + "&isfill=true&productID=" + $(this).data("productid"), function (res) {
+               
+
+               
+                $('#attributeList').html(elem);
+
+                $('#sb_loading').hide();
+            });
+        });
+    })(jQuery);
+</script>

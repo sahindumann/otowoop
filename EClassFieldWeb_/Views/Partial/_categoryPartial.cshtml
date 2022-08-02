@@ -1,0 +1,475 @@
+﻿
+@{
+    List<int> queryids = new List<int>();
+
+    foreach (var item in Request.QueryString.AllKeys)
+    {
+        string[] ignrores = { "km", "year", "City", "Town", "Neighborhood", "search", "pageID" };
+
+        if (Request.QueryString[item] != null && !ignrores.Contains(item))
+        {
+            try
+            {
+
+
+                queryids.AddRange(Request.QueryString[item].Split(',').Where(d => d != "").Select(d => Convert.ToInt32(d)).ToArray());
+            }
+            catch { }
+        }
+
+    }
+    string username = "";
+    if (!String.IsNullOrEmpty(Request.QueryString["username"]))
+    {
+        username = "?username=" + Request.QueryString["username"].ToString();
+
+    }
+
+
+}
+
+
+<div class="sidebartitle">
+    KATEGORİLER
+</div>
+
+<div class="sidebar">
+
+
+
+    @if (ViewBag.user != null)
+    {
+
+        <div class="white-bg user-contact-info">
+            <div class="user-info-card">
+
+                <div class="user-information  col-md-12 col-sm-12 col-xs-12">
+                    <center>
+                        <span class="user-name">
+
+                            <a class="" style="color: white;" href="../../author/emily_user/indexdb00.html?type=ads">
+
+                                @ViewBag.User.Name @ViewBag.User.SurName
+
+
+                                <br />
+
+
+                            </a>
+                            <br />
+                            @{
+
+                                var image = ViewBag.userimage;
+                                string src = "bc81fef042086.jpg";
+                                if (image != null)
+                                {
+                                    src = image.Picture.FileName;
+                                }
+
+
+                            }
+
+                            <img src="@(EClassField.Core.Sabit.imagehost+"/Image/GetImageProfile/?image="+src+"&isVitrin=true")" />
+                        </span>
+                    </center>
+
+
+                    <div class="userinfo">
+
+
+                        <div class="row">
+                            <div class="col-md-3">İş : </div>
+                            <div class="col-md-9">@EClassFieldWeb_.Models.Function.GetStringTelephone(ViewBag.User.IsTel)</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Cep : </div>
+                            <div class="col-md-9">@EClassFieldWeb_.Models.Function.GetStringTelephone(ViewBag.User.Cep)</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Tel 1 : </div>
+                            <div class="col-md-9">@EClassFieldWeb_.Models.Function.GetStringTelephone(ViewBag.User.EvTel)</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Tel 2 : </div>
+                            <div class="col-md-9">@EClassFieldWeb_.Models.Function.GetStringTelephone(ViewBag.User.IsTel2)</div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+                                }
+
+
+
+    @if (ViewBag.IsSearchFilter ==null)
+    {
+
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+
+            <div class="panel panel-default">
+                <!-- Heading -->
+
+
+                <div id="collapseOne " class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+
+                    <div class="panel-body kategoridiv">
+
+
+
+
+
+                        <label class="control-label"> Kategori </label>
+
+                        <ul class="scrollkategori">
+                            @if (ViewBag.BreadCrumbs.Count > 0)
+                        {
+                            foreach (EClassFieldWeb_.Models.Input item in ViewBag.BreadCrumbs)
+                            {
+
+
+                            <li class="active">
+                                <a href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(EClassFieldWeb_.Models.Function.getCategoriesPathString(Convert.ToInt32(item.Value)))@username">
+                                    @item.Text
+                                </a>
+                            </li>
+                            }
+
+                        }
+                        </ul>
+                        <hr />
+
+                        <ul class="scrollkategori">
+
+                            @foreach (var item in ViewBag.SubCategories)
+                        {
+                            <li><a data-id="@item.Id" style="color:black" href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(EClassFieldWeb_.Models.Function.getCategoriesPathString(Convert.ToInt32(item.Id)))@username"> @item.Name</a></li>
+                        }
+
+                        </ul>
+
+
+
+
+
+
+                        <div id="select_modal" class="margin-top-10"></div>
+
+                        <div id="select_modals" class="margin-top-10"></div>
+
+                        <div id="select_forth_div" class="margin-top-10"></div>
+
+
+
+                    </div>
+
+                </div>
+                <input type="hidden" name="cat_id" id="cat_id" value="" />
+
+
+
+
+            </div>
+
+
+
+
+            @{
+            List<int> cities = null, towns = null, areas = null;
+            if (Request.QueryString["City"] != null)
+            {
+                cities = Request.QueryString["City"].Split(',').Select(d => Convert.ToInt32(d)).ToList();
+            }
+            if (Request.QueryString["Town"] != null)
+            {
+                towns = Request.QueryString["Town"].Split(',').Where(d => d != "").Select(d => Convert.ToInt32(d)).ToList();
+            }
+            if (Request.QueryString["Neighborhood"] != null)
+            {
+                areas = Request.QueryString["Neighborhood"].Split(',').Select(d => Convert.ToInt32(d)).ToList();
+            }
+
+
+
+           
+
+            <div class="row">
+
+                <span class="searchfiltertitle">SONUÇLARI DARALTIN</span>
+            </div>
+
+            <div class="row ">
+                <div class="col-xs-12 location filterstyle">
+
+                    <label>Konum Seçin</label>
+                    <div class="row">
+
+
+                        <select name="City" multiple>
+
+
+
+
+
+                            @foreach (var item in EClassFieldWeb_.Models.Cache.Citites.OrderBy(x=>x.Name))
+                                {
+                            <option @((cities != null && cities.Contains(item.CityId)) ? "selected" : "") value="@item.CityId"> @item.Name </option>
+                                }
+
+
+
+
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <select name="Town" multiple>
+
+                            @if (cities != null)
+                                {
+
+
+                                    foreach (var item in EClassFieldWeb_.Models.Cache.Towns.Where(d => cities.Contains(d.CityId)))
+                                    {
+                            <option @((towns != null && towns.Contains(item.TownId)) ? "selected" : "") value="@item.TownId"> @item.Name </option>
+                                    }
+                                }
+
+
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <select name="Neighborhood" multiple>
+
+                            @if (towns != null)
+                                {
+
+
+                                    foreach (var item in EClassFieldWeb_.Models.Cache.Neighborhoods.Where(d => towns.Contains(d.TownId)))
+                                    {
+                            <option @((areas != null && areas.Contains(item.Id)) ? "selected" : "") value="@item.Id"> @item.Name </option>
+                                    }
+                                }
+
+
+                        </select>
+                    </div>
+
+
+
+
+
+                </div>
+
+
+            </div>
+            
+            }
+
+
+
+
+
+            <div class="panel panel-default filterstyle">
+                <!-- Heading -->
+                <div class="panel-heading" role="tab" id="price_heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#price">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            Fiyat
+                        </a>
+                    </h4>
+                </div>
+                <!-- Content -->
+
+
+                <div id="price" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="price_heading">
+                    <div class="panel-body">
+                        <div class="skin-minimal">
+                            @{
+
+                            string textt = EClassFieldWeb_.Models.Function.GetStringFormatText("price");
+                            bool incollapsee = false;
+
+                            if (!incollapsee)
+                            {
+                                incollapsee = Request.QueryString["price"] != null && Request.QueryString["price"].Split(',').Where(d => d != "").Select(d => Convert.ToInt32(d)).ToArray().Length >= 2;
+                            }
+
+
+                            int[] betweeen = Request.QueryString["price"] != null ? Request.QueryString["price"].Split(',').Where(d => d != "").Select(d => Convert.ToInt32(d)).ToArray() : new int[2];
+
+                            <div class="input-group margin-top-10">
+                                <input type="number" class="form-control" name="@EClassFieldWeb_.Models.Function.GetStringFormatText("price")" data-parsley-type="digits" data-parsley-required="true" data-parsley-error-message="Value should be numeric" placeholder="En az" id="mileage_from" value="@(betweeen.Length >= 2 && betweeen[0] > 0 ? betweeen[0] + "" : "")">
+                                <span class="input-group-addon">-</span>
+                                <input type="number" class="form-control" data-parsley-required="true" data-parsley-type="digits" data-parsley-error-message="Value should be numeric" placeholder="En çok" name="@EClassFieldWeb_.Models.Function.GetStringFormatText("price")" id="mileage_to" value="@(betweeen.Length >= 2 && betweeen[1] > 0 ? betweeen[1] + "" : "")">
+
+                            </div>
+
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            @if (ViewBag.Attributes != null)
+        {
+
+            foreach (EClassFieldWeb_.Models.Input item in ViewBag.Attributes)
+            {
+                string text = EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text);
+                bool incollapse = false;
+                incollapse = item.SubInputs.Select(d => Convert.ToInt32(d.Value)).Any(x => queryids.Contains(x));
+                if (!incollapse)
+                {
+                    incollapse = Request.QueryString[text] != null && Request.QueryString[text].Split(',').Where(d => d != "").Select(d => Convert.ToInt32(d)).ToArray().Length >= 2;
+                }
+
+
+                string[] ignores = { "Model", "Seri" };
+
+                if (ignores.Contains(item.Text))
+                {
+                    continue;
+                }
+
+
+            <div class="panel panel-default filterstyle">
+                <!-- Heading -->
+                <div class="panel-heading" role="tab" id="@(   EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text))_heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#@EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text)">
+                            <i class="more-less glyphicon glyphicon-plus"></i>
+                            @item.Text
+                        </a>
+                    </h4>
+                </div>
+                <!-- Content -->
+
+
+                <div id="@EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text)" class="panel-collapse collapse @(incollapse ? "in" : "")" role="tabpanel" aria-labelledby="@(   EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text))_heading">
+                    <div class="panel-body">
+                        <div class="skin-minimal">
+
+                            @if (!item.SubInputs.Any())
+                                    {
+
+                                        int[] between = Request.QueryString[text] != null ? Request.QueryString[text].Split(',').Where(d => d != "").Select(d => Convert.ToInt32(d)).ToArray() : new int[2];
+
+                            <div class="input-group margin-top-10">
+                                <input type="number" class="form-control" name="@EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text)" data-parsley-type="digits" data-parsley-required="true" data-parsley-error-message="Value should be numeric" placeholder="En az" id="mileage_from" value="@(between.Length >= 2 && between[0] > 0 ? between[0] + "" : "")">
+                                <span class="input-group-addon">-</span>
+                                <input type="number" class="form-control" data-parsley-required="true" data-parsley-type="digits" data-parsley-error-message="Value should be numeric" placeholder="En çok" name="@EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text)" id="mileage_to" value="@(between.Length >= 2 && between[1] > 0 ? between[1] + "" : "")">
+
+                            </div>
+
+
+                                    }
+                                    else
+                                    {
+                            <ul class="list scrollkategori">
+                                @foreach (var subattr in item.SubInputs)
+                                            {
+                            <li>
+                                <input @(queryids.Contains(Convert.ToInt32(subattr.Value)) ? "checked" : "") type="checkbox" id="@subattr.Value" value="@subattr.Value" name="@EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text)">
+                                <label for="transmission-type-67">@subattr.Text </label>
+                            </li>
+                                            }
+
+
+
+                            </ul>
+                                    }
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            }
+        }
+
+
+            <div class="row">
+                <button id="btn-sorgula" type="submit" onclick="return post()" class="btn  btn-block"><i class="fa fa-search"></i>  Sorgula</button>
+            </div>
+
+        </div>
+
+      }
+                                else
+                                {
+
+                                    <div id="collapseOne " class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+
+                                        <div class="panel-body kategoridiv">
+
+
+
+
+
+                                            <label class="control-label"> Kategori </label>
+
+                                            <ul class="scrollkategori">
+                                                @if (ViewBag.BreadCrumbs.Count > 0)
+                                                {
+                                                    foreach (EClassFieldWeb_.Models.Input item in ViewBag.BreadCrumbs)
+                                                    {
+
+
+                                                        <li class="active">
+                                                            <a href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(EClassFieldWeb_.Models.Function.getCategoriesPathString(Convert.ToInt32(item.Value)))@username">
+                                                                @item.Text
+                                                            </a>
+                                                        </li>
+                                                    }
+
+                                                }
+                                            </ul>
+                                            <hr />
+
+                                            <ul class="scrollkategori">
+
+                                                @foreach (var item in ViewBag.SubCategories)
+                                                {
+                                                    <li><a data-id="@item.Id" style="color:black" href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(EClassFieldWeb_.Models.Function.getCategoriesPathString(Convert.ToInt32(item.Id)))@username"> @item.Name</a></li>
+                                                }
+
+                                            </ul>
+
+
+
+
+
+
+                                            <div id="select_modal" class="margin-top-10"></div>
+
+                                            <div id="select_modals" class="margin-top-10"></div>
+
+                                            <div id="select_forth_div" class="margin-top-10"></div>
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <input type="hidden" name="cat_id" id="cat_id" value="" />
+                                }
+
+</div>

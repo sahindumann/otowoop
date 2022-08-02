@@ -1,0 +1,457 @@
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout_Theme_CarSpot.cshtml";
+
+    List<int> queryids = new List<int>();
+
+    foreach (var item in Request.QueryString.AllKeys)
+    {
+        string[] ignrores = { "km", "year", "City", "Town", "Neighborhood", "search", "pageID" };
+
+        if (Request.QueryString[item] != null && !ignrores.Contains(item))
+        {
+            try
+            {
+
+
+                queryids.AddRange(Request.QueryString[item].Split(',').Where(d => d != "").Select(d => Convert.ToInt32(d)).ToArray());
+            }
+            catch { }
+        }
+
+    }
+
+    string username = "";
+    if (!String.IsNullOrEmpty(Request.QueryString["username"]))
+    {
+        username = "?username=" + Request.QueryString["username"].ToString();
+
+    }
+
+    int sayac = 0;
+    ViewBag.Form = "kategoriform";
+
+
+
+    var maxattributes = ViewBag.Products != null ? ((List<EClassFieldWeb_.Models.ViewModel.ProductModelView>)ViewBag.Products).OrderByDescending(d => d.Attribute.Count).FirstOrDefault() : null;
+    List<EClassFieldWeb_.Models.Input> attrs = new List<Input>();
+    if (maxattributes != null)
+    {
+        attrs = maxattributes.Attribute.FindAll(d => (new string[] { "Yıl", "Year", "Km", "Kapı", "Renk" }).ToList().Contains(d.Text));
+    }
+
+}
+<div class="row" style="background: #f0f0f0;">
+    <div class="container">
+        <div class="catpath">
+            <ul>
+                <li>
+                    <a href="/">
+                        Anasayfa
+                    </a>
+                </li>
+                @if (ViewBag.BreadCrumbs.Count > 0)
+                            {
+                                foreach (EClassFieldWeb_.Models.Input item in ViewBag.BreadCrumbs)
+                                {
+                                    var last = ((List<EClassFieldWeb_.Models.Input>)ViewBag.BreadCrumbs).LastOrDefault();
+
+
+                        <li class="active">
+                            <a href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(EClassFieldWeb_.Models.Function.getCategoriesPathString(Convert.ToInt32(item.Value)))" class="@(last == item ? "active" : "")">
+                                @item.Text
+                            </a>
+                        </li>
+                                }
+
+                            }
+
+            </ul>
+        </div>
+    </div>
+              
+    </div>
+<div class="main-content-area clearfix">
+
+    <form method="get" action="/Kategori/@(ViewBag.catstr.Replace("/", "-"))/" id="kategoriform">
+
+        @if (!String.IsNullOrEmpty(Request.QueryString["username"]))
+        {
+
+            <input type="hidden" value="@(Request.QueryString["username"]))" name="username" />
+        }
+
+
+        <input type="hidden" name="pageID" id="pageID" />
+        <section class="section-padding no-top gray page-search" style="background:#fff">
+            <div class="container">
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-md-9 col-md-push-3 col-lg-9 col-sx-12 sidebarilans">
+                        <!-- Row -->
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" style="margin-top:-91px">
+                                <div class="clearfix"></div>
+                                <div class="listingTopFilterBar">
+                                    <div class="col-md-7 col-xs-12 col-sm-6 no-padding">
+                                        <ul class="filterAdType">
+                                            <li class="active">
+                                                <a href="javascript:void(0);">
+                                                    Toplam                                     <small>(@ViewBag.foundCount)</small> adet
+                                                </a>
+                                            </li>
+
+                                            <li class="">
+                                                <a style="color:black" href="/Kategori/@ViewBag.catstr.Replace("/", "-")">Fiitreyi Temizle</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-5 col-xs-12 col-sm-6 no-padding">
+                                        <div class="header-listing">
+                                            <h6>Sırala</h6>
+                                            <div class="custom-select-box">
+
+                                                <select name="fullorder" id="order_by" class="custom-select">
+                                                    <option value="-5">Seçiniz</option>
+
+                                                    @if (ViewBag.OrderList != null)
+                                                    {
+
+                                                        foreach (EClassField.Core.Ordertip item in ViewBag.OrderList)
+                                                        {
+                                                            <option @(ViewBag.fullorder == item.OrderIndex + "" ? "selected" : "") value="@item.OrderIndex">
+                                                                @item.OrderDiplayName
+                                                            </option>
+                                                        }
+
+                                                    }
+
+
+                                                    @**
+                                                        <option value="id-desc">
+                                                            Newest To Oldest
+                                                        </option>
+                                                        <option value="id-asc">
+                                                            Oldest To New
+                                                        </option>
+                                                        <option value="title-asc">
+                                                            Alphabetically [a-z]
+                                                        </option>
+                                                        <option value="title-desc">
+                                                            Alphabetically [z-a]
+                                                        </option>
+                                                        <option value="price-desc">
+                                                            Highest price
+                                                        </option>
+                                                        <option value="price-asc">
+                                                            Lowest price
+                                                        </option>* *@
+                                                </select>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="clearfix"></div>
+
+                            <div class="col-md-12 col-xs-12 col-sm-12" style="margin-top:-2px">
+                                <div class="row">
+                                    <div class="grid-style-1">
+                                        <div class="posts-masonry ads-for-home">
+                                            <div class="panel" style="left: 0px;top: 0px;width: 100%;">
+
+
+                                                <div class="">
+                                                    @if (ViewBag.Products != null && !Request.Browser.IsMobileDevice)
+                                                    {
+                                                        <table class="table table-condensed ilantable" style="border:1px solid #ebe8e8">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>
+
+                                                                    </th>
+                                                                    <th>
+                                                                        İlan Başlığı
+                                                                    </th>
+                                                                    @if (!Request.Browser.IsMobileDevice)
+                                                                    {
+                                                                        foreach (var item2 in attrs)
+                                                                        {
+                                                                            <th>@item2.Text</th>
+                                                                        }
+                                                                    }
+
+                                                                    <th>
+                                                                        İl / İlçe
+                                                                    </th>
+                                                                    <th>
+                                                                        İlan Tarihi
+                                                                    </th>
+                                                                    <th>
+                                                                        Fiyat
+                                                                    </th>
+
+
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody>
+
+                                                                @foreach (EClassFieldWeb_.Models.ViewModel.ProductModelView item in ViewBag.Products)
+                                                                {
+
+                                                                    int sayacc = 0;
+
+
+                                                                    <tr style="cursor:pointer" class="bugunilan" onclick="Go('@((EClassFieldWeb_.Models.Function.GetStringFormatText(item.Title).Replace(" ","").Replace(",","").Replace(System.Environment.NewLine,"").Replace("&nbsp",""))+"/"+item.Id)')">
+
+                                                                        <td class="tdimage">
+                                                                            <img src="@item.HREF" style="" alt="otomarket @item.Title" />
+                                                                        </td>
+                                                                        <td class="tdnoimage" style="text-align:left;width:50%">
+                                                                            <a class="ilan-title" href="@("/ilan/"+(EClassFieldWeb_.Models.Function.GetStringFormatText(item.Title).Replace(" ","").Replace(",","").Replace(System.Environment.NewLine,"").Replace("&nbsp",""))+"/"+item.Id)">
+                                                                                @(item.Title.Length >= 40 ? item.Title.Substring(0, 40) : item.Title)
+                                                                            </a>
+                                                                        </td>
+                                                                        @if (!Request.Browser.IsMobileDevice)
+                                                                        {
+                                                                            foreach (var attr in attrs)
+                                                                            {
+
+                                                                                var val = item.Attribute.Find(a => a.Text == attr.Text);
+                                                                                string vall = "";
+                                                                                if (val != null)
+                                                                                {
+                                                                                    var number = -1.0;
+                                                                                    double.TryParse(val.Value, out number);
+
+                                                                                    vall = val.Value;
+
+
+
+                                                                                    if (number != 0 && val.Value.Length >= 8)
+                                                                                    {
+
+                                                                                        <td class="tdnoimage"><span>@( String.Format("{0:N}", number).Split(',')[0] )</span></td>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <td class="tdnoimage"><span>@(vall.Replace(",00", ""))</span></td>
+                                                                                    }
+
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <td class="tdnoimage">-</td>
+                                                                                }
+                                                                                sayacc++;
+                                                                            }
+
+                                                                            for (int i = sayacc; i < attrs.Count; i++)
+                                                                            {
+                                                                                <td class="tdnoimage">-</td>
+                                                                            }
+                                                                        }
+
+                                                                        <td class="tdnoimage tdloc" style="text-align:center;width:100px"><span>@item.FullLoc</span></td>
+                                                                        <td class="tdnoimage tdloc" style="text-align:center;width:100px"><span>@item.Date</span></td>
+
+                                                                        <td style="color:maroon" class="tdnoimage tdprice"><span>@item.Price TL</span></td>
+                                                                    </tr>
+
+
+                                                                }
+
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    }
+                                                </div>
+                                            </div>
+
+
+                                            @if (Request.Browser.IsMobileDevice)
+                                            {
+                                                int say = 0;
+
+                                                foreach (EClassFieldWeb_.Models.ViewModel.ProductModelView item in ViewBag.Products)
+                                                {
+
+                                                    @*if (say % 10 == 0 && !Request.IsLocal)
+                                                        {
+                                                            @*<div class="col-md-3  col-lg-3 col-sm-6 col-xs-12" id=".holder-89">
+                                                                <div class="category-grid-box-1">
+
+                                                                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                                                    <ins class="adsbygoogle"
+                                                                         style="display:block"
+                                                                         data-ad-format="fluid"
+                                                                         data-ad-layout-key="-8h+1z-ea+db+jy"
+                                                                         data-ad-client="ca-pub-3382681668275324"
+                                                                         data-ad-slot="1423992074"></ins>
+                                                                    <script>
+                                                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                                                    </script>
+                                                                </div>
+                                                            </div>
+                                                        }*@
+
+
+                                                    <div class="col-md-3  col-lg-3 col-sm-6 col-xs-12" id=".holder-89" style="height:@(Request.Browser.IsMobileDevice ? "auto" : "250px")">
+                                                        <div class="category-grid-box-1">
+
+
+                                                            @*<div class="featured-ribbon"><span>Yeni İlan</span></div>*@
+                                                            <div class="image " style="overflow:hidden">
+
+                                                                <a href="/ilan/@(   EClassFieldWeb_.Models.Function.GetStringFormatText(item.Title))/@item.Id"><img src="/Content/imagespreview/@item.Image" style="text-align:center;margin:0px auto;height:auto" alt="otomarket @item.Title" class="img-responsive pro img-resizer" /></a>
+                                                                <div class="price-tag">
+                                                                    <div class="price"><span>@item.Price TL</span></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="short-description-1 clearfix">
+
+                                                                <span class="padding_cats" style="color:red"><a href="">@(item.Date)</a></span>
+                                                                <div class="category-title">
+                                                                    @if (item.Categories.Any())
+                                                                    {
+                                                                        string yol = @item.Categories.Select(d => d.Text).Aggregate((a, b) => a + " > " + b);
+
+                                                                        <span class="padding_cats"><a href="">@(yol.Length >= 25 ? yol.Substring(0, 25) : yol)</a></span>
+                                                                    }
+                                                                    <div class="clearfix"></div>
+                                                                    <span class="padding_cats" style="color:red"><a href="">@(item.FullLoc.Length >= 15 ? item.FullLoc.Substring(0, 15) : item.FullLoc)</a></span>
+
+                                                                </div>
+
+
+                                                            </div>
+
+                                                        </div>
+                                                        <!-- Listing Ad Grid -->
+                                                    </div>
+
+                                                }
+
+                                            }
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="clearfix"></div>
+
+
+                            <div class="text-center margin-top-30 margin-bottom-20 paginationdiv">
+
+                                @Html.Partial("~/Views/Partial/_partialpagination.cshtml", (EClassField.Core.PageModel)ViewBag.PageModel)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-md-pull-9 col-sm-12 col-xs-12 sidebarkategori kategoridiv" style="@(!Request.Browser.IsMobileDevice ? "background: white; width: 24%;padding: 10px;" : "width:100%")">
+
+                        @Html.Partial("~/Views/Partial/_categoryPartial.cshtml")
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </form>
+</div>
+
+<script>
+
+
+
+</script>
+
+<style>
+    .userinfo .row {
+        margin-bottom: 5px;
+    }
+
+        .userinfo .row div:first-child {
+            font-weight: bold;
+            font-size: 8pt;
+            color: white;
+        }
+
+        .userinfo .row div:last-child {
+            color: white;
+        }
+
+
+
+    .user-info-card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a90329+0,8f0222+44,6d0019+100;Brown+Red+3D */
+        background: #a90329; /* Old browsers */
+        background: -moz-linear-gradient(top, #a90329 0%, #8f0222 44%, #6d0019 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #a90329 0%,#8f0222 44%,#6d0019 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+    }
+
+    .locationgroup .selectpicker {
+        margin-top: 5px;
+    }
+</style>
+
+<script>
+
+    function Go(url) {
+        url = url.replace(" ", "").replace(",", "").replace("&nbsp;","");
+        window.location ="/ilan/"+ url;
+    }
+    (function ($) {
+
+        var dolar = $;
+
+        $("#order_by").change(function () {
+
+            var forms = document.getElementById('@ViewBag.Form');
+            for (var i = 0; i < forms.length; i++) {
+
+                if (forms[i].value == "") {
+                    forms[i].removeAttribute("name");
+                }
+            }
+
+            //document.forms["kategoriform"].submit();
+
+        });
+
+        $(".pro").each(function () {
+
+            var image = this;
+            if (image.width > image.height) {
+                $(this).css("width", "100%");
+            }
+            else if ((image.width < image.height)) {
+                $(this).css("width", "50%");
+            }
+            else {
+                $(this).css("width", "70%");
+            }
+        });
+
+
+
+
+    })(jQuery);
+
+
+
+</script>

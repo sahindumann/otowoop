@@ -1,0 +1,162 @@
+﻿@model EClassField.Core.Domain.Galerry.Slider
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Areas/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Slider Ekle</h3>
+        <a href="/Panel/Slider/Index" class="btn pull-right">Slider Ekle</a>
+
+    </div>
+    <form class="form-horizontal" role="form" method="post">
+        <div class="panel-body">
+
+            <input type="hidden" name="Id" value="@(ViewBag.Slider!=null?ViewBag.Slider.Id:"")"  />
+            <div class="row">
+
+                <div class="form-group">
+                    <label class="col-md-4"> Başlık </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="Baslik" value="@(ViewBag.Slider!=null?ViewBag.Slider.Baslik:"")" />
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4"> Açıklama </label>
+                    <div class="col-md-8">
+                        <textarea name="aciklama" class="form-control">@(ViewBag.Slider != null ? ViewBag.Slider.Aciklama : "")</textarea>
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4"> Resim </label>
+                    <div class="col-md-8">
+                        <input type="text" onclick="openCustomRoxy2(this)" id="image" class="form-control" name="Image" value="@(ViewBag.Slider!=null?ViewBag.Slider.Image:"")"   />
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4"> Video </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="video" onclick="openCustomRoxy2(this)" name="Video" value="@(ViewBag.Slider!=null?ViewBag.Slider.Video:"")" />
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4"> Video </label>
+                    <div class="col-md-8">
+                        @Html.CheckBoxFor(d => d.IsAktif, new { @class = "icheckbox" })
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <br />
+
+            <div class="panel-footer">
+
+                <button class="btn btn-primary pull-right">Kaydet</button>
+            </div>
+
+
+
+        </div>
+
+    </form>
+
+    <hr />
+    <table class="table striped">
+
+        <thead>
+            <tr>
+                <th>Başlık</th>
+                <th>Açıklama</th>
+                <th>Resim</th>
+                <th>Video</th>
+                <th>Aktif</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (EClassField.Core.Domain.Galerry.Slider item in ViewBag.Sliders)
+            {
+                <tr>
+                    <td>@item.Baslik</td>
+                    <td>@item.Aciklama</td>
+                    <td><img src="@item.Image" class="img-responsive" width="80" /></td>
+                    <td></td>
+                    <th>@item.IsAktif</th>
+                    <td><a href="/Panel/Slider/Index/?sliderId=@item.Id">Düzenle</a></td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fileman/js/custom.js"></script>
+<script>
+
+    function RoxyFileBrowser(field_name, url, type, win) {
+        var roxyFileman = '/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fileman/index.html?integration=tinymce4';
+        if (roxyFileman.indexOf("?") < 0) {
+            roxyFileman += "?type=" + type;
+        }
+        else {
+            roxyFileman += "&type=" + type;
+        }
+        roxyFileman += '&input=' + field_name + '&value=' + win.document.getElementById(field_name).value;
+        if (tinyMCE.activeEditor.settings.language) {
+            roxyFileman += '&langCode=' + tinyMCE.activeEditor.settings.language;
+        }
+        tinyMCE.activeEditor.windowManager.open({
+            file: roxyFileman,
+            title: 'Dosya Yöneticisi',
+            width: 850,
+            height: 650,
+            resizable: "yes",
+            plugins: "media",
+            inline: "yes",
+            close_previous: "no"
+        }, { window: win, input: field_name });
+        return false;
+    }
+
+
+    function openCustomRoxy2(id) {
+
+        var temp = "/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fileman/index.html?integration=custom&type=image";
+
+        document.getElementById("frame").src = temp + "&imageID=" + id.id;
+
+
+        $(function () {
+            $('#roxyCustomPanel2').dialog({ modal: true, width: 875, height: 600, title: 'Dosya Yöneticisi' });
+        });
+
+        return false;
+    }
+    function closeCustomRoxy2() {
+        $('#roxyCustomPanel2').dialog('close');
+        return false;
+    }
+
+
+
+
+</script>
+
+<div id="roxyCustomPanel2" style="display: none;">
+    <iframe id="frame" src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fileman/index.html?integration=custom&type=image" style="width:100%;height:100%" frameborder="0"></iframe>
+</div>

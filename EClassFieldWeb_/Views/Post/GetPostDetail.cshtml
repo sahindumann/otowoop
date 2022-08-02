@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetPostDetail</title>
+
+
+    <link href="~/Content/Template/themes/carspot/css/bootstrapa288.css" rel="stylesheet" />
+    <link href="~/Content/Template/themes/carspot/css/jquery.fancybox.mina288.css" rel="stylesheet" />
+    <link href="~/Content/Template/themes/carspot/css/stylea288.css" rel="stylesheet" />
+</head>
+<body>
+    @Html.Raw(ViewBag.post.GetType().GetProperty("Desc").GetValue(ViewBag.post))
+</body>
+
+
+</html>
+<script src="~/Content/Template/themes/carspot/js/jquery-te.mina288.js"></script>
+<script src="~/Content/Template/themes/carspot/js/bootstrap.mina288.js"></script>
+       
+
+
+
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106163523-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-106163523-2');
+</script>
+
+

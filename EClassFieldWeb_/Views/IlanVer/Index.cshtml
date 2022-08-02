@@ -1,0 +1,463 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Theme_CarSpot.cshtml";
+
+    EClassFieldWeb_.Models.ViewModel.ProductModelView ilan = new EClassFieldWeb_.Models.ViewModel.ProductModelView();
+    ilan.Id = -1;
+    if (ViewBag.ilan != null)
+    {
+
+        ilan = ViewBag.ilan;
+    }
+
+
+}
+
+<!doctype html>
+<html lang="en-US">
+<head>
+
+
+    <title>ilan ver</title>
+
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+
+    <noscript>
+        <style>
+            .woocommerce-product-gallery {
+                opacity: 1 !important;
+            }
+        </style>
+    </noscript>
+    <meta name="generator" content="" />
+
+
+    <noscript>
+        <style type="text/css">
+            .wpb_animate_when_almost_visible {
+                opacity: 1;
+            }
+        </style>
+    </noscript>
+</head>
+<body class="page-template-default page page-id-17 logged-in wpb-js-composer js-comp-ver-5.1.1 vc_responsive">
+
+    <div class="loading" id="sb_loading">&#8230;</div>
+
+    <div class="sb-top-bar_notification">
+        <a href="javascript:void(0);">
+            For a better experience please change your browser to CHROME, FIREFOX, OPERA or Internet Explorer.
+        </a>
+    </div>
+    <div class="colored-header">
+    </div>
+
+
+
+
+    <div class="page-header-area-2 gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="small-breadcrumb">
+                        <div class="breadcrumb-link">
+                            <ul></ul>
+                        </div>
+                        <div class="header-page">
+                            <h1> İlan Bilgilerini Giriniz</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="vc_row wpb_row vc_row-fluid">
+        <script>
+            function carspot_location() {
+
+                var input = document.getElementById('sb_user_address');
+                var action_on_complete = '1';
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                if (action_on_complete) {
+                    new google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                        // document.getElementById('sb_loading').style.display	= 'block';
+                        var place = autocomplete.getPlace();
+                        document.getElementById('ad_map_lat').value = place.geometry.location.lat();
+                        document.getElementById('ad_map_long').value = place.geometry.location.lng();
+                        var markers = [
+                            {
+                                'title': '',
+                                'lat': place.geometry.location.lat(),
+                                'lng': place.geometry.location.lng(),
+                            },
+                        ];
+                        my_g_map(markers);
+                        //document.getElementById('sb_loading').style.display	= 'none';
+                    });
+                }
+
+            }
+        </script><div class="wpb_column vc_column_container vc_col-sm-12">
+            <div class="vc_column-inner ">
+                <div class="wpb_wrapper">
+                    <section class="section-padding no-top gray">
+
+                        <div class="container">
+                            <!-- Row -->
+                            <div class="row">
+                                <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12">
+                                    <!-- end post-padding -->
+                                    <div class="post-ad-form postdetails">
+                                        <form class="submit-form" id="ad_post_form" action="/IlanVer/Index">
+
+                                            <input type="hidden" name="ilanID" id="ilanID" value="@(ilan!=null?ilan.Id:-1)" />
+                                            <input type="hidden" id="files" name="files" />
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                                    <label class="control-label">İlan Başlığı</label>
+                                                    <input class="form-control" placeholder="İlan Başlığı Giriniz" type="text" name="Title" id="ad_title" data-parsley-required="true" data-parsley-error-message="Bu alan boş bırakılamaz." value="@(ilan.Title??"")" />
+                                                    <input type="hidden" id="is_update" name="is_update" value="" />
+                                                    <input type="hidden" id="is_level" name="is_level" value="" />
+                                                    <input type="hidden" id="country_level" name="country_level" value="" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                                    <label class="control-label">Kategori Seç <small>Kategori ismini arayın örneğin passat</small></label>
+                                                    <select class="category form-control cat_select" id="cat_selectilan" data-idnumber="true" name="CatID" data-parsley-required="true" data-parsley-error-message="Bu alan boş bırakılamaz.">
+
+                                                        @if (ViewBag.Category != null)
+                                                        {
+                                                            <option value="@ViewBag.Category.Value">@(ViewBag.Category.Text)</option>
+                                                        }
+
+
+                                                    </select>
+                                                    <input type="hidden" name="ad_cat_id" id="ad_cat_id" value="" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <!-- Price  -->
+                                                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-6">
+                                                    <label class="control-label">Fiyat<small></small></label>
+                                                    <input class="form-control" type="number" id="ad_price" name="Price" data-parsley-required="true" data-parsley-type="integer" data-parsley-error-message="Bu alan boş bırakılamaz." value="@(ilan.Price??"")" />
+                                                </div>
+                                                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-6">
+                                                    <label class="control-label">Para Birimi</label>
+                                                    <select class="form-control" id="ad_price_type" name="PriceType">
+                                                        <option value="TL">TL</option>
+                                                        <option value="USD">USD</option>
+                                                        <option value="EUR">EUR</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            @if (ViewBag.IsAdmin != null && ViewBag.IsAdmin == true)
+                                            {
+
+                                                <div class="row">
+                                                    <label>User Name</label>
+                                                    <input type="text" class="form-control" id="UserName" value="@(ilan.User!=null? ilan.User.Name:"")" />
+                                                    <br />
+                                                    <label>Tel1</label>
+                                                    <input type="text" class="form-control" id="Tel1" value="@(ilan.User!=null?ilan.User.EvTel:"")" />
+                                                    <br />
+                                                    <label>Tel2</label>
+                                                    <input type="text" class="form-control" id="Tel2" value="@(ilan.User!=null? ilan.User.IsTel:"")"  />
+                                                    <br />
+
+                                                    <label>Link</label>
+                                                    <input type="text" class="form-control" id="Link" value="@(ilan.User!=null? ilan.Link:"")" />
+                                                    <br />
+                                        
+                                                </div>
+
+                                            }
+
+
+                                            <div class="row">
+
+                                                <div id="attributes">
+
+
+                                                </div>
+                                                <div id="attributeList">
+                                                    @if (ViewBag.ilanID != null && ViewBag.ilanID != 0)
+                                                    {
+                                                        @Html.Partial("~/Views/Partial/_AttributePartial.cshtml", (List<EClassFieldWeb_.Models.Input>)ViewBag.Attributes)
+                                                    }
+
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                                    <label class="control-label">Resimleri aşağıya sürükleyip bırakabilirsiniz yada tıklayarak seçebilirsiniz <small></small></label>
+                                                    <div id="dropzone" class="dropzone">
+
+                                                        @if (ilan != null && ilan.Images != null)
+                                                        {
+
+                                                            foreach (var item in ilan.Images)
+                                                            {
+                                                                <div id="_id@(item.Value.Replace(".",""))" class="dz-preview dz-processing dz-image-preview dz-success">  <div class="dz-details">    <div class="dz-filename"><span data-dz-name="">@item.Value</span></div>    <div class="dz-size" data-dz-size=""><strong>0.2</strong> MiB</div>    <img class="loadimages" data-dz-thumbnail="" alt="@item.Value" src="/Image/GetImage/?image=@item.Value">  </div>  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress="" style="width: 100%;"></span></div>  <div class="dz-success-mark"><span><img draggable="false" class="emoji" alt="✔" src="https://s.w.org/images/core/emoji/2.3/svg/2714.svg"></span></div>  <div class="dz-error-mark"><span>✘</span></div>  <div class="dz-error-message"><span data-dz-errormessage=""></span></div><a data-imageurl="@item.Value" class="dz-remove" href="javascript:undefined;" data-dz-remove="@item.Value">Sil</a></div>
+                                                            }
+
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                                    <label class="control-label">Aracınızın videosu mu var Youtube linkini yapıştırabilirsniz</label>
+                                                    <input class="form-control" type="text" name="ad_yvideo" value="" />
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12 col-xs-12  col-sm-12">
+                                                    <label class="control-label">Açıklama <small></small></label>
+                                                    <textarea name="Desc">@(ilan.Description)</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="select-package">
+                                                <div class="no-padding col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                                    <h3 class="margin-bottom-10"></h3>
+                                                    <hr />
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="sb_total_extra" value="0" />
+
+
+                                            @*<hr />
+                                                <h5>Konum Bilgilerini Giriniz ve Dilerseniz Haritadan İşaretleyniz</h5>
+                                                <hr />*@
+
+
+                                            @Html.Partial("~/Views/Partial/_locationPartial.cshtml")
+
+                                            @*<div class="row">
+                                                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                                        <label class="control-label">Adres</label>
+                                                        <input class="form-control" name="sb_user_address" id="sb_user_address" value="" />
+                                                    </div>
+                                                </div>*@
+
+                                            @*<div class="row">
+                                                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                                        <div id="dvMap" style="width: 700px; height: 300px"></div>
+                                                        <em><small>Konumunuzu seçmek için sürükleyiniz</small></em>
+                                                    </div>
+                                                </div>*@
+                                            @*<div class="row">
+                                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                                        <label class="control-label">Enlem</label>
+                                                        <input class="form-control" type="text" name="ad_map_lat" id="ad_map_lat" value="@(ilan.Latude??"")" disabled />
+                                                    </div>
+                                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                                        <label class="control-label">Boylam</label>
+                                                        <input class="form-control" name="ad_map_long" id="ad_map_long" value="@(ilan.Longtude??"")" type="text" disabled />
+                                                    </div>
+                                                </div>*@
+                                            @*<script type="text/javascript">
+                                                    var markers = [
+                                                        {
+                                                            "title": "",
+                                                            "lat": "40.7127837",
+                                                            "lng": "-74.00594130000002",
+                                                        },
+                                                    ];
+                                                    window.onload = function () {
+                                                        my_g_map(markers);
+                                                    }
+                                                    function my_g_map(markers1) {
+                                                        var mapOptions = {
+                                                            center: new google.maps.LatLng(markers1[0].lat, markers1[0].lng),
+                                                            zoom: 12,
+                                                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                                                        };
+                                                        var infoWindow = new google.maps.InfoWindow();
+                                                        var latlngbounds = new google.maps.LatLngBounds();
+                                                        var geocoder = geocoder = new google.maps.Geocoder();
+                                                        var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+                                                        var data = markers1[0]
+                                                        var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                                                        var marker = new google.maps.Marker({
+                                                            position: myLatlng,
+                                                            map: map,
+                                                            title: data.title,
+                                                            draggable: true,
+                                                            animation: google.maps.Animation.DROP
+                                                        });
+                                                        (function (marker, data) {
+                                                            google.maps.event.addListener(marker, "click", function (e) {
+                                                                infoWindow.setContent(data.description);
+                                                                infoWindow.open(map, marker);
+                                                            });
+                                                            google.maps.event.addListener(marker, "dragend", function (e) {
+                                                                document.getElementById("sb_loading").style.display = "block";
+                                                                var lat, lng, address;
+                                                                geocoder.geocode({ "latLng": marker.getPosition() }, function (results, status) {
+
+                                                                    if (status == google.maps.GeocoderStatus.OK) {
+                                                                        lat = marker.getPosition().lat();
+                                                                        lng = marker.getPosition().lng();
+                                                                        address = results[0].formatted_address;
+                                                                        document.getElementById("ad_map_lat").value = lat;
+                                                                        document.getElementById("ad_map_long").value = lng;
+                                                                        document.getElementById("sb_user_address").value = address;
+                                                                        document.getElementById("sb_loading").style.display = "none";
+                                                                        //alert("Latitude: " + lat + "\nLongitude: " + lng + "\nAddress: " + address);
+                                                                    }
+                                                                });
+                                                            });
+                                                        })(marker, data);
+                                                        latlngbounds.extend(marker.position);
+                                                    }
+                                                    /*var bounds = new google.maps.LatLngBounds();
+                                                    map.setCenter(latlngbounds.getCenter());
+                                                    map.fitBounds(latlngbounds);*/
+                                                </script>*@
+
+                                            <!-- end row -->
+
+                                            @if (ViewBag.isface != null)
+                                            {
+                                                <input class="form-control" type="text" id="FaceLink" name="FaceLink" />
+
+
+                                            }
+                                            <button type="submit" class="btn btn-theme pull-right" id="ad_submit">İlan ver</button>
+
+                                        </form>
+                                    </div>
+                                    <!-- end post-ad-form-->
+                                </div>
+                                <div class="col-md-4 col-xs-12 col-sm-12">
+                                    <div class="blog-sidebar">
+                                        <div class="widget">
+                                            <div class="widget-heading">
+                                                <h4 class="panel-title"><a>İlan verme süreci</a></h4>
+                                            </div>
+                                            <div class="widget-content">
+                                                <p class="lead"></p>
+                                                <ol>
+                                                    <li>İlan Bilgilerinizi giriniz</li>
+                                                    <li>İlanınızı gönderdiinizde onaylanma süreci başlar</li>
+                                                    <li>İlan verme süreci bittiğinde bir bildirim,mesaj yada mail alırsınız</li>
+
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="dictDefaultMessage" value="" />
+                        <input type="hidden" id="dictFallbackMessage" value="" />
+                        <input type="hidden" id="dictFallbackText" value="" />
+                        <input type="hidden" id="dictFileTooBig" value="." />
+                        <input type="hidden" id="dictInvalidFileType" value="You can&#039;t upload files of this type." />
+                        <input type="hidden" id="dictResponseError" value="" />
+                        <input type="hidden" id="dictCancelUpload" value="İptal" />
+                        <input type="hidden" id="dictCancelUploadConfirmation" value="Are you sure you want to cancel this upload?" />
+                        <input type="hidden" id="dictRemoveFile" value="Sil" />
+                        <input type="hidden" id="dictMaxFilesExceeded" value="You can not upload any more files." />
+                        <input type="hidden" id="required_images" value="Images are required." />
+
+                        <input type="hidden" id="input_ad_post_form_type" value="0" />
+
+
+
+                        <!-- Main Container End -->
+                    </section>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#0" class="cd-top">Top</a>
+
+</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.js"></script>
+
+<link href="/Content/Template/themes/carspot/css/dropzonea288.css" rel="stylesheet" />
+
+
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/langs/tr.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/tinymce.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/image/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/imagetools/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fullpage/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fullscreen/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/colorpicker/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/preview/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/textcolor/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/paste/plugin.min.js"></script>
+
+
+<script>
+
+
+
+    tinymce.init({
+        selector: 'textarea',
+        height: 500,
+        theme: 'modern',
+        plugins: [
+          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          'searchreplace wordcount visualblocks visualchars code fullscreen',
+          'insertdatetime media nonbreaking save table contextmenu directionality',
+          'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample | fontselect |  fontsizeselect ',
+        image_advtab: true,
+        templates: [
+          { title: 'Test template 1', content: 'Test 1' },
+          { title: 'Test template 2', content: 'Test 2' }
+        ],
+        content_css: [
+          '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+          '//www.tinymce.com/css/codepen.min.css'
+        ],
+        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+        language: 'tr',
+        setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+            });
+        }
+    });
+
+
+</script>

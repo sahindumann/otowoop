@@ -1,0 +1,783 @@
+﻿@{
+    var user = EClassFieldWeb_.Models.General.User;
+
+
+
+    ViewBag.userImage = ViewBag.ProfileImage;
+
+
+
+
+}
+<!doctype html>
+<html lang="tr-TR">
+
+<head>
+    @*<meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">*@
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta id="Content-Language" http-equiv="Content-Language" content="tr" />
+    <meta name="rating" content="general" />
+    <meta name="robots" content="NOODP,index,follow" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="@(ViewBag.Desc??"sahibinden satılık kiralık ilinci el otomobil yedek parça her türlü otomobil ürünü  - Türkiyenin en büyük ücretsiz otomobil ilan sitesi")">
+    <meta name="keywords" content="@(ViewBag.Keywords??"sahibinden, otomobil, 2.el oto, ikinciel oto, yedek parça,ücretsiz ilan, ücretsiz oto ilan, ücretsiz seri ilan")" />
+    <link rel="canonical" href="https://www.otomarket.com/@Request.RawUrl" />
+    <title>@ViewBag.Title</title>
+    <link rel='dns-prefetch' href='http://www.google.com/' />
+    <link rel='dns-prefetch' href='http://maps.googleapis.com/' />
+    <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+    <link rel='dns-prefetch' href='http://s.w.org/' />
+    <link rel="alternate" type="application/rss+xml" title="" href="feed/index.html" />
+    <link rel="alternate" type="application/rss+xml" title="" href="comments/feed/index.html" />
+    <link href="/Content/Plugins/selectpicker/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/unnamed.ico" />
+
+
+    <script>
+        window.onload = function () {
+
+            if (window.location.protocol == "http:") {
+
+                //window.location = "https://www.otomarket.com"+'@Request.RawUrl';
+            }
+        }
+
+    </script>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+
+
+    <link href="~/Content/custom.css" rel="stylesheet" />
+    <link rel='stylesheet' id='contact-form-7-css' href='/Content/Template/plugins/contact-form-7/includes/css/styles33a6.css?ver=4.9' type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-layout-css' href='/Content/Template/plugins/woocommerce/assets/css/woocommerce-layout0226.css?ver=3.1.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='woocommerce-smallscreen-css' href='/Content/Template/plugins/woocommerce/assets/css/woocommerce-smallscreen0226.css?ver=3.1.2' type='text/css' media='only screen and (max-width: 768px)' />
+    <link rel='stylesheet' id='woocommerce-general-css' href='/Content/Template/plugins/woocommerce/assets/css/woocommerce0226.css?ver=3.1.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='popup-video-iframe-style-css' href='/Content/Template/themes/carspot/css/video_playera288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='carspot-style-css' href='/Content/Template/themes/carspot/stylea288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='bootstrap-css' href='/Content/Template/themes/carspot/css/bootstrapa288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='carspot-theme-css' href='/Content/Template/themes/carspot/css/stylea288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='carspot-theme-slug-fonts-css' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,700,700italic,900italic,900,300,300italic%7CPoppins:400,500,600&amp;subset=latin,latin-ext' type='text/css' media='all' />
+    <link rel='stylesheet' id='et-line-fonts-css' href='/Content/Template/themes/carspot/css/et-line-fontsa288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='font-awesome-css' href='/Content/Template/plugins/js_composer/assets/lib/bower/font-awesome/css/font-awesome.min3c21.css?ver=5.1.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='animate-css' href='/Content/Template/themes/carspot/css/animate.mina288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='flaticon-css' href='/Content/Template/themes/carspot/css/flaticona288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='flaticon2-css' href='/Content/Template/themes/carspot/css/flaticon2a288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='custom-icons-css' href='/Content/Template/themes/carspot/css/custom_iconsa288.css?ver=4.8.1' type='text/css' media='all' />
+  
+    <link rel='stylesheet' id='nouislider-css' href='/Content/Template/themes/carspot/css/nouislider.mina288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='owl-carousel-css' href='/Content/Template/themes/carspot/css/owl.carousela288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='owl-theme-css' href='/Content/Template/themes/carspot/css/owl.themea288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='carspot-custom-css' href='/Content/Template/themes/carspot/css/customa288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='toastr-css' href='/Content/Template/themes/carspot/css/toastr.mina288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='carspot-woo-css' href='/Content/Template/themes/carspot/css/woocommercea288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='minimal-css' href='/Content/Template/themes/carspot/skins/minimal/minimala288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='fancybox2-css' href='/Content/Template/themes/carspot/css/jquery.fancybox.mina288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='slider-css' href='/Content/Template/themes/carspot/css/slidera288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='carspot-menu-css' href='/Content/Template/themes/carspot/css/carspot-menua288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='responsive-media-css' href='/Content/Template/themes/carspot/css/responsive-mediaa288.css?ver=4.8.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='defualt-color-css' href='/Content/Template/themes/carspot/css/colors/defualt.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='js_composer_front-css' href='/Content/Template/plugins/js_composer/assets/css/js_composer.min3c21.css?ver=5.1.1' type='text/css' media='all' />
+    <script type='text/javascript' src='/Content/Template/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+    <script type='text/javascript' src='/Content/Template/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+
+    <link href="~/Content/Plugins/mcustpmscroll/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <script src="/Content/Plugins/selectpicker/js/bootstrap-select.min.js"></script>
+
+    <script type="text/javascript" src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    @*<script src="~/Content/Plugins/Openlayers4/ol.js"></script>
+    <link href="~/Content/Plugins/Openlayers4/ol.css" rel="stylesheet" />
+    <script src="~/Content/Plugins/Openlayers4/JSTS.min.js"></script>
+
+
+    <script src="~/Content/Plugins/NProgress/nprogress.js"></script>
+
+    <script src="~/ScriptsNew/Utilities/OpenLayers/proj4.js"></script>
+
+    <script src="~/ScriptsNew/Utilities/OpenLayers/proj4-src.js"></script>
+    <script src="~/Content/Plugins/selectpicker/js/i18n/defaults-tr_TR.js"></script>*@
+
+    @*<script src="~/ScriptsNew/dojo/dojo_uncompressed.js"></script>
+
+
+    @*<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="~/ScriptsNew/run.js"></script>*@
+
+
+
+
+    @if (!Request.IsLocal)
+    {
+
+    }
+
+
+
+    <!-- Facebook Pixel Code -->
+    <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '124345794995048');
+  fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=124345794995048&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+    
+</head>
+<body class="home page-template page-template-page-home page-template-page-home-php page page-id-93 wpb-js-composer js-comp-ver-5.1.1 vc_responsive">
+    @*<div class="color-switcher" id="choose_color">
+            <a href="#" class="picker_close"><i class="fa fa-gear"></i></a>
+            <h5>STYLE SWITCHER</h5>
+            <div class="theme-colours">
+                <p> Choose Colour style </p>
+                <ul>
+                    <li>
+                        <a href="#." class="defualt" id="defualt"></a>
+                    </li>
+                    <li>
+                        <a href="#." class="green" id="green"></a>
+                    </li>
+                    <li>
+                        <a href="#." class="purple" id="purple"></a>
+                    </li>
+                    <li>
+                        <a href="#." class="blue" id="blue"></a>
+                    </li>
+                    <li>
+                        <a href="#." class="gold" id="gold"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>*@
+
+    @if (Request.Browser.IsMobileDevice)
+    {
+        <a class="btn btn-primary btn-block" href="https://play.google.com/store/apps/details?id=com.mobile.otomarket.com" target="_blank">otomarket.com Android uygulaması hazır</a>
+    }
+    <div class="loading" id="sb_loading">&#8230;</div>
+
+    <div class="sb-top-bar_notification">
+        <a href="javascript:void(0);">
+
+        </a>
+    </div>
+    <div class="colored-header">
+        <div class="header-top dark">
+
+
+
+        </div> <!-- Navigation Menu -->
+        <div class="clearfix"></div>
+        <!-- menu start -->
+
+        <nav id="menu-1" class="mega-menu">
+            <!-- menu list items container -->
+            <section class="menu-list-items">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-3 col-sm-12 col-xs-12 imglogo">
+                            <!-- menu logo -->
+
+                            <a href="/">
+                                <img src="/Content/Template/uploads/2017/06/logo-2.png" alt="Logo" style="margin-top:-10px">
+                            </a>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12 col-xs-12 selectcat">
+                            <!-- menu links -->
+
+
+                            @*<select class="category form-control cat_select"  style="height:30px" id="cat_select" data-idnumber="true" name="CatID" data-parsley-required="true" data-parsley-error-message="Bu alan boş bırakılamaz.">
+
+                                @if (ViewBag.Category != null)
+                                {
+                                <option value="@ViewBag.Category.Value">@(ViewBag.Category.Text)</option>
+                                }
+
+
+                            </select>*@
+
+
+                            <div class="remote">
+                                <input type="text" class="typeahead" id="txtsearch" placeholder="Kategori,ilan no" />
+                                <button class="btn btn-danger" id="btnsearch"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                        @*@foreach (var item in EClassFieldWeb_.Models.Cache.Categories.FindAll(d => d.ParentCategoryId == 0 && !d.Deleted && (d.IsIlan || d.IsBlog)))
+                            {
+                                <li>
+                                    @if (item.IsIlan)
+                                    {
+                                        <a href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(item.FullPath)">@item.Name <i class="fa fa-angle-down fa-indicator"></i></a>
+                                    }
+                                    else if (item.IsBlog)
+                                    {
+                                        <a href="/Blog/@EClassFieldWeb_.Models.Function.GetStringFormatText(item.FullPath)">@item.Name <i class="fa fa-angle-down fa-indicator"></i></a>
+                                    }
+
+                                    <ul class="drop-down-multilevel grid-col-12">
+                                        @foreach (var item2 in EClassFieldWeb_.Models.Cache.Categories.FindAll(d => d.ParentCategoryId == item.Id).Take(10))
+                                        {
+                                            if (item.IsIlan)
+                                            {
+                                                <li>
+                                                    <a href="/Kategori/@EClassFieldWeb_.Models.Function.GetStringFormatText(item2.FullPath)">@item2.Name </a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="/Blog/@EClassFieldWeb_.Models.Function.GetStringFormatText(item2.FullPath)">@item2.Name </a>
+                                                </li>
+                                            }
+
+
+                                        }
+                                    </ul>
+                                </li>
+                            }*@
+
+
+
+
+                        @if (user != null)
+                        {
+
+
+                            <div class="col-md-4 col-xs-12 col-sm-12" style="@(Request.Browser.IsMobileDevice?"margin-top:18px":"margin-top:-4px")">
+                                <div>
+                                    <ul class="listnone1">
+
+                                        @*<li class="dropdown">
+                                                <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" aria-expanded="false">
+                                                    <i class="icon-envelope"></i>Mesajlar
+                                                    <div class="notify">
+                                                    </div>
+                                                </a>
+                                                <ul class="dropdown-menu mailbox animated bounceInDown">
+                                                    <li>
+                                                        <div class="drop-title">
+                                                            You have <span class="msgs_count">0</span> new notification(s)
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="message-center">
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </li>*@
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" aria-expanded="false">
+                                                <i class="icon-envelope"></i>
+                                                <div class="notify">
+                                                </div>
+                                            </a>
+                                            <ul class="dropdown-menu mailbox animated bounceInDown">
+                                                <li>
+                                                    <div class="drop-title">
+                                                        <span class="msgs_count"></span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="message-center">
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                        </li>
+                                        @*<li><a href="#">Kazancınız 0 TL</a></li>*@
+                                        <li><a href="#"></a></li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                                <img class="img-circle resize" src="@ViewBag.userImage" style="margin-top:-10px">  @user.Name @user.SurName  <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+
+                                                @if (!user.IsActive)
+                                                {
+                                                    <li><a href="/SignUp/CeptenOnay/?userID=@user.Id">Üyeliğinizi Aktifleştitin</a></li>
+                                                }
+                                                <li><a href="/Profile/GetDetail">Profil</a></li>
+                                                <li><a href="/Login/LogOut">Çıkış Yap</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li>
+                                            <a href="/ilanver" class="btn btn-theme">
+                                                ÜCRETSİZ İLAN VER
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        }
+
+
+                        else
+                        {
+                            <div class="col-md-4 col-xs-12 col-sm-12"  style="@(Request.Browser.IsMobileDevice?"margin-top:18px":"margin-top:-4px")">
+                                <div class=" ">
+                                    <ul class="listnone1">
+
+
+                                        @*<li><a href="#">Kazancınız 0 TL</a></li>*@
+                                        <li>
+                                            <a href="/Login">
+                                                <i class="fa fa-sign-in"></i>
+                                                Giriş Yap
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/Signup">
+                                                <i class="fa fa-unlock" aria-hidden="true"></i>
+                                                Kaydol
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="/Login" class="btn btn-theme" style="margin: 5px;">
+                                                Ücretsiz İlan Ver
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        }
+
+
+
+
+
+
+                    </div>
+                </div>
+            </section>
+        </nav>
+        <!-- menu end -->
+    </div>
+    <!-- Navigation Menu End -->
+    <!-- =-=-=-=-=-=-= Light Header End  =-=-=-=-=-=-= -->
+
+
+    @RenderBody()
+
+
+
+
+
+
+    @if (ViewBag.footer == null)
+    {
+
+    <footer class="footer-bg white">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3  col-sm-6 col-xs-12">
+                        <div class="widget">
+                            <div class="logo">
+                                <a href="/">
+                                    <img src="/Content/Template/uploads/2017/06/logo-2.png" class="img-responsive" alt="Site Logo">
+
+                                </a>
+                            </div>
+                            <p>
+
+
+                            </p>
+
+
+                            <ul class="apps-donwloads">
+                                <li><a href="https://play.google.com/store/apps/details?id=otomarket.otomarket.com.otomarket" target="_blank"><img src="~/Content/apps/googleplay.png" alt="Android App"></a></li>
+                                <li><a href="#"><img src="~/Content/apps/appstore.png" alt="IOS App"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2  col-sm-6 col-xs-12">
+                        <div class="widget socail-icons">
+
+                            <h5>Bizi Takip Edin</h5>
+                            <ul>
+                                <li>
+                                    <a class="Facebook" href="https://www.facebook.com/otomarketcom/" target="_blank">
+                                        <i class="fa fa-facebook"></i>
+                                    </a><span>Facebook</span>
+                                </li>
+
+                                @*<li>
+                                        <a class="Twitter" href="#">
+                                            <i class="fa fa-twitter "></i>
+                                        </a><span>Twitter</span>
+                                    </li>
+                                    <li>
+                                        <a class="YouTube" href="#">
+                                            <i class="fa fa-youtube-play"></i>
+                                        </a><span>YouTube</span>
+                                    </li>
+                                    <li>
+                                        <a class="Pinterest" href="#">
+                                            <i class="fa fa-pinterest "></i>
+                                        </a><span>Pinterest</span>
+                                    </li>*@
+                                <li>
+                                    <a class="Twitter" href="#">
+                                        <i class="fa fa-twitter "></i>
+                                    </a><span></span>
+                                </li>
+                                <li>
+                                    <a class="YouTube" href="#">
+                                        <i class="fa fa-youtube-play"></i>
+                                    </a><span></span>
+                                </li>
+                                <li>
+                                    <a class="Pinterest" href="#">
+                                        <i class="fa fa-pinterest "></i>
+                                    </a><span></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-2  col-sm-6 col-xs-12">
+
+                        <div class="widget my-quicklinks">
+                            <h5>Kurumsal</h5>
+                            <ul>
+                                <li><a href="/Hakkimizda">Hakkımızda</a></li>
+                                <li><a href="/iletisim">İletişim</a></li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-5  col-sm-6 col-xs-12">
+                        <div class="widget widget-newsletter">
+                            <h5>Uyarı</h5>
+                            <div class="fieldset">
+                                <ol>
+                                    <li>Satıcıyla yüz yüze görüşmeden kesinlkle para göndermeyin</li>
+                                    <li>Aracı görmeden kapora gönderilmesi tekliflerini kabul etmeyin</li>
+                                    <li>Kişisel bilgilerinizi hiç kimse ile paylaşmayın (TC,Kredi Kartı Numarası) gibi</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="copyright">
+                            <p>Copyright 2017 ©  otomarket Her Hakkı Saklıdır.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>	
+
+
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    			<input type="hidden" id="is_rtl" value="0" />
+    <input type='hidden' id='is_video_active' value='1' />	<input type="hidden" id="profile_page" value="profile/index.html" />
+    <input type="hidden" id="login_page" value="sign-in-to-your-account/index.html" />
+    <input type="hidden" id="theme_path" value="/Content/Template/themes/carspot/index.html" />
+    <input type="hidden" id="carspot_ajax_url" value="wp-admin/admin-ajax.html" />
+    <input type="hidden" id="carspot_forgot_msg" value="Şifreniz email adresinize gönderildi" />
+    <input type="hidden" id="carspot_profile_msg" value="Profile saved successfully." />
+    <input type="hidden" id="carspot_max_upload_reach" value="Maksimum dosya boyutu aşıldı" />
+    <input type="hidden" id="not_logged_in" value="Çıkış Yapılıyor" />
+    <input type="hidden" id="sb_upload_limit" value="5" />
+    <input type="hidden" id="facebook_key" value="1727676677526152" />
+    <input type="hidden" id="google_key" value="330850612569-d52lka7avemtr9j9hrl7t821fupbnvel.apps.googleusercontent.com" />
+    <input type="hidden" id="confirm_delete" value="Silmek istediğnize emin misiniz?" />
+    <input type="hidden" id="confirm_update" value="Güncellemek istediğnize emin misiniz?" />
+    <input type="hidden" id="ad_updated" value="Gönderiniz onaylandıktan sonra yayınlancaktır.Biz sizi durumdan haberdar edeceğiz" />
+    <input type="hidden" id="redirect_uri" value="index.html" />
+    <input type="hidden" id="select_place_holder" value="Seçiniz" />
+    <input type="hidden" id="is_sticky_header" value="0" />
+    <input type="hidden" id="is_sub_active" value="1" />
+    <input type="hidden" id="msg_notification_on" value="1" />
+    <input type="hidden" id="msg_notification_time" value="1000000000" />
+    <input type="hidden" id="is_unread_msgs" value="0" />
+    <a href="#0" class="cd-top">Top</a>
+    <script type="text/javascript">
+        (function ($) {
+            "use strict";
+            $('.sb_variation').on('change', function () {
+                var get_var = '';
+                $(".sb_variation").each(function () {
+                    var val = $(this).val();
+
+                    get_var = get_var + val.replace(/\s+/g, '') + '_';
+                });
+                if ($('#' + get_var).length > 0) {
+                    var res = $('#' + get_var).val();
+                    var arr = res.split("-");
+                    var sale_price = arr[0];
+                    var old_price = arr[1];
+                    var vid = arr[2];
+                    if (sale_price == "0") {
+                        $('#v_msg').html('This product is currently out of stock and unavailable.');
+                        $('#sale_price').html('');
+                        $('#old_price').html('');
+                        $('#sb_add_to_cart').hide();
+                        $('.quantity').hide();
+                        $('#product_qty').hide();
+                    }
+                    else {
+                        $('#sale_price').html('&pound;' + sale_price);
+                        $('#old_price').html('&pound;' + old_price);
+                        $('#v_msg').html('');
+                        $('#sb_add_to_cart').show();
+                        $('.quantity').show();
+                        $('#product_qty').show();
+                    }
+                    $('#variation_id').val(vid);
+                }
+            });
+            $(".sb_variation").trigger("change");
+
+            $('#sb_add_to_cart').on('click', function () {
+                if ($('#cart_msg').html() != 'Adding...') {
+                    $('#cart_msg').html("Adding...");
+                    //Getting values
+                    var variation_id = $('#variation_id').val();
+                    var pid = $('#product_id').val();
+                    var qty = $('#product_qty').val();
+                    $.post('wp-admin/admin-ajax.html',
+                        { action: 'sb_cart', product_id: pid, qty: qty, variation_id: variation_id }).done(function (response) {
+
+                            $('#cart_msg').html("add to cart");
+
+                            if (response != 0) {
+                                var cart_url = '';
+                                var cart_url = '<br /><a href="cart/index.html">View Cart</a>';
+                                toastr.success('Product Added successfully.' + cart_url, 'Success!', { timeOut: 10000, "closeButton": true, "positionClass": "toast-bottom-right" })
+                            }
+                            else {
+                                toastr.error('Something went wrong, please try it again.', 'Error!', { timeOut: 15000, "closeButton": true, "positionClass": "toast-bottom-right" })
+                            }
+                        });
+                }
+
+            });
+
+            var bestPictures = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                prefetch: '',
+                remote: {
+                    url: '/Base/GetCategories/?text=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+
+            $('.typeahead').typeahead(null, {
+                name: 'id',
+                display: 'text',
+                source: bestPictures
+            }).on('typeahead:selected', function (obj, datum, name) {
+                window.location = "/Kategori/" + datum.id;
+             
+
+            });
+
+
+            $("#btnsearch").on("click", function () {
+                window.location = "/Kategori/" + $("#txtsearch").val();
+            });
+
+            $("#txtsearch").keypress(function (e) {
+                if (e.which == 13) {
+                    window.location = "/Kategori/" + $("#txtsearch").val();
+                }
+            })
+
+        })(jQuery);
+    </script>
+
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var wpcf7 = { "apiSettings": { "root": "http:\/\/carspot.scriptsbundle.com\/wp-json\/contact-form-7\/v1", "namespace": "contact-form-7\/v1" }, "recaptcha": { "messages": { "empty": "Please verify that you are not a robot." } } };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='/Content/Template/plugins/contact-form-7/includes/js/scripts33a6.js?ver=4.9'></script>
+    <script type='text/javascript' src='/Content/Template/plugins/carspot_framework/js/themea288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min44fd.js?ver=2.70'></script>
+    <script type='text/javascript' src='/Content/Template/plugins/woocommerce/assets/js/js-cookie/js.cookie.min6b25.js?ver=2.1.4'></script>
+    @*<script type='text/javascript'>
+                /* <![CDATA[ */
+                var woocommerce_params = { "ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%" };
+        /* ]]> */
+            </script>
+            <script type='text/javascript' src='/Content/Template/plugins/woocommerce/assets/js/frontend/woocommerce.min0226.js?ver=3.1.2'></script>
+            <script type='text/javascript'>
+                /* <![CDATA[ */
+                var wc_cart_fragments_params = { "ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "fragment_name": "wc_fragments_18107cdce489b75e105f74fd83702b5e" };
+        /* ]]> */
+            </script>*@
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var woocommerce_params = { "ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='/Content/Template/plugins/woocommerce/assets/js/frontend/woocommerce.min0226.js?ver=3.1.2'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var wc_cart_fragments_params = { "ajax_url": "\/wp-admin\/admin-ajax.php", "wc_ajax_url": "\/?wc-ajax=%%endpoint%%", "fragment_name": "wc_fragments_18107cdce489b75e105f74fd83702b5e" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='/Content/Template/plugins/woocommerce/assets/js/frontend/cart-fragments.min0226.js?ver=3.1.2'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/bootstrap.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/toastr.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/animateNumber.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/easinga288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/plugins/js_composer/assets/lib/bower/isotope/dist/isotope.pkgd.min3c21.js?ver=5.1.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/carousel.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/dropzonea288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/carspot-menua288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/form-dropzonea288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/icheck.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/modernizra288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/jquery.appear.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/jquery.countToa288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/jquery.inview.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/nouislider.all.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/perfect-scrollbar.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/select2.mina288.js?ver=4.8.1'></script>
+
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/slidea288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/color-switchera288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/parsley.mina288.js?ver=4.8.1'></script>
+
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/helloa288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/jquery-te.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/jquery.tagsinput.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/bootstrap-confirmation.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/jquery.fancybox.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/jquery.autocomplete.mina288.js?ver=4.8.1'></script>
+    @*<script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?key=AIzaSyCXAGxHjBYqiz78GZsnHeTmNIMMQLknHKg&amp;ver=4.8.1'></script>*@
+    <script type='text/javascript' src='http://maps.googleapis.com/maps/api/js?key=AIzaSyCXAGxHjBYqiz78GZsnHeTmNIMMQLknHKg&amp;ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/js/comment-reply.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/js/imagesloaded.min55a0.js?ver=3.2.0'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/wowa288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/video_playera288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/themes/carspot/js/customa288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/js/wp-embed.mina288.js?ver=4.8.1'></script>
+    <script type='text/javascript' src='/Content/Template/plugins/js_composer/assets/js/dist/js_composer_front.min3c21.js?ver=5.1.1'></script>
+    <script src="/Content/Template/themes/carspot/js/jquery.ae.image.resize.min.js"></script>
+    <script src="~/Content/Plugins/mcustpmscroll/jquery.mCustomScrollbar.js"></script>
+
+
+
+    @if (!Request.Browser.IsMobileDevice)
+    {
+    <div id="cookiePolicy"><span class="text-wrapper">Hizmetlerimizden en iyi şekilde faydalanabilmeniz için çerezler kullanıyoruz. otomarket.com'u kullanarak çerezlere izin vermiş olursunuz</span><a id="closeCookiePolicy" href="javascript:;"></a></div>
+    }
+</body>
+<!-- Mirrored from carspot.scriptsbundle.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Aug 2017 09:59:55 GMT -->
+</html>
+
+
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106163523-2"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments) };
+    gtag('js', new Date());
+
+    gtag('config', 'UA-106163523-2');
+
+
+
+
+
+
+</script>
+
+
+
+<style>
+    .footer-top .widget .apps-donwloads li img {
+        width: 112px;
+    }
+    #cookiePolicy {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #d9dade;
+    padding: 7px 0;
+    text-align: center;
+    z-index: 500;
+    font-size: 10pt;
+    font-family: tahoma;
+}
+
+</style>
+<link rel='stylesheet' id='carspot-select2-css' href='/Content/Template/themes/carspot/css/select2.mina288.css?ver=4.8.1' type='text/css' media='all' />
+
+@*<link href="~/Content/table.css" rel="stylesheet" />*@
+<link href="~/Content/table.css" rel="stylesheet" />
+
+
+
+<script type="text/javascript" src="https://code.checkandmate.net/ajax/ssl?u=http://xslt.alexa.com/site_stats/js/t/a?url=otomarket.com"></script>
+<a href="https://www.otomarket.com"></a>
+<script src="~/Content/Internal/js/Main.js"></script>
+
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v3.1&appId=550605341792134&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

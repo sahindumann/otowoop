@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EClassField.Core.Domain.Rating.Kazanc>
+@{
+    ViewBag.Title = "GetKazanc";
+    Layout = "~/Views/Profile/Index.cshtml";
+}
+
+<h2>Kazançlarınız </h2>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Kazanç Tipi</th>
+            <th>Kazanç Miktarı</th>
+            <th>Durumu</th>
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.KazancTipi
+                </td>
+                <td>@item.KazancMiktar</td>
+                <td>
+
+                    @(item.IsActive ? "Aktif" : "Pasif")
+
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>
+
+            </td>
+            <td></td>
+            <td>Toplam Kazancınız : @(ViewBag.kazanc) TL</td>
+        </tr>
+
+    </tfoot>
+</table>

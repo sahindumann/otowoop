@@ -1,0 +1,406 @@
+﻿@model EClassField.Core.Domain.Blog.Post
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Areas/Views/Shared/_Layout.cshtml";
+
+
+}
+<form class="form-horizontal" method="post" id="frmpost">
+    <div class="row">
+        <div class="col-md-12">
+
+            <input name="Id" value="@Model.Id" type="hidden" />
+            <div class="col-md-9">
+
+                <div class="panel panel-default tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+
+                        @foreach (var item in Model.PostLanguages)
+                        {
+
+
+                            <li><a href="#tab-@item.Language.SeoName" role="tab" data-toggle="tab">@item.Language.Name</a></li>
+                        }
+                    </ul>
+                    <div class="panel-body tab-content">
+                        @foreach (var item in Model.PostLanguages)
+                        {
+                            <div class="tab-pane" id="tab-@item.Language.SeoName">
+
+                                <div class="form-group">
+
+                                    <div class="col-md-12">
+                                        <br />
+                                        <input type="text" class="form-control" name="Title_@item.Language.SeoName" value="@Model.Title" placeholder="Başlığı Buraya Girin" />
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+
+
+                                    <div class="col-md-12">
+                                        <br />
+                                        <textarea name="Description_@item.Language.SeoName" rows="1000" cols="1000">@Model.Description</textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        }
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading ui-draggable-handle">
+                        <h3 class="panel-title">Yayınla</h3>
+
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="form-group">
+
+                            <label class="control-label">&nbsp;&nbsp; Yayınlanma Zamanı</label>
+
+
+                            <div class="col-md-12">
+                                <br />
+                                <input type="date" class="form-control" name="date" style="border-radius:0px" value="@Model.CreationTime.ToShortDateString()" />
+                                <br />
+                            </div>
+
+                            <div class="form-group">
+                                <br />
+                                <label class="control-label">&nbsp;</label>
+                                <br />
+
+
+                            </div>
+
+                            <input type="button" id="btnPostAdd" class="btn btn-default" style="margin-left:10px" value="Kaydet" />
+
+
+                        </div>
+                        <div class="panel-footer">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading ui-draggable-handle">
+                        <h3 class="panel-title">Kategoriler</h3>
+
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="panel panel-default tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class=""><a href="#tab-first" role="tab" data-toggle="tab" aria-expanded="false">Tümü</a></li>
+                                <li class=""><a href="#tab-second" role="tab" data-toggle="tab" aria-expanded="false">Çok Kullanılan</a></li>
+
+                            </ul>
+                            <div class="panel-body tab-content">
+                                <div class="tab-pane" id="tab-first">
+                                    @Html.Partial("~/Areas/Areas/Views/partial/_kategoriListcheckbox.cshtml", EClassFieldWeb_.Models.Function.getSubCategoriesBlog())
+
+                                </div>
+                                <div class="tab-pane" id="tab-second">
+                                    <p>Donec tristique eu sem et aliquam. Proin sodales elementum urna et euismod. Quisque nisl nisl, venenatis eget dignissim et, adipiscing eu tellus. Sed nulla massa, luctus id orci sed, elementum consequat est. Proin dictum odio quis diam gravida facilisis. Sed pharetra dolor a tempor tristique. Sed semper sed urna ac dignissim. Aenean fermentum leo at posuere mattis. Etiam vitae quam in magna viverra dictum. Curabitur feugiat ligula in dui luctus, sed aliquet neque posuere.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <a href="" onclick="return categoryAc()">+ Yeni kategori ekle</a>
+
+                        <div id="yenikategori" style="display:none">
+                            <br />
+                            <select id="categoryId" class="select form-control">
+                                <option value="0">-----Ana Kategori-----</option>
+                                @foreach (var item in EClassFieldWeb_.Models.Function.getcombokategoriler())
+                                {
+
+
+
+                                    <option value="@item.Value">
+                                        @Html.Raw(item.Text.Replace(" ", "&nbsp"))
+
+                                    </option>
+                                }
+
+                            </select>
+
+                            <div class="col-md-12">
+                                <br />
+                                <input type="text" class="form-control" id="categoryname" />
+                            </div>
+
+                            <div class="col-md-12">
+                                <br />
+
+                                <button onclick="return categoryEkle()" class="btn btn-default btn-block">Yeni Kategori Ekle</button>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="panel-footer">
+
+                    </div>
+                </div>
+                <br />
+                <div class="panel panel-default">
+                    <div class="panel-heading ui-draggable-handle">
+                        <h3 class="panel-title">Etiketler(Tags)</h3>
+
+                    </div>
+                    <div class="panel-body">
+
+
+                        <div class="form-group">
+
+                            <div class="col-md-12">
+                                @{
+
+                                    if (Model.PostTags != null && Model.PostTags.Any())
+                                    {
+
+                                        <input type="text" class="form-control tagsinput" name="tags" placeholder="Etiket Ekle"  value="@(Model.PostTags.Select(d => d.Tag.Name).Aggregate<string>((a, b) => a + "," + b))" />
+                                    }
+                                    else
+                                    {
+                                        <input type="text" class="form-control tagsinput" name="tags" placeholder="Etiket Ekle" value="" />
+
+                                    }
+                                }
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="panel-footer">
+
+                    </div>
+                </div>
+                <br />
+                <div class="panel panel-default">
+                    <div class="panel-heading ui-draggable-handle">
+                        <h3 class="panel-title">Öne Çıkan Resim</h3>
+
+                    </div>
+                    <div class="panel-body">
+
+                        <button class="btn btn-default" onclick="return openCustomRoxy2()">Öne Çıkan Görsel Ekle</button>
+                        <div class="form-group">
+
+                            <div class="col-md-12">
+
+
+                                <br />
+
+                                @if (Model.PostPictures != null && Model.PostPictures.Any())
+                                {
+                                <img id="imgonecikan" src="@Model.PostPictures.FirstOrDefault().Picture.FileName" name="onecikan" class="img-responsive" />
+
+                                <input id="imgonecikanval" src="" value="@Model.PostPictures.FirstOrDefault().Picture.FileName" name="images" />
+                                }
+                                else
+                                {
+                                    <img id="imgonecikan" src="" name="onecikan" class="img-responsive" />
+
+                                    <input id="imgonecikanval" src="" value="" name="images" />
+                                }
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</form>
+
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fileman/js/jquery-2.1.1.min.js"></script>
+
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/langs/tr.js"></script>
+
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/image/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/imagetools/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fullpage/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fullscreen/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/colorpicker/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/preview/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/textcolor/plugin.min.js"></script>
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/paste/plugin.min.js"></script>
+
+
+<script src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fileman/js/custom.js"></script>
+
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 500,
+        theme: 'modern',
+        plugins: [
+          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          'searchreplace wordcount visualblocks visualchars code fullscreen',
+          'insertdatetime media nonbreaking save table contextmenu directionality',
+          'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+        ],
+        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample | fontselect |  fontsizeselect ', file_browser_callback: RoxyFileBrowser,
+        image_advtab: true,
+        templates: [
+          { title: 'Test template 1', content: 'Test 1' },
+          { title: 'Test template 2', content: 'Test 2' }
+        ],
+        content_css: [
+          '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+          '//www.tinymce.com/css/codepen.min.css'
+        ],
+        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
+        language: 'tr',
+        setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+            });
+        }
+    });
+
+
+
+    function RoxyFileBrowser(field_name, url, type, win) {
+        var roxyFileman = '/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fileman/index.html?integration=tinymce4';
+        if (roxyFileman.indexOf("?") < 0) {
+            roxyFileman += "?type=" + type;
+        }
+        else {
+            roxyFileman += "&type=" + type;
+        }
+        roxyFileman += '&input=' + field_name + '&value=' + win.document.getElementById(field_name).value;
+        if (tinyMCE.activeEditor.settings.language) {
+            roxyFileman += '&langCode=' + tinyMCE.activeEditor.settings.language;
+        }
+        tinyMCE.activeEditor.windowManager.open({
+            file: roxyFileman,
+            title: 'Dosya Yöneticisi',
+            width: 850,
+            height: 650,
+            resizable: "yes",
+            plugins: "media",
+            inline: "yes",
+            close_previous: "no"
+        }, { window: win, input: field_name });
+        return false;
+    }
+
+
+    function openCustomRoxy2() {
+        $(function () {
+            $('#roxyCustomPanel2').dialog({ modal: true, width: 875, height: 600, title: 'Dosya Yöneticisi' });
+        });
+
+        return false;
+    }
+    function closeCustomRoxy2() {
+        $('#roxyCustomPanel2').dialog('close');
+        return false;
+    }
+
+
+
+</script>
+
+<script type='text/javascript' src='/Areas/Areas/Content/joli/js/plugins/icheck/icheck.min.js'></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+<script>
+
+
+
+    function categoryAc() {
+        var display = document.getElementById("yenikategori").style.display;
+
+        if (display == "block") {
+            document.getElementById("yenikategori").style.display = "none";
+        }
+        else {
+            document.getElementById("yenikategori").style.display = "block";
+        }
+
+        return false;
+    }
+
+    function categoryEkle() {
+
+        var id = document.getElementById("categoryId").value;
+        var name = document.getElementById("categoryname").value;
+
+        $.ajax({
+            url: '/panel/category/GetCategoriesBlog',
+            data: { Id: id, name: name },
+            type: 'post',
+            success: function (res) {
+                alert(JSON.stringify(res));
+            }
+
+        });
+
+        return false;
+    }
+
+
+    $(document).ready(function () {
+
+        $("#btnPostAdd").click(function () {
+            var $form = $("#frmpost");
+            $.ajax({
+                url: "/Panel/Post/",
+                type: 'POST',
+                data: $form.serialize(),
+                success: function (result) {
+
+                    if (result == "T") {
+                        alert("Post Başarıyla Eklendi")
+                    }
+                    else {
+                        alert("Post Başarıyla Eklenemedi amk")
+                    }
+                }
+            });
+        });
+
+    });
+</script>
+
+
+<div id="roxyCustomPanel2" style="display: none;">
+    <iframe src="/Content/tinymce_4.5.2_dev/tinymce/js/tinymce/plugins/fileman/index.html?integration=custom&type=image&imageID=imgonecikan" style="width:100%;height:100%" frameborder="0"></iframe>
+</div>
+

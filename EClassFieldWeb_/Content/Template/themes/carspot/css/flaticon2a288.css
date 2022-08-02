@@ -1,0 +1,163 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 03/08/2017 10:56
+  	*/
+
+@font-face {
+  font-family: "Flaticon2";
+  src: url("../fonts/Flaticon2.eot");
+  src: url("../fonts/Flaticon2d41d.eot?#iefix") format("embedded-opentype"),
+       url("/fonts/Flaticon2.html") format("woff"),
+       url("../fonts/Flaticon2.ttf") format("truetype"),
+       url("../fonts/Flaticon2.svg#Flaticon2") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon2";
+    src: url("../fonts/Flaticon2.svg#Flaticon2") format("svg");
+  }
+}
+
+[class^="flaticon2-"]:before, [class*=" flaticon2-"]:before,
+[class^="flaticon2-"]:after, [class*=" flaticon2-"]:after {   
+  font-family: Flaticon2;
+font-style: normal;
+
+}
+
+.flaticon2-network:before { content: "\f100"; }
+.flaticon2-facebook-logo-1:before { content: "\f101"; }
+.flaticon2-whatsapp-logo:before { content: "\f102"; }
+.flaticon2-twitter-logo-button:before { content: "\f103"; }
+.flaticon2-twitter-logo-silhouette:before { content: "\f104"; }
+.flaticon2-facebook-logo:before { content: "\f105"; }
+.flaticon2-instagram-logo:before { content: "\f106"; }
+.flaticon2-delivery:before { content: "\f107"; }
+.flaticon2-yahoo-logo:before { content: "\f108"; }
+.flaticon2-support:before { content: "\f109"; }
+.flaticon2-shopping-support-online:before { content: "\f10a"; }
+.flaticon2-google-logo:before { content: "\f10b"; }
+.flaticon2-motorbike-8:before { content: "\f10c"; }
+.flaticon2-motorbike-7:before { content: "\f10d"; }
+.flaticon2-motorbike-6:before { content: "\f10e"; }
+.flaticon2-sportive-circuit-to-test-vehicles:before { content: "\f10f"; }
+.flaticon2-motorcycle-helmet:before { content: "\f110"; }
+.flaticon2-motor-sports-circuit:before { content: "\f111"; }
+.flaticon2-racing:before { content: "\f112"; }
+.flaticon2-motorbike-5:before { content: "\f113"; }
+.flaticon2-two-motor-flags:before { content: "\f114"; }
+.flaticon2-motorbike-4:before { content: "\f115"; }
+.flaticon2-bike-with-motor-ios-7-interface-symbol:before { content: "\f116"; }
+.flaticon2-motorbike-3:before { content: "\f117"; }
+.flaticon2-motorbike-2:before { content: "\f118"; }
+.flaticon2-wheel:before { content: "\f119"; }
+.flaticon2-operator:before { content: "\f11a"; }
+.flaticon2-engineer-1:before { content: "\f11b"; }
+.flaticon2-safari:before { content: "\f11c"; }
+.flaticon2-tool-3:before { content: "\f11d"; }
+.flaticon2-construction-2:before { content: "\f11e"; }
+.flaticon2-tool-2:before { content: "\f11f"; }
+.flaticon2-repair-tools:before { content: "\f120"; }
+.flaticon2-process:before { content: "\f121"; }
+.flaticon2-settings:before { content: "\f122"; }
+.flaticon2-tools-2:before { content: "\f123"; }
+.flaticon2-repair:before { content: "\f124"; }
+.flaticon2-construction-1:before { content: "\f125"; }
+.flaticon2-construction:before { content: "\f126"; }
+.flaticon2-vehicle:before { content: "\f127"; }
+.flaticon2-tools-1:before { content: "\f128"; }
+.flaticon2-wrench:before { content: "\f129"; }
+.flaticon2-tools:before { content: "\f12a"; }
+.flaticon2-car-wheel:before { content: "\f12b"; }
+.flaticon2-drawing:before { content: "\f12c"; }
+.flaticon2-piston:before { content: "\f12d"; }
+.flaticon2-engine-2:before { content: "\f12e"; }
+.flaticon2-engine-1:before { content: "\f12f"; }
+.flaticon2-engineering:before { content: "\f130"; }
+.flaticon2-engine:before { content: "\f131"; }
+.flaticon2-engineer:before { content: "\f132"; }
+.flaticon2-security:before { content: "\f133"; }
+.flaticon2-helmet-4:before { content: "\f134"; }
+.flaticon2-motorbike-1:before { content: "\f135"; }
+.flaticon2-motorbike:before { content: "\f136"; }
+.flaticon2-racing-helmet:before { content: "\f137"; }
+.flaticon2-motorcycle-2:before { content: "\f138"; }
+.flaticon2-helmet-3:before { content: "\f139"; }
+.flaticon2-scooter-2:before { content: "\f13a"; }
+.flaticon2-scooter-1:before { content: "\f13b"; }
+.flaticon2-scooter:before { content: "\f13c"; }
+.flaticon2-steering-wheel-1:before { content: "\f13d"; }
+.flaticon2-steering-wheel:before { content: "\f13e"; }
+.flaticon2-cruise-3:before { content: "\f13f"; }
+.flaticon2-ship-7:before { content: "\f140"; }
+.flaticon2-sailing:before { content: "\f141"; }
+.flaticon2-fishing-1:before { content: "\f142"; }
+.flaticon2-rowing:before { content: "\f143"; }
+.flaticon2-sailing-boat-sportive-transport:before { content: "\f144"; }
+.flaticon2-boat:before { content: "\f145"; }
+.flaticon2-yachting:before { content: "\f146"; }
+.flaticon2-fishing:before { content: "\f147"; }
+.flaticon2-jet-boating:before { content: "\f148"; }
+.flaticon2-cruise-2:before { content: "\f149"; }
+.flaticon2-boat-travel-date-daily-calendar-page-interface-symbol:before { content: "\f14a"; }
+.flaticon2-sailing-boat-travelling-around-the-world:before { content: "\f14b"; }
+.flaticon2-helmet-2:before { content: "\f14c"; }
+.flaticon2-helmet-1:before { content: "\f14d"; }
+.flaticon2-helmet:before { content: "\f14e"; }
+.flaticon2-bike-rider-side-view:before { content: "\f14f"; }
+.flaticon2-bicycle-1:before { content: "\f150"; }
+.flaticon2-clutch:before { content: "\f151"; }
+.flaticon2-sports-1:before { content: "\f152"; }
+.flaticon2-sports:before { content: "\f153"; }
+.flaticon2-transport-21:before { content: "\f154"; }
+.flaticon2-tool-1:before { content: "\f155"; }
+.flaticon2-ship-6:before { content: "\f156"; }
+.flaticon2-tool:before { content: "\f157"; }
+.flaticon2-transport-19:before { content: "\f158"; }
+.flaticon2-transport-18:before { content: "\f159"; }
+.flaticon2-transport-17:before { content: "\f15a"; }
+.flaticon2-transport-16:before { content: "\f15b"; }
+.flaticon2-transport-15:before { content: "\f15c"; }
+.flaticon2-transport-14:before { content: "\f15d"; }
+.flaticon2-transport-13:before { content: "\f15e"; }
+.flaticon2-transport-12:before { content: "\f15f"; }
+.flaticon2-transport-11:before { content: "\f160"; }
+.flaticon2-transport-10:before { content: "\f161"; }
+.flaticon2-transport-9:before { content: "\f162"; }
+.flaticon2-transport-8:before { content: "\f163"; }
+.flaticon2-motor:before { content: "\f164"; }
+.flaticon2-transport-7:before { content: "\f165"; }
+.flaticon2-transport-6:before { content: "\f166"; }
+.flaticon2-transport-5:before { content: "\f167"; }
+.flaticon2-transport-4:before { content: "\f168"; }
+.flaticon2-transport-3:before { content: "\f169"; }
+.flaticon2-cruise-1:before { content: "\f16a"; }
+.flaticon2-ship-5:before { content: "\f16b"; }
+.flaticon2-ship-4:before { content: "\f16c"; }
+.flaticon2-ship-3:before { content: "\f16d"; }
+.flaticon2-yatch:before { content: "\f16e"; }
+.flaticon2-sailboat:before { content: "\f16f"; }
+.flaticon2-cruise:before { content: "\f170"; }
+.flaticon2-cargo-ship-with-containers:before { content: "\f171"; }
+.flaticon2-ship-2:before { content: "\f172"; }
+.flaticon2-big-anchor:before { content: "\f173"; }
+.flaticon2-boat-from-front-view:before { content: "\f174"; }
+.flaticon2-sea-ship-with-containers:before { content: "\f175"; }
+.flaticon2-transport-2:before { content: "\f176"; }
+.flaticon2-transport-1:before { content: "\f177"; }
+.flaticon2-transport:before { content: "\f178"; }
+.flaticon2-motorcyle:before { content: "\f179"; }
+.flaticon2-race-bike:before { content: "\f17a"; }
+.flaticon2-single-motorbike:before { content: "\f17b"; }
+.flaticon2-quad-1:before { content: "\f17c"; }
+.flaticon2-quad:before { content: "\f17d"; }
+.flaticon2-motorcycle-1:before { content: "\f17e"; }
+.flaticon2-motorcycle:before { content: "\f17f"; }
+.flaticon2-ship-1:before { content: "\f180"; }
+.flaticon2-helm:before { content: "\f181"; }
+.flaticon2-yacht:before { content: "\f182"; }
+.flaticon2-ship:before { content: "\f183"; }
+.flaticon2-bicycle:before { content: "\f184"; }

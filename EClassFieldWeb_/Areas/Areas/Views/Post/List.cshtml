@@ -1,0 +1,51 @@
+﻿@model  IEnumerable<EClassFieldWeb_.Models.ViewModel.PostViewModel>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Areas/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th></th>
+            <th>Başlık</th>
+            <th>Kategori</th>
+            <th>Aktif</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.Pictures.FirstOrDefault().Value" width="110" height="79" />
+                    
+                </td>
+                <td>@item.Title</td>
+                <td>@(item.Categories.Select(d=>d.Text).Aggregate((a,b)=>a+" > "+b))</td>
+                <td><a href="/Panel/Post/Active/?postID=@item.Id">@(item.IsActive?"Aktif":"False")</a></td>
+                <td>
+                    <a class="btn btn-primary" href="/Panel/Post/?postID=@item.Id">Düzenle</a>
+                    <a class="btn btn-danger" href="/Panel/Post/Delete/?postID=@item.Id">Sil</a>
+                
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+    
+    <tfoot>
+        <tr>
+            <td colspan="5">
+                @Html.Partial("~/Views/Partial/_partialpagination.cshtml", (EClassField.Core.PageModel)ViewBag.PageModel)
+            </td>
+        </tr>
+
+    </tfoot>
+</table>
+

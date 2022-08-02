@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "GetFav";
+    Layout = "~/Views/Profile/Index.cshtml";
+}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <!-- Row -->
+    <div class="row">
+        <!-- Ads Archive -->
+        <div class="grid-style-2">
+
+            <div class="posts-masonry" style="position: relative; height: 482px;">
+
+                @foreach (   EClassFieldWeb_.Models.ViewModel.ProductModelView item in ViewBag.Products)
+                {
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12" id="holder-70" style="position: absolute; left: 0px; top: 0px;">
+                        <div class="profile-ads-grids">
+                            <div class="category-grid-box-1">
+
+                                <div class="image">
+                                    @*<div class="featured-ribbon"><span>Featured</span></div>*@
+                                    <a><img src="/Base/Image/GetImage/?image=@item.Image&width=360&height=270" class="img-responsive"></a>
+                                    <div class="price-tag">
+                                        <div class="price"><span>@item.Price<span class=""></span></span></div>
+                                    </div>
+                                    <div class="notification msgs get_msgs" ad_msg="70">
+                                        @*<a class="round-btn" href="javascript:void(0);"><i class="fa fa-envelope-o"></i></a>
+                                            <span>1</span>*@
+                                    </div>
+                                </div>
+                                <div class="short-description-1 clearfix">
+                                    <div class="category-title">  </div>
+                                    <h3> <a>@item.Title</a></h3>
+                                    <p class="location"><i class="fa fa-map-marker"></i>@item.FullLoc</p>
+                                    @*<ul class="list-unstyled"><li><i class="flaticon-gas-station-1"></i>Diesel</li><li><i class="flaticon-dashboard"></i>72,000  Km</li><li><i class="flaticon-engine-2"></i>3,000  cc</li><li><i class="flaticon-car-2"></i>Crossover</li><li><i class="flaticon-cogwheel-outline"></i>Bronze</li></ul>*@
+
+                                </div>
+                                <div class="ad-info-1">
+                                    <p><i class="flaticon-calendar"></i> &nbsp;<span>@item.Date</span> </p>
+                                    <p><i class="fa fa-eye"></i><span><a href="javascript:void(0);">0 Izlenme</a></span></p>
+                                    <ul class="pull-right ">
+                                        @*<li>
+                                            <a href="javascript:void(0);" data-adid="70" class="remove_ad" data-toggle="confirmation" data-singleton="true" data-title="Are you sure?" data-content="" data-original-title="" title="">
+                                                <i class="fa fa-times delete"></i>
+                                            </a>
+
+
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit this Ad" href="http://carspot.scriptsbundle.com/sell-your-car/?id=70"><i class="fa fa-pencil edit"></i></a>
+                                        </li>*@
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Listing Ad Grid -->
+                    </div>
+                }
+
+
+
+
+
+            </div>
+        </div>
+        <!-- Ads Archive End -->
+        <div class="clearfix"></div>
+        <!-- Pagination -->
+        <div class="col-md-12 col-xs-12 col-sm-12">
+
+        </div>
+        <!-- Pagination End -->
+    </div>
+    <!-- Row End -->
+</div>
+

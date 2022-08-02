@@ -1,0 +1,178 @@
+﻿@model IEnumerable<   EClassFieldWeb_.Models.ViewModel.ProductModelView>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Areas/Views/Shared/_Layout.cshtml";
+    ViewBag.Form = "frmilan";
+}
+<form method="get" id="frmilan" action="/Panel/Ilan">
+ 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+         <h3 class="pull-left">İLANLAR</h3>
+            <div class="pull-right">
+                <select class="select" name="CreationTime" onchange="post()">
+                    <option value="-1">Seçiniz</option>
+                    <option value="asc" @(ViewBag.CreationTime=="asc"?"selected":"")>Tarihe Göre Artan</option>
+                    <option value="desc"  @(ViewBag.CreationTime=="desc"? "selected" : "")>Tarihe Göre Azalan</option>
+
+                </select>
+
+            </div>
+        </div>
+        <div class="panel-body">
+
+            <input name="PageID" id="pageID" type="hidden" />
+            @*<input name="isAktif" value="@(ViewBag.Aktif)" type="text" />*@
+            @Html.Hidden("isAktif",(bool)ViewBag.Aktif)
+
+
+            <div class="row">
+                <table class="table table-bordered table-striped table-actions table-responsive">
+
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Başlık</th>
+                            <th>Fiyat</th>
+                            <th>Tarih</th>
+
+                            <th>İşlem</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><img class="img-responsive" style="width:80px;" src="https://s3-us-west-2.amazonaws.com/otonomide/ilanimages/@item.Image" /></td>
+                                <td>@item.Title</td>
+                                <td>@item.Price</td>
+                                <td>@item.Date</td>
+                                <td><a target="_blank" href="/ilan/ilantest/@item.Id" class="btn btn-primary">İlana Git</a>&nbsp;<a href="" onclick="return durumguncelle(@item.Id)" class="btn btn-primary">Durum</a>&nbsp;<a target="_blank" href="/ilanver/?ilanID=@item.Id" class="btn btn-info">Düzenle</a>&nbsp;<a href="" class="btn btn-danger">Sil</a></td>
+
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <div class="text-center margin-top-30 margin-bottom-20">
+                                   
+                                        @Html.Partial("~/Views/Partial/_partialpagination.cshtml", (EClassField.Core.PageModel)ViewBag.PageModel)
+                                    
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+ 
+</form>
+
+<!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
+
+<script type="text/javascript">
+
+    function durumguncelle(pid) {
+        swal({
+            title: 'İlan Durumu Değiştir',
+            text: "İlanı Onaylayın & Devredışı Bırakın",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aktif',
+            cancelButtonText: 'Pasif',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+        }).then(function () {
+
+            $.ajax({
+
+                url: "/Panel/Ilan/IlanAktif",
+                data: { security: "111111", productId: pid, aktif: true },
+                success: function (data) {
+
+                    if (data == "T") {
+                        swal(
+            'Başarılı!',
+            'İlan Aktif Edildi',
+            'success'
+          )
+                    }
+                    else {
+                        swal(
+'Hata!',
+'İlan aktif edilemedi',
+'error'
+)
+                    }
+
+                }
+            })
+
+
+
+        },
+        function (dismiss) {
+            // dismiss can be 'cancel', 'overlay',
+            // 'close', and 'timer'
+            if (dismiss === 'cancel') {
+
+                swal({
+                    title: 'Neden Onaylanmadı',
+                    input: 'textarea',
+                    cancelButtonText: 'İptal',
+                    showCancelButton: true,
+                    confirmButtonText: 'Gönder',
+                    showLoaderOnConfirm: true
+
+                }).then(function (message) {
+
+                    $.ajax({
+
+                        url: "/Panel/Ilan/IlanAktif",
+                        data: { security: "111111", productId: pid, aktif: false, messsage: message },
+                        success: function (data) {
+
+
+                            if (data == "T") {
+                                swal(
+                    'Başarılı!',
+                    'İlan Pasif Edildi',
+                    'success'
+                  )
+                            }
+                            else {
+                                swal(
+        'Hata!',
+        'İlan Pasif Edilemedi',
+        'error'
+        )
+                            }
+
+                        }
+                    })
+
+
+                })
+
+
+            }
+        })
+        return false;
+    }
+</script>

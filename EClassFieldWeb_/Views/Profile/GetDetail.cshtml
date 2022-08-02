@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "GetDetail";
+    Layout = "~/Views/Profile/Index.cshtml";
+    EClassField.Core.Domain.User.User user = ViewBag.user;
+}
+
+<div class="profile-section margin-bottom-20">
+    <div class="profile-tabs">
+        <div class="tab-content">
+            <div class="profile-edit tab-pane fade in active" id="profile">
+                <h2 class="heading-md">Profil Detayları</h2>
+                <dl class="dl-horizontal">
+                    <dt><strong>Adınız Soyadınız</strong></dt>
+                    <dd>
+                       @user.Name &nbsp; @user.SurName
+                    </dd>
+                    <dt><strong>Email Adresiniz, </strong></dt>
+                    <dd>
+                        @user.Email
+                    </dd>
+                    <dt><strong>Telefon Numaranız  </strong></dt>
+                    <dd>
+                        @user.Cep  &nbsp; - @user.IsTel  &nbsp; - @user.IsTel2 &nbsp; -@user.EvTel
+                    </dd>
+
+                   
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+

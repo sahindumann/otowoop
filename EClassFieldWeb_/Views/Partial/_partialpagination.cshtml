@@ -1,0 +1,60 @@
+﻿@model EClassField.Core.PageModel
+@{
+    int index = (Model.PageIndex);
+    index = index - (index % 8);
+
+
+    index = index <= 0 ? 1 : index-1;
+}
+
+@if (Model != null)
+{
+    <ul class="pagination pagination-lg">
+        @if (Model.HasPreviousPage)
+        {
+            <li><a onclick="return setPageID('pageID','@(Model.PageIndex - 1)')"> Öncek Sayfa </a></li>
+        }
+        @for (int i = index; i <= index+9 ; i++)
+        {
+            if (i <= Model.TotalPages)
+            {
+                <li class="@(Model.PageIndex == i ? "active" : "")"><a onclick="return setPageID('pageID','@(i)')" style="cursor:pointer"> @(i)</a></li>
+
+                //index++;
+            }
+        }
+        @if (Model.HasNextPage)
+        {
+
+
+            <li><a onclick="return setPageID('pageID','@(Model.PageIndex + 1)')" style="cursor:pointer">&laquo; Sonraki Sayfa</a></li>
+        }
+
+
+    </ul>
+
+
+
+    <script>
+
+        function setPageID(pageID, index) {
+
+            document.getElementById(pageID).value = index;
+
+            var forms = document.getElementById('@ViewBag.Form');
+            for (var i = 0; i < forms.length; i++) {
+
+                if (forms[i].value == "") {
+                    forms[i].removeAttribute("name");
+                }
+            }
+
+            document.forms['@ViewBag.Form'].submit();
+        }
+
+
+
+
+    </script>
+
+}

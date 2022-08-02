@@ -1,0 +1,3 @@
+1 Müþteri Sorgulama ekraný ve kontrol scriptlerin oluþturulmasý tapon sorularýnýn çizilip geometrilerinin alýnarak þubelerin listelenmesi için model oluþturulmasý
+2 Müþteri Sorgulama Ekraný Subelerin ve kategorilerin altkategorilerin,ürün gruplarýnýn çekilmesi
+Tamon Sorgulamaya,idari çizime göre göre þubelerin getirlmesi

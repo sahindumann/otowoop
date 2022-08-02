@@ -1,0 +1,107 @@
+﻿@model IList<EClassFieldWeb_.Models.Input>
+
+@{
+
+    List<string> selectedatributeids = new List<string>();
+
+    List<EClassFieldWeb_.Models.Input> productList = ViewBag.productList;
+    if (ViewBag.SubAttributeIDS != null)
+    {
+        selectedatributeids = ViewBag.SubAttributeIDS;
+    }
+    EClassFieldWeb_.Models.ViewModel.ProductModelView ilan = new EClassFieldWeb_.Models.ViewModel.ProductModelView();
+    if (ViewBag.ilan != null)
+    {
+
+        ilan = ViewBag.ilan;
+    }
+    List<EClassFieldWeb_.Models.ViewModel.AttributeModel> attrmodels = ViewBag.attrList;
+    
+
+
+    var List = Model;
+
+    if (ViewBag.attrs != null)
+    {
+        List = ViewBag.attrs;
+    }
+}
+
+
+@if (Model != null)
+{
+    <hr />
+
+    <h5>Detaylı özellikler  ilanınızın daha hızlı bulunmasını sağlar</h5>
+    <hr />
+    foreach (EClassFieldWeb_.Models.Input item in List.OrderBy(d => d.SubInputs.Count))
+    {
+
+        if (!item.SubInputs.Any())
+        {
+            var value = ilan.ValueAttribute != null ? ilan.ValueAttribute.Find(d => d.Text == item.Text) : null;
+
+            if (item.Type == EClassField.Core.Domain.Attribute.AttributeType.Text)
+            {
+                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 margin-bottom-20">
+                    <label class="control-label">@item.Text</label>
+
+                    
+                    <input class="form-control attr subattr" data-attribute-id="@item.AttributeId" type="text" name="@EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text)" id="@EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text)" value="@item.Value" required="required" />
+                </div>
+            }
+            if (item.Type == EClassField.Core.Domain.Attribute.AttributeType.Range)
+            {
+                <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 margin-bottom-20">
+                    <label class="control-label">@item.Text</label>
+
+                    <input class="form-control attr" type="number" data-attribute-id="@item.AttributeId" name="@item.Text"  value="@(string.Format("{0:N}", item.Value).Split(',')[0])" required="required" />
+                </div>
+            }
+
+
+        }
+        else
+        {
+            bool isactive = false;
+
+            <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 margin-bottom-20">
+                <label class="control-label">@item.Text</label>
+
+                <select data-attribute-id="@item.AttributeId" class="form-control select parsley-error attr subattr" id="@EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text)" name="@EClassFieldWeb_.Models.Function.GetStringFormatText(item.Text)">
+
+                    <option value="-1">Seçiniz</option>
+                    @foreach (var subattr in item.SubInputs)
+                    {
+                        string selectedtext = "";
+                        if (productList != null)
+                        {
+                            var select = productList.Find(d => d.Text == item.Text && d.Value == subattr.Text);
+                            if (select != null)
+                            {
+                                selectedtext = "selected";
+                            }
+
+                        }
+
+                        <option @selectedtext @(selectedatributeids.Contains(subattr.Value) ? "selected" : "") value="@subattr.Value">@subattr.Text</option>
+
+                    }
+                </select>
+            </div>
+        }
+    }
+    <script>
+        (function ($) {
+            $(".select").select2({
+
+                placeholder: $('#select_place_holder').val(),
+                allowClear: true,
+                width: '100%'
+            });
+
+
+        })(jQuery);
+
+    </script>
+}

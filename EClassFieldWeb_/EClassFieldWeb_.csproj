@@ -1,0 +1,1367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4E7E2D5F-81D1-488E-8D9F-6C8109069B33}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EClassFieldWeb_</RootNamespace>
+    <AssemblyName>EClassFieldWeb_</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AWSSDK.Core">
+      <HintPath>..\packages\AWSSDK.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AWSSDK.Core.Fakes">
+      <HintPath>FakesAssemblies\AWSSDK.Core.Fakes.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.S3">
+      <HintPath>..\packages\AWSSDK.S3.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GeoJSON4EntityFramework, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeoJSON4EntityFramework.2.2.0\lib\net45\GeoJSON4EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageProcessor, Version=2.5.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.2.5.6\lib\net45\ImageProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageProcessor.Web, Version=4.8.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.Web.4.8.7\lib\net45\ImageProcessor.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MesajPaneli, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MesajPaneli.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.2.2\lib\net45\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree.asp" />
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree.aspx" />
+    <Content Include="Areas\Areas\Content\joli\assets\fileupload\cors\postmessage.html" />
+    <Content Include="Areas\Areas\Content\joli\assets\fileupload\cors\result.html" />
+    <Content Include="Areas\Areas\Content\joli\assets\fileupload\files\2V_vkjfD5Gg.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\fileupload\files\thumbnail\2V_vkjfD5Gg.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\blog\post_1.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\blog\post_2.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\girls-1.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\girls-2.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\girls-3.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\music-1.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\music-2.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\music-3.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\music-4.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\music-5.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\nature-1.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\nature-2.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\nature-3.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\nature-4.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\nature-5.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\nature-6.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\nature-7.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\space-1.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\gallery\space-2.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\nature.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\ocean.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\users\avatar.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\users\no-image.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\users\user.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\users\user2.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\users\user3.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\users\user4.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\users\user5.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\users\user6.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\images\users\user7.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\Animal 48.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\Lotus Sport Exige Gt3 01.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\peugeot_908rc-1600x1200.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\Photoshop_Multi-coloured_butterflies_023732_.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\Quiet Getaway, Lake Tahoe, Nevada-565362.jpeg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\Space_Launching_pad_023724_.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\Sport_Extreme__Waves__Ocean__Risk__Surfing_023731_.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\Sritney_Spears2_1920x1200.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\u3013_1278_53405-1600x1200.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\u9644_3151_love_4.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\white-aston-martin-wallpaper-1920x1080-1008078.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\white_curved_building-1920x1200.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\wide-wallpaper-1920x1080-001.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\wide-wallpaper-1920x1080-001234.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\windows_7___dragon-2560x1600.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\Images\World_other_world_Costa_Rica__Puntarenas_023746_.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\books.xml" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\elfinder.css" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\elfinder.full.js" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\fireworks.swf" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\fishes.jpg" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\google.html" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\phuket.tiff" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\rm.wav" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\test-pivot.sql" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\virus.exe" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\vmware-win-ie8-elfinder.png" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\YUICompressor.java" />
+    <Content Include="Areas\Areas\Content\joli\audio\alert.mp3" />
+    <Content Include="Areas\Areas\Content\joli\audio\fail.mp3" />
+    <Content Include="Areas\Areas\Content\joli\blank.html" />
+    <Content Include="Areas\Areas\Content\joli\charts-morris.html" />
+    <Content Include="Areas\Areas\Content\joli\charts-nvd3.html" />
+    <Content Include="Areas\Areas\Content\joli\charts-other.html" />
+    <Content Include="Areas\Areas\Content\joli\charts-rickshaw.html" />
+    <Content Include="Areas\Areas\Content\joli\css\animate\animate.css" />
+    <Content Include="Areas\Areas\Content\joli\css\animate\animate.min.css" />
+    <Content Include="Areas\Areas\Content\joli\css\blueimp\blueimp-gallery.min.css" />
+    <Content Include="Areas\Areas\Content\joli\css\bootstrap\bootstrap.min.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\codemirror.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\3024-day.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\3024-night.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\ambiance-mobile.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\ambiance.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\base16-dark.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\base16-light.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\blackboard.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\cobalt.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\eclipse.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\elegant.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\erlang-dark.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\lesser-dark.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\mbo.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\mdn-like.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\midnight.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\monokai.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\neat.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\neo.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\night.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\paraiso-dark.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\paraiso-light.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\pastel-on-dark.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\rubyblue.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\solarized.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\the-matrix.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\tomorrow-night-eighties.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\twilight.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\vibrant-ink.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\xq-dark.css" />
+    <Content Include="Areas\Areas\Content\joli\css\codemirror\theme\xq-light.css" />
+    <Content Include="Areas\Areas\Content\joli\css\dropzone\dropzone.css" />
+    <Content Include="Areas\Areas\Content\joli\css\fontawesome\font-awesome.min.css" />
+    <Content Include="Areas\Areas\Content\joli\css\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Areas\Content\joli\css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Areas\Areas\Content\joli\css\fullcalendar\fullcalendar.css" />
+    <Content Include="Areas\Areas\Content\joli\css\jquery\jquery-ui.min.css" />
+    <Content Include="Areas\Areas\Content\joli\css\mcustomscrollbar\jquery.mCustomScrollbar.css" />
+    <Content Include="Areas\Areas\Content\joli\css\nvd3\nv.d3.css" />
+    <Content Include="Areas\Areas\Content\joli\css\rickshaw\rickshaw.css" />
+    <Content Include="Areas\Areas\Content\joli\css\summernote\summernote.css" />
+    <Content Include="Areas\Areas\Content\joli\css\theme-black.css" />
+    <Content Include="Areas\Areas\Content\joli\css\theme-blue.css" />
+    <Content Include="Areas\Areas\Content\joli\css\theme-brown.css" />
+    <Content Include="Areas\Areas\Content\joli\css\theme-default.css" />
+    <Content Include="Areas\Areas\Content\joli\css\theme-white.css" />
+    <Content Include="Areas\Areas\Content\joli\favicon.ico" />
+    <Content Include="Areas\Areas\Content\joli\form-editors.html" />
+    <Content Include="Areas\Areas\Content\joli\form-elements.html" />
+    <Content Include="Areas\Areas\Content\joli\form-file-handling.html" />
+    <Content Include="Areas\Areas\Content\joli\form-layouts-one-column.html" />
+    <Content Include="Areas\Areas\Content\joli\form-layouts-separated.html" />
+    <Content Include="Areas\Areas\Content\joli\form-layouts-tabbed.html" />
+    <Content Include="Areas\Areas\Content\joli\form-layouts-two-column.html" />
+    <Content Include="Areas\Areas\Content\joli\form-validation.html" />
+    <Content Include="Areas\Areas\Content\joli\form-wizards.html" />
+    <Content Include="Areas\Areas\Content\joli\img\backgrounds\wall_1.jpg" />
+    <Content Include="Areas\Areas\Content\joli\img\bg-dot.png" />
+    <Content Include="Areas\Areas\Content\joli\img\bg.png" />
+    <Content Include="Areas\Areas\Content\joli\img\blueimp\error.png" />
+    <Content Include="Areas\Areas\Content\joli\img\blueimp\error.svg" />
+    <Content Include="Areas\Areas\Content\joli\img\blueimp\loading.gif" />
+    <Content Include="Areas\Areas\Content\joli\img\blueimp\play-pause.png" />
+    <Content Include="Areas\Areas\Content\joli\img\blueimp\play-pause.svg" />
+    <Content Include="Areas\Areas\Content\joli\img\blueimp\video-play.png" />
+    <Content Include="Areas\Areas\Content\joli\img\blueimp\video-play.svg" />
+    <Content Include="Areas\Areas\Content\joli\img\colorpicker\alpha.png" />
+    <Content Include="Areas\Areas\Content\joli\img\colorpicker\hue.png" />
+    <Content Include="Areas\Areas\Content\joli\img\colorpicker\saturation.png" />
+    <Content Include="Areas\Areas\Content\joli\img\dropzone\spritemap%402x.png" />
+    <Content Include="Areas\Areas\Content\joli\img\dropzone\spritemap.png" />
+    <Content Include="Areas\Areas\Content\joli\img\fileinput\loading.gif" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\application.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\code.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\css.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\db.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\directory.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\doc.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\file.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\film.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\flash.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\folder_open.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\html.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\java.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\linux.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\music.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\pdf.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\php.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\picture.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\ppt.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\psd.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\ruby.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\script.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\spinner.gif" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\txt.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\xls.png" />
+    <Content Include="Areas\Areas\Content\joli\img\filetree\zip.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icheck\grey%402x.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icheck\grey.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\csv.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\json.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\pdf.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\png.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\ppt.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\sql.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\txt.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\word.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\xls.png" />
+    <Content Include="Areas\Areas\Content\joli\img\icons\xml.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\animated-overlay.gif" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\resize-icon%402x.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\resize-icon.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-icons_222222_256x240.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-icons_228ef1_256x240.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Areas\Areas\Content\joli\img\jquery\ui-icons_ffffff_256x240.png" />
+    <Content Include="Areas\Areas\Content\joli\img\loaders\default.gif" />
+    <Content Include="Areas\Areas\Content\joli\img\logo%402x.png" />
+    <Content Include="Areas\Areas\Content\joli\img\logo-grey%402x.png" />
+    <Content Include="Areas\Areas\Content\joli\img\logo-grey.png" />
+    <Content Include="Areas\Areas\Content\joli\img\logo-small%402x.png" />
+    <Content Include="Areas\Areas\Content\joli\img\logo-small-grey%402x.png" />
+    <Content Include="Areas\Areas\Content\joli\img\logo-small-grey.png" />
+    <Content Include="Areas\Areas\Content\joli\img\logo-small.png" />
+    <Content Include="Areas\Areas\Content\joli\img\logo.png" />
+    <Content Include="Areas\Areas\Content\joli\img\owl\AjaxLoader.gif" />
+    <Content Include="Areas\Areas\Content\joli\img\owl\grabbing.png" />
+    <Content Include="Areas\Areas\Content\joli\img\themes\black.jpg" />
+    <Content Include="Areas\Areas\Content\joli\img\themes\blue.jpg" />
+    <Content Include="Areas\Areas\Content\joli\img\themes\brown.jpg" />
+    <Content Include="Areas\Areas\Content\joli\img\themes\default.jpg" />
+    <Content Include="Areas\Areas\Content\joli\img\themes\light.jpg" />
+    <Content Include="Areas\Areas\Content\joli\index.html" />
+    <Content Include="Areas\Areas\Content\joli\js\actions.js" />
+    <Content Include="Areas\Areas\Content\joli\js\demo_charts_morris.js" />
+    <Content Include="Areas\Areas\Content\joli\js\demo_charts_nvd3.js" />
+    <Content Include="Areas\Areas\Content\joli\js\demo_charts_rickshaw.js" />
+    <Content Include="Areas\Areas\Content\joli\js\demo_dashboard.js" />
+    <Content Include="Areas\Areas\Content\joli\js\demo_icons.js" />
+    <Content Include="Areas\Areas\Content\joli\js\demo_maps.js" />
+    <Content Include="Areas\Areas\Content\joli\js\demo_tables.js" />
+    <Content Include="Areas\Areas\Content\joli\js\demo_tasks.js" />
+    <Content Include="Areas\Areas\Content\joli\js\faq.js" />
+    <Content Include="Areas\Areas\Content\joli\js\jquery.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\blueimp\jquery.blueimp-gallery.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\bootstrap\bootstrap-colorpicker.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\bootstrap\bootstrap-datepicker.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\bootstrap\bootstrap-file-input.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\bootstrap\bootstrap-select.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\bootstrap\bootstrap-timepicker.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\bootstrap\bootstrap.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\bootstrap\npm.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\codemirror.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\apl\apl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\asterisk\asterisk.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\clike\clike.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\clojure\clojure.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\cobol\cobol.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\coffeescript\coffeescript.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\commonlisp\commonlisp.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\css\css.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\css\less_test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\css\scss_test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\css\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\cypher\cypher.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\diff\diff.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\django\django.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\dtd\dtd.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\dylan\dylan.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\d\d.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\ecl\ecl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\eiffel\eiffel.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\erlang\erlang.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\fortran\fortran.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\gas\gas.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\gfm\gfm.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\gfm\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\gherkin\gherkin.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\go\go.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\groovy\groovy.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\haml\haml.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\haml\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\haskell\haskell.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\haxe\haxe.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\htmlembedded\htmlembedded.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\htmlmixed\htmlmixed.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\http\http.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\jade\index.html" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\javascript\javascript.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\javascript\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\jinja2\jinja2.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\julia\julia.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\kotlin\kotlin.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\livescript\livescript.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\lua\lua.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\markdown\markdown.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\markdown\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\meta.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\mirc\mirc.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\mllike\mllike.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\nginx\nginx.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\ntriples\ntriples.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\octave\octave.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\pascal\pascal.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\pegjs\pegjs.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\perl\perl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\php\php.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\php\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\pig\pig.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\properties\properties.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\puppet\puppet.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\python\python.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\q\q.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\rpm\changes\index.html" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\rpm\rpm.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\rst\rst.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\ruby\ruby.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\ruby\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\rust\rust.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\r\r.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\sass\sass.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\scheme\scheme.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\shell\shell.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\shell\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\sieve\sieve.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\slim\slim.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\slim\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\smalltalk\smalltalk.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\smartymixed\smartymixed.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\smarty\smarty.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\solr\solr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\sparql\sparql.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\sql\sql.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\stex\stex.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\stex\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\tcl\tcl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\tiddlywiki\tiddlywiki.css" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\tiddlywiki\tiddlywiki.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\tiki\tiki.css" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\tiki\tiki.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\toml\toml.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\turtle\turtle.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\vbscript\vbscript.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\vb\vb.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\velocity\velocity.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\verilog\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\verilog\verilog.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\xml\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\xml\xml.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\xquery\test.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\xquery\xquery.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\yaml\yaml.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\codemirror\mode\z80\z80.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\daterangepicker\daterangepicker.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\dropzone\dropzone.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fileinput\fileinput.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\filetree\jqueryFileTree.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\ar-ma.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\ar-sa.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\ar.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\bg.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\ca.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\cs.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\da.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\de-at.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\de.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\el.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\en-au.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\en-ca.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\en-gb.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\es.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\fa.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\fi.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\fr-ca.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\fr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\hi.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\hr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\hu.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\id.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\is.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\it.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\ja.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\ko.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\lt.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\lv.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\nl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\pl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\pt-br.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\pt.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\ro.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\ru.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\sk.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\sl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\sr-cyrl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\sr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\sv.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\th.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\tr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\uk.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\vi.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\zh-cn.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\fullcalendar\lang\zh-tw.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\highlight\jquery.highlight-4.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\icheck\icheck.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\accept.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\additional.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\alphanumeric.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\bankaccountNL.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\bankorgiroaccountNL.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\bic.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\cifES.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\creditcardtypes.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\currency.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\dateFA.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\dateITA.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\dateNL.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\extension.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\giroaccountNL.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\iban.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\integer.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\ipv4.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\ipv6.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\lettersonly.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\letterswithbasicpunc.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\mobileNL.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\mobileUK.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\nieES.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\nifES.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\nowhitespace.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\pattern.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\phoneNL.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\phonesUK.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\phoneUK.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\phoneUS.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\postalCodeCA.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\postalcodeIT.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\postalcodeNL.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\postcodeUK.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\require_from_group.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\skip_or_fill_minimum.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\statesUS.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\strippedminlength.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\time.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\time12h.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\url2.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\vinUS.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\zipcodeUS.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\additional\ziprange.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\jquery.validate.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_ar.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_bg.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_ca.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_cs.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_da.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_de.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_el.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_es.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_es_AR.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_et.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_eu.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_fa.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_fi.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_fr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_gl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_he.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_hr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_hu.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_id.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_is.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_it.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_ja.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_ka.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_kk.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_ko.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_lt.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_lv.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_my.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_nl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_no.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_pl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_pt_BR.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_pt_PT.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_ro.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_ru.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_si.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_sk.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_sl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_sr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_sr_lat.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_sv.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_th.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_tj.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_tr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_uk.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_vi.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_zh.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\messages_zh_TW.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\methods_de.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\methods_es_CL.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\methods_fi.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\methods_nl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery-validation\localization\methods_pt.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery\jquery-migrate.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery\jquery-ui.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery\jquery.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jvectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jvectormap\jquery-jvectormap-europe-mill-en.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jvectormap\jquery-jvectormap-uakraine-merc-en.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jvectormap\jquery-jvectormap-us-aea-en.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jvectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\knob\jquery.knob.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\lesscss\less.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\maskedinput\jquery.maskedinput.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\mcustomscrollbar\jquery.mCustomScrollbar.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\moment.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\morris\morris.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\morris\raphael-min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\jquery.noty.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\bottom.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\bottomCenter.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\bottomLeft.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\bottomRight.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\center.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\centerLeft.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\centerRight.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\inline.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\top.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\topCenter.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\topLeft.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\layouts\topRight.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\promise.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\noty\themes\default.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\cie.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\colorbrewer.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\crossfilter.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\crossfilter.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\d3.v2.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\d3.v2.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\d3.v3.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\fisheye.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\hive.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\horizon.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\lib\sankey.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\nv.d3.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\core.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\interactiveLayer.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\intro.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\axis.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\backup\bullet.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\backup\bulletChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\boilerplate.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\bullet.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\bulletChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\cumulativeLineChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\discreteBar.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\discreteBarChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\distribution.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\historicalBar.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\historicalBarChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\indentedTree.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\legend.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\line.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\lineChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\linePlusBarChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\linePlusBarWithFocusChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\lineWithFisheye.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\lineWithFisheyeChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\lineWithFocusChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\multiBar.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\multiBarChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\multiBarHorizontal.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\multiBarHorizontalChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\multiBarTimeSeries.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\multiBarTimeSeriesChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\multiChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\ohlcBar.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\parallelCoordinates.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\pie.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\pieChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\scatter.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\scatterChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\scatterPlusLineChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\sparkline.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\sparklinePlus.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\stackedArea.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\models\stackedAreaChart.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\outro.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\tooltip.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\nvd3\src\utils.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\owl\owl.carousel.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\rangeslider\jQAllRangeSliders-min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\rickshaw\d3.layout.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\rickshaw\d3.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\rickshaw\d3.v2.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\rickshaw\d3.v3.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\rickshaw\rickshaw.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\scrolltotop\scrolltopcontrol.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\smartwizard\jquery.smartWizard-2.0.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\summernote\summernote.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tableexport\html2canvas.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tableexport\jquery.base64.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tableexport\jspdf\jspdf.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tableexport\jspdf\libs\base64.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tableexport\jspdf\libs\sprintf.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tableexport\tableExport.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tagsinput\jquery.tagsinput.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tocify\jquery.tocify.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tour\bootstrap-tour.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tour\bootstro.min.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\jquery.validationEngine.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-ca.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-cz.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-da.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-de.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-el.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-en.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-es.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-et.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-fa.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-fi.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-fr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-he.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-hr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-hu.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-id.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-it.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-ja.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-lt.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-nl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-no.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-pl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-pt.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-pt_BR.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-ro.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-ru.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-sr_Cyrl.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-sr_Latn.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-sv.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-tr.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-vi.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-zh_CN.js" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\validationengine\languages\jquery.validationEngine-zh_TW.js" />
+    <Content Include="Areas\Areas\Content\joli\js\portlet.js" />
+    <Content Include="Areas\Areas\Content\joli\js\settings.js" />
+    <Content Include="Areas\Areas\Content\joli\layout-boxed.html" />
+    <Content Include="Areas\Areas\Content\joli\layout-frame-left.html" />
+    <Content Include="Areas\Areas\Content\joli\layout-frame-right.html" />
+    <Content Include="Areas\Areas\Content\joli\layout-nav-custom.html" />
+    <Content Include="Areas\Areas\Content\joli\layout-nav-right.html" />
+    <Content Include="Areas\Areas\Content\joli\layout-nav-toggled.html" />
+    <Content Include="Areas\Areas\Content\joli\layout-nav-top-fixed.html" />
+    <Content Include="Areas\Areas\Content\joli\layout-nav-top.html" />
+    <Content Include="Areas\Areas\Content\joli\layout-search-left.html" />
+    <Content Include="Areas\Areas\Content\joli\maps.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-address-book.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-blog-list.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-blog-post.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-calendar.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-content-table.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-error-404-2.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-error-404.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-error-500.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-faq.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-gallery.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-login-website-light.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-login-website.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-login.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-mailbox-compose.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-mailbox-inbox.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-mailbox-message.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-messages.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-profile.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-search.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-tasks.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-timeline-simple.html" />
+    <Content Include="Areas\Areas\Content\joli\pages-timeline.html" />
+    <Content Include="Areas\Areas\Content\joli\table-basic.html" />
+    <Content Include="Areas\Areas\Content\joli\table-datatables.html" />
+    <Content Include="Areas\Areas\Content\joli\table-export.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-alerts-popups.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-buttons.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-elements.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-icons.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-lists.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-panels.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-portlet.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-sliders.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-tour.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-typography.html" />
+    <Content Include="Areas\Areas\Content\joli\ui-widgets.html" />
+    <Content Include="Content\back.png" />
+    <Content Include="Content\apps\appstore.png" />
+    <Content Include="Content\apps\googleplay.png" />
+    <Content Include="Content\ol\cbs.js" />
+    <Content Include="Content\ol\map.js" />
+    <Content Include="Content\ol\ol-debug.js" />
+    <Content Include="Content\ol\ol.css" />
+    <Content Include="Content\ol\ol.js" />
+    <Content Include="Content\Plugins\jspanel\es6module\extensions\contextmenu\jspanel.contextmenu.min.js" />
+    <Content Include="Content\Plugins\jspanel\es6module\extensions\dock\jspanel.dock.min.js" />
+    <Content Include="Content\Plugins\jspanel\es6module\extensions\hint\jspanel.hint.min.js" />
+    <Content Include="Content\Plugins\jspanel\es6module\extensions\layout\jspanel.layout.min.js" />
+    <Content Include="Content\Plugins\jspanel\es6module\extensions\modal\jspanel.modal.min.js" />
+    <Content Include="Content\Plugins\jspanel\es6module\extensions\overlay\jspanel.overlay.min.js" />
+    <Content Include="Content\Plugins\jspanel\es6module\extensions\tooltip\jspanel.tooltip.min.js" />
+    <Content Include="Content\Plugins\jspanel\es6module\jspanel.min.css" />
+    <Content Include="Content\Plugins\jspanel\es6module\jspanel.min.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\contextmenu\jspanel.contextmenu.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\contextmenu\jspanel.contextmenu.min.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\dock\jspanel.dock.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\dock\jspanel.dock.min.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\hint\jspanel.hint.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\hint\jspanel.hint.min.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\layout\jspanel.layout.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\layout\jspanel.layout.min.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\modal\jspanel.modal.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\modal\jspanel.modal.min.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\overlay\jspanel.overlay.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\overlay\jspanel.overlay.min.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\tooltip\jspanel.tooltip.js" />
+    <Content Include="Content\Plugins\jspanel\extensions\tooltip\jspanel.tooltip.min.js" />
+    <Content Include="Content\Plugins\jspanel\jspanel.css" />
+    <Content Include="Content\Plugins\jspanel\jspanel.js" />
+    <Content Include="Content\Plugins\jspanel\jspanel.min.css" />
+    <Content Include="Content\Plugins\jspanel\jspanel.min.js" />
+    <Content Include="Content\Plugins\jspanel\LICENSE.TXT" />
+    <Content Include="Content\Plugins\mcustpmscroll\jquery.mCustomScrollbar.js" />
+    <Content Include="Content\Plugins\mcustpmscroll\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\Plugins\NProgress\nprogress.js" />
+    <Content Include="Content\Plugins\Openlayers4\JSTS.min.js" />
+    <Content Include="Content\Plugins\Openlayers4\ol.css" />
+    <Content Include="Content\Plugins\Openlayers4\ol.js" />
+    <Content Include="Content\Plugins\selectpicker\css\bootstrap-select.css" />
+    <Content Include="Content\Plugins\selectpicker\css\bootstrap-select.min.css" />
+    <Content Include="Content\Plugins\selectpicker\js\bootstrap-select.js" />
+    <Content Include="Content\Plugins\selectpicker\js\bootstrap-select.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ar_AR.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ar_AR.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-bg_BG.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-bg_BG.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-cro_CRO.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-cro_CRO.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-cs_CZ.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-cs_CZ.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-da_DK.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-da_DK.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-de_DE.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-de_DE.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-en_US.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-en_US.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-es_CL.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-es_CL.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-es_ES.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-es_ES.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-et_EE.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-et_EE.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-eu.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-eu.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-fa_IR.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-fa_IR.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-fi_FI.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-fi_FI.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-fr_FR.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-fr_FR.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-hu_HU.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-hu_HU.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-id_ID.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-id_ID.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-it_IT.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-it_IT.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ja_JP.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ja_JP.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-kh_KM.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-kh_KM.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ko_KR.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ko_KR.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-lt_LT.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-lt_LT.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-nb_NO.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-nb_NO.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-nl_NL.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-nl_NL.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-pl_PL.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-pl_PL.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-pt_BR.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-pt_BR.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-pt_PT.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-pt_PT.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ro_RO.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ro_RO.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ru_RU.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ru_RU.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-sk_SK.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-sk_SK.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-sl_SI.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-sl_SI.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-sv_SE.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-sv_SE.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-tr_TR.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-tr_TR.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ua_UA.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-ua_UA.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-vi_VN.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-vi_VN.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-zh_CN.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-zh_CN.min.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-zh_TW.js" />
+    <Content Include="Content\Plugins\selectpicker\js\i18n\defaults-zh_TW.min.js" />
+    <Content Include="Content\Plugins\tabulator\dist\css\bootstrap\tabulator_bootstrap.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\bootstrap\tabulator_bootstrap.min.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\bootstrap\tabulator_bootstrap4.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\bootstrap\tabulator_bootstrap4.min.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\semantic-ui\tabulator_semantic-ui.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\semantic-ui\tabulator_semantic-ui.min.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator.min.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_midnight.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_midnight.min.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_modern.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_modern.min.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_simple.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_simple.min.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_site.css" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_site.min.css" />
+    <Content Include="Content\Plugins\tabulator\dist\js\tabulator.js" />
+    <Content Include="Content\Plugins\tabulator\dist\js\tabulator.min.js" />
+    <Content Include="Content\Plugins\tabulator\gulpfile.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\cell.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\column.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\column_manager.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\core.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\accessor.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\ajax.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\calculation_colums.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\clipboard.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\comms.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\download.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\edit.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\filter.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\format.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\frozen_columns.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\frozen_rows.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\group_rows.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\history.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\html_table_import.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\keybindings.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\layout.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\localize.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\moveable_columns.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\moveable_rows.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\mutator.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\page.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\persistence.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\resize_columns.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\resize_rows.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\resize_table.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\responsive_layout.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\select_row.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\sort.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions\validate.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\extensions_enabled.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\footer_manager.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\jquery_wrapper.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\polyfills.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\row.js" />
+    <Content Include="Content\Plugins\tabulator\src\js\row_manager.js" />
+    <Content Include="Content\table.css" />
+    <Content Include="Content\Template\themes\carspot\css\stylea288.css" />
+    <Content Include="Content\unnamed.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ScriptsNew\App\Main.js" />
+    <Content Include="ScriptsNew\dojo\dojo_uncompressed.js" />
+    <Content Include="ScriptsNew\Management\BasarMapManager.js" />
+    <Content Include="ScriptsNew\Management\DrawTools.js" />
+    <Content Include="ScriptsNew\Management\DrawToolsDefaults.js" />
+    <Content Include="ScriptsNew\Management\MapTools.js" />
+    <Content Include="ScriptsNew\Management\MapToolsDefaults.js" />
+    <Content Include="ScriptsNew\run.js" />
+    <Content Include="ScriptsNew\Utilities\AjaxTools\AjaxTools.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\css\jquery-ui-demo-ie8.css" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\css\jquery-ui-demo.css" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\css\jquery.fileupload-noscript.css" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\css\jquery.fileupload-ui.css" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\css\jquery.fileupload.css" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\css\style.css" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\img\loading.gif" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\img\progressbar.gif" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\app.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\cors\jquery.postmessage-transport.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\cors\jquery.xdr-transport.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.fileupload-angular.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.fileupload-audio.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.fileupload-image.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.fileupload-jquery-ui.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.fileupload-process.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.fileupload-ui.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.fileupload-validate.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.fileupload-video.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.fileupload.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\jquery.iframe-transport.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\main.js" />
+    <Content Include="ScriptsNew\Utilities\jQuery-File-Upload\js\vendor\jquery.ui.widget.js" />
+    <Content Include="ScriptsNew\Utilities\JSPanel\JSPanel.js" />
+    <Content Include="ScriptsNew\Utilities\JSPanel\JSPanelDefaults.js" />
+    <Content Include="ScriptsNew\Utilities\MessageBox\MessageBox.js" />
+    <Content Include="ScriptsNew\Utilities\MessageBox\MessageBoxDefaults.js" />
+    <Content Include="ScriptsNew\Utilities\Notify\Notify.js" />
+    <Content Include="ScriptsNew\Utilities\Notify\NotifyDefaults.js" />
+    <Content Include="ScriptsNew\Utilities\OpenLayers\DrawEquipment_.js" />
+    <Content Include="ScriptsNew\Utilities\OpenLayers\DrawModify_.js" />
+    <Content Include="ScriptsNew\Utilities\OpenLayers\Interaction.js" />
+    <Content Include="ScriptsNew\Utilities\OpenLayers\Map.js" />
+    <Content Include="ScriptsNew\Utilities\OpenLayers\OLDefaults.js" />
+    <Content Include="ScriptsNew\Utilities\OpenLayers\proj4-src.js" />
+    <Content Include="ScriptsNew\Utilities\OpenLayers\proj4.js" />
+    <Content Include="ScriptsNew\Utilities\Util.js" />
+    <Content Include="scripts\ai.0.22.9-build00167.js" />
+    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Content\AreasAreaRegistration.cs" />
+    <Compile Include="Areas\Areas\Controllers\CacheController.cs" />
+    <Compile Include="Areas\Areas\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Areas\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Areas\Controllers\IlanController.cs" />
+    <Compile Include="Areas\Areas\Controllers\LanguageController.cs" />
+    <Compile Include="Areas\Areas\Controllers\MAttributeController.cs" />
+    <Compile Include="Areas\Areas\Controllers\PostController.cs" />
+    <Compile Include="Areas\Areas\Controllers\SliderController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\CBSController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IlanVerController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PartialController.cs" />
+    <Compile Include="Controllers\PostIndexController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\SignUpController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ActionFilter.cs" />
+    <Compile Include="Models\Cache.cs" />
+    <Compile Include="Models\Function.cs" />
+    <Compile Include="Models\General.cs" />
+    <Compile Include="Models\Input.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Sabit.cs" />
+    <Compile Include="Models\Util.cs" />
+    <Compile Include="Models\ViewModel\AjaxResult.cs" />
+    <Compile Include="Models\ViewModel\AttributeModel.cs" />
+    <Compile Include="Models\ViewModel\PostViewModel.cs" />
+    <Compile Include="Models\ViewModel\Product.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config" />
+    <Content Include="Views\Base\GetImage.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Kategori.cshtml" />
+    <Content Include="Views\IlanVer\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Partial\_AttributePartial.cshtml" />
+    <Content Include="Views\Partial\_GetDoluDetayList.cshtml" />
+    <Content Include="Views\Partial\_locationPartial.cshtml" />
+    <Content Include="Views\Partial\_partialpagination.cshtml" />
+    <Content Include="Views\Post\GetPostDetail.cshtml" />
+    <Content Include="Views\PostIndex\GetPostDetail.cshtml" />
+    <Content Include="Views\Profile\GetDetail.cshtml" />
+    <Content Include="Views\Profile\GetFav.cshtml" />
+    <Content Include="Views\Profile\GetIlan.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\ProfileEdit.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout_Theme_CarSpot.cshtml" />
+    <Content Include="Views\SignUp\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\web.config" />
+    <Content Include="Areas\Areas\Content\joli\assets\ajax_fullcalendar.php" />
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree.cf" />
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree.jsp" />
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree.php" />
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree.pl" />
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree.py" />
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree.rb" />
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree_huck.lasso" />
+    <Content Include="Areas\Areas\Content\joli\assets\filetree\jqueryFileTree_sabourdin.lasso" />
+    <Content Include="Areas\Areas\Content\joli\assets\fileupload\files\.htaccess" />
+    <Content Include="Areas\Areas\Content\joli\assets\fileupload\index.php" />
+    <Content Include="Areas\Areas\Content\joli\assets\fileupload\UploadHandler.php" />
+    <Content Include="Areas\Areas\Content\joli\assets\plugins\nvd3\cumulativeLineData.json" />
+    <Content Include="Areas\Areas\Content\joli\assets\plugins\nvd3\linePlusBarData.json" />
+    <Content Include="Areas\Areas\Content\joli\assets\plugins\nvd3\multiBarHorizontalData.json" />
+    <Content Include="Areas\Areas\Content\joli\assets\plugins\nvd3\stackedAreaData.json" />
+    <Content Include="Areas\Areas\Content\joli\assets\upload.php" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\archive.rar" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\archive.tar.gz" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\archive.zip" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\elFinder.class.php" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\elFinder.py" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\milter-greylist.c" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\munin_httptime.sh" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\Payment Icons.zip" />
+    <Content Include="Areas\Areas\Content\joli\assets\uploads\MIME-Types\Supervisor.doc" />
+    <Content Include="Areas\Areas\Content\joli\css\bootstrap\bootstrap.css.map" />
+    <Content Include="Areas\Areas\Content\joli\css\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Areas\Content\joli\css\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Areas\Content\joli\css\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Areas\Content\joli\css\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Areas\Content\joli\css\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Areas\Content\joli\css\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Areas\Areas\Content\joli\css\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\jquery\jquery-2.1.1.min.map" />
+    <Content Include="Areas\Areas\Content\joli\js\plugins\tableexport\simple_html_dom.php" />
+    <Content Include="Areas\Areas\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Areas\Views\Category\CategoryAdd.cshtml" />
+    <Content Include="Areas\Areas\Views\Default\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\Ilan\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\Language\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\partial\_kategoricombotek.cshtml" />
+    <Content Include="Areas\Areas\Views\partial\_kategoriListcheckbox.cshtml" />
+    <Content Include="Areas\Areas\Views\Post\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\Post\List.cshtml" />
+    <Content Include="Areas\Areas\Views\Slider\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\Category\Index.cshtml" />
+    <Content Include="Content\Plugins\selectpicker\css\bootstrap-select.css.map" />
+    <Content Include="Content\Plugins\selectpicker\js\bootstrap-select.js.map" />
+    <Content Include="Content\Plugins\tabulator\.gitignore" />
+    <Content Include="Content\Plugins\tabulator\bower.json" />
+    <Content Include="Content\Plugins\tabulator\dist\css\bootstrap\tabulator_bootstrap.min.css.map" />
+    <Content Include="Content\Plugins\tabulator\dist\css\bootstrap\tabulator_bootstrap4.min.css.map" />
+    <Content Include="Content\Plugins\tabulator\dist\css\semantic-ui\tabulator_semantic-ui.min.css.map" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator.min.css.map" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_midnight.min.css.map" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_modern.min.css.map" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_simple.min.css.map" />
+    <Content Include="Content\Plugins\tabulator\dist\css\tabulator_site.min.css.map" />
+    <Content Include="Content\Plugins\tabulator\LICENSE" />
+    <Content Include="Content\Plugins\tabulator\package.json" />
+    <Content Include="Content\Plugins\tabulator\README.md" />
+    <Content Include="Content\Plugins\tabulator\src\scss\bootstrap\functions4.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\bootstrap\tabulator_bootstrap.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\bootstrap\tabulator_bootstrap4.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\bootstrap\variables.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\bootstrap\variables4.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\semantic-ui\tabulator_semantic-ui.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\semantic-ui\variables.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\semantic-ui\variables_table.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\tabulator.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\tabulator_midnight.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\tabulator_modern.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\tabulator_simple.scss" />
+    <Content Include="Content\Plugins\tabulator\src\scss\tabulator_site.scss" />
+    <Content Include="Content\table2.scss" />
+    <Content Include="Areas\Areas\Views\MAttribute\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\MAttribute\SubIndex.cshtml" />
+    <Content Include="libman.json" />
+    <Fakes Include="Fakes\AWSSDK.Core.fakes" />
+    <None Include="Properties\PublishProfiles\otowooop.pubxml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Blog\Detail.cshtml" />
+    <Content Include="Views\Image\GetImage.cshtml" />
+    <Content Include="Views\SignUp\CeptenOnay.cshtml" />
+    <Content Include="Views\Home\YardimDestek.cshtml" />
+    <Content Include="Views\Home\Hakkimizda.cshtml" />
+    <Content Include="Views\Home\iletisim.cshtml" />
+    <Content Include="Views\Home\NasilParaKazanirim.cshtml" />
+    <Content Include="Views\Profile\GetKazanc.cshtml" />
+    <Content Include="Views\Partial\_partialcategoryproduct.cshtml" />
+    <Content Include="Views\CBS\Index.cshtml" />
+    <Content Include="Views\Panel\Mahalle.cshtml" />
+    <Content Include="ScriptsNew\dojo\dojo_compressed.js" />
+    <Content Include="Views\Partial\_ilanList.cshtml" />
+    <Content Include="Views\Partial\_blogList.cshtml" />
+    <Content Include="Views\Partial\_categoryPartial.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Areas\Models\" />
+    <Folder Include="Areas\Areas\Views\Cache\" />
+    <Folder Include="Content\categoryimages\" />
+    <Folder Include="Content\Plugins\jspanel\fonts\" />
+    <Folder Include="Views\PostViewModel\" />
+    <Folder Include="Views\Product\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EClassField.Core\EClassField.Core.csproj">
+      <Project>{d7ba4452-6ba3-40a5-869b-296cf8feb489}</Project>
+      <Name>EClassField.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EClassField.Data\EClassField.Data.csproj">
+      <Project>{8d8a3891-919d-4335-9f2e-0b934c97cd2a}</Project>
+      <Name>EClassField.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EClassField.Services\EClassField.Services.csproj">
+      <Project>{30a8f7ab-4bee-4f71-aa09-5941faae513a}</Project>
+      <Name>EClassField.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51782</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51781/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
